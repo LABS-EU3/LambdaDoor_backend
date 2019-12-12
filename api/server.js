@@ -1,9 +1,9 @@
-import express from "express";
-import dotenv from "dotenv";
+const express = require("express");
+const dotenv = require("dotenv");
 dotenv.config();
 
-import cors from "cors";
-import helmet from "helmet";
+const cors = require("cors");
+const helmet = require("helmet");
 
 const server = express();
 
@@ -15,4 +15,4 @@ server.get("/", (req, res) => {
   return res.json({ message: "API is up 🚀" });
 });
 
-export default server;
+module.exports = server;
