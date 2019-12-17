@@ -6,7 +6,7 @@ dotenv.config();
 const cors = require('cors');
 const helmet = require('helmet');
 
-const userRouter = require('../users/user-router');
+const userRouter = require('../users/userRouter');
 
 const server = express();
 
