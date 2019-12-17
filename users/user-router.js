@@ -27,4 +27,28 @@ router.put('/:id', userExists, async (req, res, next) => {
   }
 });
 
+router.post('/:id/image', async (req, res, next) => {
+  const { profilePicture } = req.body;
+  const { id } = req.params;
+  const image = { profilePicture };
+  try {
+    const newImage = await Users.addImage(id, image);
+    res.status(200).json(newImage);
+  } catch (error) {
+    next(new Error(error));
+  }
+});
+
+router.put(':/id/image', async (req, res, next) => {
+  const { profilePicture } = req.body;
+  const { id } = req.params;
+  const imageUpdate = { profilePicture };
+  try {
+    const updatedImage = await Users.updateImage(id, imageUpdate);
+    res.status(200).json(updatedImage);
+  } catch (error) {
+    next(new Error(error));
+  }
+});
+
 module.exports = router;
