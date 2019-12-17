@@ -1,9 +1,12 @@
-const express = require("express");
-const dotenv = require("dotenv");
+const express = require('express');
+const dotenv = require('dotenv');
+
 dotenv.config();
 
-const cors = require("cors");
-const helmet = require("helmet");
+const cors = require('cors');
+const helmet = require('helmet');
+
+const userRouter = require('../users/user-router');
 
 const server = express();
 
@@ -11,8 +14,10 @@ server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
-server.get("/", (req, res) => {
-  return res.json({ message: "API is up 🚀" });
+server.use('/users', userRouter);
+
+server.get('/', (req, res) => {
+  return res.json({ message: 'API is up 🚀' });
 });
 
 module.exports = server;
