@@ -1,4 +1,4 @@
-const db = require('../database/db-config.js'); // This needs to be double-checked depending on the name chosen for the folder and the db-config file
+const db = require('../database/db-config'); 
 
 function findById(id) {
   return db('users')

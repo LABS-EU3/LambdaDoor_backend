@@ -1,5 +1,4 @@
 const db = require('../database/db-config');
-// Check the file path on this code afterwards
 const Users = require('../users/userModel');
 
 const testUser = {
