@@ -55,8 +55,7 @@ exports.up = function(knex) {
       table.integer("ratings", 128);
       table.boolean("is_currently_employed");
       table.varchar("review_headline");
-      table.varchar("pros", 128);
-      table.varchar("cons", 128);
+      table.varchar("review");
       table.boolean("is_accepting_questions");
       table.timestamps("created_at");
     })
