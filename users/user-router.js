@@ -3,7 +3,9 @@ const Users = require('./user-model');
 
 const router = express.Router();
 
-router.get('/:id', async (req, res, next) => {
+const userExists = require('./user-middleware');
+
+router.get('/:id', userExists, async (req, res, next) => {
   const { id } = req.params;
   try {
     const user = await Users.findById(id);
@@ -13,7 +15,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', userExists, async (req, res, next) => {
   const { fullName } = req.body;
   const { id } = req.params;
   const nameUpdate = { fullName };
