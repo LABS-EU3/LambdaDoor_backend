@@ -1,6 +1,6 @@
 exports.seed = function(knex) {
   // Inserts seed entries
-  return knex('table_name').insert([
+  return knex('users').insert([
     {
       full_name: 'Lisa Wilton',
       slack_id: 'Lisa Wilton',
