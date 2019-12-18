@@ -11,7 +11,7 @@ const userExists = async (req, res, next) => {
       return res.status(401).json({ error: 'User does not exist' });
     }
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: error.message });
   }
 };
 
