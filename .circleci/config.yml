@@ -6,10 +6,11 @@ jobs:
       - image: circleci/node:12.13.1
         environment:
           NODE_ENV: testing
-          DATABASE_URL: "postgresql://root@localhost/circle_test"
-      - image: circleci/postgres:9.6-alpine-ram
+          DATABASE_URL: postgresql://root@localhost/circle_test
+      - image: circleci/postgres:9.6-alpine
         environment:
           POSTGRES_USER: postgres
+          POSTGRES_DB: postgresql://root@localhost/circle_test
     
     working_directory: ~/repo
     steps:
@@ -21,9 +22,15 @@ jobs:
             - v1-dependencies-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-
+      - run:
+          name: install dockerize
+          command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+          environment:
+            DOCKERIZE_VERSION: v0.3.0
       - run: npm install
-      - run: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run: 
+          name: Wait for db
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
 
       - save_cache:
           paths:
