@@ -7,7 +7,7 @@ describe('userRouter', () => {
     test('returns a 200 response', async () => {
       const response = await request(server).get('/users/1');
       // .expect(200);
-      console.log(response.status.body);
+      console.log(response.status);
     });
   });
   describe('PUT /users/:id', () => {
@@ -18,7 +18,7 @@ describe('userRouter', () => {
           full_name: 'Test 2',
         });
       // .expect(401);
-      console.log(response.status.body);
+      console.log(response.status);
     });
   });
 });
