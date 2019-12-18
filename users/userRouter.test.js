@@ -1,20 +1,13 @@
-const db = require('../database/db-config');
-const Users = require('../users/userModel');
+const request = require('supertest');
+const knex = require('../database/db-config');
+const server = require('../api/server');
 
-const testUser = {
-  full_name: 'Mr Test',
-  email_address: 'test@test.com',
-  profile_picture: '',
-  slack_id: 'testy',
-  username: 'testy',
-};
-
-// beforeAll(() => {
-//   return knex.seed.run();
-// });
-
-// describe('userRouter', () => {
-//     describe("Get user by id", () => {
-//         test()
-//     })
-// })
+describe('userRouter', () => {
+  describe('GET /users/:id', () => {
+    test('returns a 200 response', async () => {
+      const response = await request(server)
+        .get('/users/1')
+        .expect(200);
+    });
+  });
+});

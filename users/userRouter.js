@@ -3,9 +3,9 @@ const Users = require('./userModel');
 
 const router = express.Router();
 
-const userExists = require('./userMiddleware');
+const { userExists } = require('./userMiddleware');
 
-router.get('/:id', userExists, async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   const { id } = req.params;
   try {
     const user = await Users.findById(id);
@@ -27,7 +27,7 @@ router.put('/:id', userExists, async (req, res, next) => {
   }
 });
 
-router.post('/:id/image', async (req, res, next) => {
+router.post('/:id/image', userExists, async (req, res, next) => {
   const { profilePicture } = req.body;
   const { id } = req.params;
   const image = { profilePicture };
@@ -39,12 +39,12 @@ router.post('/:id/image', async (req, res, next) => {
   }
 });
 
-router.put(':/id/image', async (req, res, next) => {
+router.put(':/id/image', userExists, async (req, res, next) => {
   const { profilePicture } = req.body;
   const { id } = req.params;
   const imageUpdate = { profilePicture };
   try {
-    const updatedImage = await Users.updateImage(id, imageUpdate);
+    const updatedImage = await Users.update(id, imageUpdate);
     res.status(200).json(updatedImage);
   } catch (error) {
     next(new Error(error));
