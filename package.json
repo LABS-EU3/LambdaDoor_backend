@@ -44,7 +44,10 @@
     "jest": "^24.9.0",
     "nodemon": "^2.0.2",
     "prettier": "^1.19.1",
+<<<<<<< HEAD
     "prettier-eslint": "^9.0.1",
+=======
+>>>>>>> 13ee49be0f1aad311e685aca127acd2d41c66a5c
     "supertest": "^4.0.2"
   }
 }

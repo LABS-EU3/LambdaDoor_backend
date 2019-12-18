@@ -99,6 +99,9 @@ exports.up = function(knex) {
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
       table.varchar('text');
+      table.varchar('description');
+      table.varchar('salary');
+      table.varchar('currency');
       table.boolean('is_accepting_questions');
       table.timestamps('created_at');
     });
