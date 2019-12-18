@@ -77,7 +77,7 @@ exports.up = function(knex) {
         .inTable('companies')
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
-      table.varchar('text');
+      table.text('text');
       table.timestamps('created_at');
     })
     .createTable('salary_reviews', table => {
