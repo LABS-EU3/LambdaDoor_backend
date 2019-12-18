@@ -12,13 +12,15 @@ describe('server.js', () => {
       const response = await request(server).get('/');
       expect(response.type).toEqual('application/json');
     });
-describe('/ [GET]', () => {
-  it('returns a 200 status', () => {
-    return request(server)
-      .get('/')
-      .expect('Content-Type', /json/)
-      .then(res => {
-        expect(res.status).toEqual(200);
-      });
+  });
+  describe('/ [GET]', () => {
+    it('returns a 200 status', () => {
+      return request(server)
+        .get('/')
+        .expect('Content-Type', /json/)
+        .then(res => {
+          expect(res.status).toEqual(200);
+        });
+    });
   });
 });
