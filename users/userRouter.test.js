@@ -10,4 +10,14 @@ describe('userRouter', () => {
         .expect(200);
     });
   });
+  describe('PUT /users/:id', () => {
+    test('returns an error when user does not exist', async () => {
+      const response = await request(server)
+        .put('/users/100')
+        .send({
+          full_name: 'Test 2',
+        })
+        .expect(401);
+    });
+  });
 });

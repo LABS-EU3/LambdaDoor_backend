@@ -6,7 +6,7 @@ function findById(id) {
     .first();
 }
 
-function update(changes, id) {
+function update(id, changes) {
   return db('users')
     .update(changes)
     .where({ id });
@@ -18,7 +18,7 @@ function addImage(profilePicture) {
     .returning('id');
 }
 
-function updateImage(changes, id) {
+function updateImage(id, changes) {
   return db('users')
     .update(changes)
     .where({ id });

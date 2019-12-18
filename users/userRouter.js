@@ -23,6 +23,7 @@ router.put('/:id', userExists, async (req, res, next) => {
     const updatedUser = await Users.update(id, nameUpdate);
     res.status(200).json(updatedUser);
   } catch (error) {
+    console.log(error)
     next(new Error(error));
   }
 });
