@@ -1,5 +1,5 @@
 const request = require('supertest');
-const server = require('../api/server');
+const server = require('./server');
 
 describe('/ [GET]', () => {
   it('returns a 200 status', () => {
@@ -9,11 +9,5 @@ describe('/ [GET]', () => {
       .then(res => {
         expect(res.status).toEqual(200);
       });
-  });
-});
-
-describe('Sample Test', () => {
-  it('should test that true === true', () => {
-    expect(true).toBe(true);
   });
 });

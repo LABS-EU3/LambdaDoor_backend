@@ -1,8 +1,0 @@
-// This file is to disable some rules that throw errors for devdependancies we require for testing.
-
-{
-  "rules": {
-    "node/no-unpublished-require": 0,
-    "node/no-missing-require": 0
-  }
-}
