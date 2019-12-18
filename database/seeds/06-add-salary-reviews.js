@@ -1,6 +1,6 @@
 exports.seed = function(knex) {
   // Inserts seed entries
-  return knex('table_name').insert([
+  return knex('salary_reviews').insert([
     {
       user_id: 1,
       company_id: 1,
