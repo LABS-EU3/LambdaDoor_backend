@@ -45,9 +45,6 @@ jobs:
             psql -h localhost -p 5432 -c 'drop database if exists circle_test;' -U postgres
             psql -h localhost -p 5432 -c 'create database circle_test;' -U postgres
             psql -h localhost -p 5432 -c "CREATE USER postgresql WITH PASSWORD 'postgres';" -U postgres
-            npx knex:migrate rollback --url "postgres://postgres:postgres@localhost:5432/circle_test"
-            npx knex:migrate latest --url "postgres://postgres:postgres@localhost:5432/circle_test"
-            npx knex:seed run --url "postgres://postgres:postgres@localhost:5432/circle_test"
 
       - save_cache:
           paths:
