@@ -14,12 +14,13 @@ describe('server.js', () => {
     });
   });
   describe('/ [GET]', () => {
-    it('returns a 200 status', () => {
+    it('returns a 200 status', done => {
       return request(server)
         .get('/')
         .expect('Content-Type', /json/)
         .then(res => {
           expect(res.status).toEqual(200);
+          done();
         });
     });
   });
