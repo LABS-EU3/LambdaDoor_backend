@@ -8,8 +8,8 @@ describe('userRouter', () => {
       const response = await request(server)
         .get('/users/1')
         .expect('Content-Type', /json/);
-        expect(response.status).toEqual(200);
-        // console.log(response)
+      console.log(response);
+      expect(response.status).toEqual(200);
     });
   });
   describe('PUT /users/:id', () => {
@@ -20,8 +20,8 @@ describe('userRouter', () => {
           full_name: 'Test 2',
         })
         .expect('Content-Type', /json/);
-        // console.log(response)
-       expect(response.status).toEqual(401);
+      console.log(response)
+      expect(response.status).toEqual(401);
     });
   });
 });
