@@ -8,20 +8,19 @@ describe('userRouter', () => {
       const response = await request(server)
         .get('/users/1')
         .expect('Content-Type', /json/);
-      console.log(response);
       expect(response.status).toEqual(200);
     });
   });
-  // describe('PUT /users/:id', () => {
-  //   test('returns an error when user does not exist', async () => {
-  //     const response = await request(server)
-  //       .put('/users/6')
-  //       .send({
-  //         full_name: 'Test 2',
-  //       })
-  //       .expect('Content-Type', /json/);
-  //     console.log(response)
-  //     expect(response.status).toEqual(401);
-  //   });
-  // });
+  describe('PUT /users/:id', () => {
+    test('returns an error when user does not exist', async () => {
+      const response = await request(server)
+        .put('/users/6')
+        .send({
+          full_name: 'Test 2',
+        })
+        .expect('Content-Type', /json/);
+      console.log(response)
+      expect(response.status).toEqual(401);
+    });
+  });
 });
