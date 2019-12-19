@@ -31,7 +31,7 @@ describe('userRouter', () => {
   describe('PUT /users/:id', () => {
     test('returns an error when user does not exist', async () => {
       const response = await request(server)
-        .put('/users/6')
+        .patch('/users/6')
         .send({
           full_name: 'Test 2',
         })
@@ -40,7 +40,7 @@ describe('userRouter', () => {
     });
     test('updates name successfully', async () => {
       const response = await request(server)
-        .put('/users/1')
+        .patch('/users/1')
         .send({
           full_name: 'Test 1',
         })
@@ -56,7 +56,7 @@ describe('userRouter', () => {
     });
     test('updates image successfully', async () => {
       const response = await request(server)
-        .put('/users/1')
+        .patch('/users/1')
         .send({
           profile_picture: 'testurl2',
         })
