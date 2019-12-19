@@ -10,7 +10,7 @@ jobs:
           POSTGRES_DB: ldoor_test
       - image: circleci/postgres:9.6.5-alpine-ram
         environment:
-          POSTGRES_USER: postgres
+          POSTGRES_USER: root
           POSTGRES_DB: ldoor_test
     working_directory: ~/repo
     steps:
