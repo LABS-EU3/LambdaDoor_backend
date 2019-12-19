@@ -5,15 +5,15 @@ jobs:
       - image: circleci/node:12.13.1
         environment:
           NODE_ENV: test
-          DATABASE_URL: postgresql://postgres:password@localhost/ldoor_test
-          POSTGRES_USER: postgres
-          POSTGRES_DB: ldoor_test
-          POSTGRES_PASSWORD: password
+          DATABASE_URL: postgres://avvofddf:QBWAt6NYTl0sHk1O6D6PfZkKwwQTf0Cs@rajje.db.elephantsql.com:5432/avvofddf
+          POSTGRES_USER: avvofddf
+          POSTGRES_DB: avvofddf
+          POSTGRES_PASSWORD: QBWAt6NYTl0sHk1O6D6PfZkKwwQTf0Cs
       - image: circleci/postgres:9.6.5-alpine-ram
         environment:
-          POSTGRES_USER: postgres
-          POSTGRES_DB: ldoor_test
-          POSTGRES_PASSWORD: password
+          POSTGRES_USER: avvofddf
+          POSTGRES_DB: avvofddf
+          POSTGRES_PASSWORD: QBWAt6NYTl0sHk1O6D6PfZkKwwQTf0Cs
     working_directory: ~/repo
     steps:
       - checkout
@@ -40,8 +40,6 @@ jobs:
           name: Wait for db
           command: dockerize -wait tcp://localhost:5432 -timeout 10m
       - run: sudo apt-get install postgresql-client-9.6 -y
-      - run: psql -h localhost -p 5432 -c 'drop database if exists ldoor_test;' -U postgres
-      - run: psql -U postgres -h localhost -p 5432 -c "create database ldoor_test;"
       - run: knex migrate:rollback --env test
       - run: knex migrate:latest --env test
       - run: knex seed:run --env test
