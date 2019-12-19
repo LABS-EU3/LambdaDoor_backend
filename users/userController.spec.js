@@ -19,7 +19,6 @@ describe('userRouter', () => {
           full_name: 'Test 2',
         })
         .expect('Content-Type', /json/);
-      console.log(response)
       expect(response.status).toEqual(401);
     });
   });
