@@ -43,13 +43,13 @@ jobs:
       - run: knex migrate:rollback --env test
       - run: knex migrate:latest --env test
       - run: knex seed:run --env test
-      
-      # run tests
-      - run: npm run ci:test
       - run:
           name: Run tests
           command: |
             sleep 30
+      # run tests
+      - run: npm run ci:test
+
       
 
      
