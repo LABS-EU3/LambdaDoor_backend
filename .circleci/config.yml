@@ -40,7 +40,6 @@ jobs:
       - run: sudo apt-get install postgresql-client-9.6 -y
       - run: psql -h localhost -p 5432 -c 'drop database if exists ldoor_test;' -U postgres
       - run: psql -U postgres -h localhost -p 5432 -c "create database ldoor_test;"
-      - run: npm install -g knex
       - run: knex migrate:latest --env test
 
       # run tests
