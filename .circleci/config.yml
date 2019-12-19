@@ -33,11 +33,11 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: sudo npm install -g knex
-      - run: apt-get update
+      - run: sudo apt-get update
       - run: 
           name: Wait for db
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
-      - run: apt-get install postgresql-client-9.6 -y
+      - run: sudo apt-get install postgresql-client-9.6 -y
       - run: psql -U postgres -h localhost -p 5432 -c "create database ldoor_test;"
       - run: npm install -g knex
       - run: knex migrate:latest --env test
