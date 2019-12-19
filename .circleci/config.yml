@@ -43,7 +43,7 @@ jobs:
       - run: knex migrate:rollback --env test
       - run: knex migrate:latest --env test
       - run: knex seed:run --env test
-       - run:
+      - run:
           name: Run tests
           command: |
             set -x
