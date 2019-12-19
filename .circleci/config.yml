@@ -15,7 +15,7 @@ jobs:
            PGUSER: postgres
            NODE_ENV: test
            DIALECT: postgres
-           DATABASE_URL: "postgres://postgres:postgres@localhost:5432/ldoor_test"
+           DATABASE_URL: postgres://postgres:postgres@localhost:5432/ldoor_test
       
       - image: circleci/postgres:11
         environment:
