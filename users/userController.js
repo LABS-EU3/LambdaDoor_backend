@@ -37,4 +37,5 @@ module.exports = {
   getUser,
   updateUser,
   postImage,
+  
 };
