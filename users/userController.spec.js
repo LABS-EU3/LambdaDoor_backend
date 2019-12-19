@@ -7,8 +7,9 @@ describe('userRouter', () => {
     test('returns a 200 response', async () => {
       const response = await request(server)
         .get('/users/1')
-        // .expect(200);
-        console.log(response)
+        .expect('Content-Type', /json/);
+        .expect(200);
+        // console.log(response)
     });
   });
   describe('PUT /users/:id', () => {
@@ -18,8 +19,9 @@ describe('userRouter', () => {
         .send({
           full_name: 'Test 2',
         })
-        console.log(response)
-        // .expect(401);
+        .expect('Content-Type', /json/);
+        // console.log(response)
+        .expect(401);
     });
   });
 });
