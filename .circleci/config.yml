@@ -64,7 +64,7 @@ jobs:
       - run: 
           name: Set up DB
           command: |
-            psql -h localhost -p 5432 -c 'drop database if exists population_m_s_test;' -U postgres
+            psql -h localhost -p 5432 -c 'drop database if exists ldoor_test;' -U postgres
             psql -h localhost -p 5432 -c 'create database ldoor_test;' -U postgres
             psql -h localhost -p 5432 -c "CREATE USER postgresql WITH PASSWORD 'postgres';" -U postgres
             knex migrate:rollback --env test
