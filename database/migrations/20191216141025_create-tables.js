@@ -10,6 +10,9 @@ exports.up = function(knex) {
         .unique()
         .notNullable();
       table.varchar('profile_picture', 240);
+      table.varchar('location');
+      table.varchar('longitude');
+      table.varchar('latitude');
       table.timestamps('created_at');
     })
     .createTable('companies', table => {
@@ -17,6 +20,8 @@ exports.up = function(knex) {
       table.varchar('name', 128).notNullable();
       table.varchar('website');
       table.varchar('location');
+      table.varchar('longitude');
+      table.varchar('latitude');
       table.string('type', 128);
       table.varchar('logo', 128);
       table.varchar('description', 128);

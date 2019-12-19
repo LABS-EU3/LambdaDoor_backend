@@ -6,6 +6,9 @@ exports.seed = function(knex) {
       slack_id: 'Lisa Wilton',
       username: 'Lisawilton',
       email_address: 'lisa@lambdaschool.com',
+      location: '',
+      longitude: '',
+      latitude: '',
       profile_picture: '',
     },
     {
@@ -13,6 +16,9 @@ exports.seed = function(knex) {
       slack_id: 'Jessica Eze',
       username: 'chiomaeze',
       email_address: 'chioma@lambdaschool.com',
+      location: '',
+      longitude: '',
+      latitude: '',
       profile_picture: '',
     },
     {
@@ -20,6 +26,9 @@ exports.seed = function(knex) {
       slack_id: 'Victor',
       username: 'Victor',
       email_address: 'vic@lambdaschool.com',
+      location: '',
+      longitude: '',
+      latitude: '',
       profile_picture: '',
     },
     {
@@ -27,6 +36,9 @@ exports.seed = function(knex) {
       slack_id: 'Emily',
       username: 'Emily',
       email_address: 'emily@lambdaschool.com',
+      location: '',
+      longitude: '',
+      latitude: '',
       profile_picture: '',
     },
     {
@@ -34,6 +46,9 @@ exports.seed = function(knex) {
       slack_id: 'Martins O-U',
       username: 'Martins O-U',
       email_address: 'mato@lambdaschool.com',
+      location: '',
+      longitude: '',
+      latitude: '',
       profile_picture: '',
     },
   ]);
