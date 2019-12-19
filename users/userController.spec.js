@@ -8,7 +8,7 @@ describe('userRouter', () => {
       const response = await request(server)
         .get('/users/1')
         .expect('Content-Type', /json/);
-        .expect(200);
+        expect(response.status).toEqual(200);
         // console.log(response)
     });
   });
@@ -21,7 +21,7 @@ describe('userRouter', () => {
         })
         .expect('Content-Type', /json/);
         // console.log(response)
-        .expect(401);
+       expect(response.status).toEqual(401);
     });
   });
 });
