@@ -34,6 +34,7 @@ jobs:
             DOCKERIZE_VERSION: v0.3.0
       - run: npm install
       - run: sudo npm install -g knex
+      - run: npm install pg@7.12.1
       - run: 
           name: Wait for db
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
@@ -46,6 +47,9 @@ jobs:
             psql -h localhost -p 5432 -c 'drop database if exists circle_test;' -U postgres
             psql -h localhost -p 5432 -c 'create database circle_test;' -U postgres
             psql -h localhost -p 5432 -c "CREATE USER postgresql WITH PASSWORD 'postgres';" -U postgres
+            npx knex:migrate rollback --url "postgres://postgres:postgres@localhost:5432/circle_test"
+            npx knex:migrate latest --url "postgres://postgres:postgres@localhost:5432/circle_test"
+            npx knex:seed run --url "postgres://postgres:postgres@localhost:5432/circle_test"
 
       - save_cache:
           paths:
