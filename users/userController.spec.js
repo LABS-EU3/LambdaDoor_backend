@@ -19,7 +19,8 @@ describe('userRouter', () => {
     test('returns a 200 response', async () => {
       const response = await request(server)
         .get('/users/1')
-        .expect(200);
+        .expect('Content-Type', /json/);
+      expect(response.status).toEqual(200);
     });
     test('returns an error when user does not exist', async () => {
       const response = await request(server)
@@ -34,7 +35,8 @@ describe('userRouter', () => {
         .send({
           full_name: 'Test 2',
         })
-        .expect(401);
+        .expect('Content-Type', /json/);
+      expect(response.status).toEqual(401);
     });
     test('updates name successfully', async () => {
       const response = await request(server)
