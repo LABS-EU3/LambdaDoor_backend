@@ -20,8 +20,8 @@ exports.up = function(knex) {
       table.varchar('name', 128).notNullable();
       table.varchar('website');
       table.varchar('location');
-      table.varchar('location');
       table.varchar('longitude');
+      table.varchar('latitude');
       table.string('type', 128);
       table.varchar('logo', 128);
       table.varchar('description', 128);
