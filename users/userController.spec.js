@@ -8,7 +8,7 @@ const server = require('../api/server');
 //   knex.seed.run();
 // });
 
-// I changed the above code to the following few lines - this made my tests run on local. It may need to be changed to work with Circle CI
+// I changed the above code to the following few lines - this made my tests run on local. This may be needed later depending on the CI. Lines 13-15 may be unnecessary.
 
 beforeAll(() => {
   return knex.seed.run();
