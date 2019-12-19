@@ -12,22 +12,14 @@ function update(id, changes) {
     .where({ id });
 }
 
-function addImage(profilePicture) {
+function addImage(id, profile_picture) {
   return db('users')
-    .insert(profilePicture, 'id')
-    .returning('id');
-}
-
-function updateImage(id, changes) {
-  return db('users')
-    .update(changes)
+    .update(profile_picture)
     .where({ id });
 }
-// On looking at this code again I don't think I need both update and updateImage functions?
 
 module.exports = {
   findById,
   update,
   addImage,
-  updateImage,
 };

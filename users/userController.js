@@ -1,6 +1,6 @@
 const Users = require('./userModel');
 
-const getUser = async (req, res, next) => {
+const getUser = async (req, res) => {
   const { id } = req.params;
   try {
     const user = await Users.findById(id);
@@ -10,22 +10,21 @@ const getUser = async (req, res, next) => {
   }
 };
 
-const updateName = async (req, res, next) => {
-  const { fullName } = req.body;
+const updateUser = async (req, res) => {
+  const changes = req.body;
   const { id } = req.params;
-  const nameUpdate = { fullName };
   try {
-    const updatedUser = await Users.update(id, nameUpdate);
+    const updatedUser = await Users.update(id, changes);
     return res.status(200).json(updatedUser);
   } catch (error) {
     return res.status(500).json(error.message);
   }
 };
 
-const postImage = async (req, res, next) => {
-  const { profilePicture } = req.body;
+const postImage = async (req, res) => {
+  const { profile_picture } = req.body;
   const { id } = req.params;
-  const image = { profilePicture };
+  const image = { profile_picture };
   try {
     const newImage = await Users.addImage(id, image);
     return res.status(200).json(newImage);
@@ -34,21 +33,8 @@ const postImage = async (req, res, next) => {
   }
 };
 
-const updateImage = async (req, res, next) => {
-  const { profilePicture } = req.body;
-  const { id } = req.params;
-  const imageUpdate = { profilePicture };
-  try {
-    const updatedImage = await Users.update(id, imageUpdate);
-    return res.status(200).json(updatedImage);
-  } catch (error) {
-    return res.status(500).json(error.message);
-  }
-};
-
 module.exports = {
   getUser,
-  updateName,
+  updateUser,
   postImage,
-  updateImage,
 };
