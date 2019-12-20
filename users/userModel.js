@@ -6,20 +6,36 @@ function findById(id) {
     .first();
 }
 
+function findBy(filter) {
+  return db('users')
+    .where('slack_id', '=', filter)
+    .first();
+}
+
+function insert(user) {
+  return db('users')
+    .insert(user, 'id')
+    .then(ids => {
+      return findById(ids[0]);
+    });
+}
+
 function update(id, changes) {
   return db('users')
     .update(changes)
     .where({ id });
 }
 
-function addImage(id, profile_picture) {
+function addImage(id, profilePicture) {
   return db('users')
-    .update(profile_picture)
+    .update(profilePicture)
     .where({ id });
 }
 
 module.exports = {
   findById,
+  findBy,
+  insert,
   update,
   addImage,
 };
