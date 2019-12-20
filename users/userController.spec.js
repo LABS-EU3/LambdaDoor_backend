@@ -48,11 +48,11 @@ describe('userRouter', () => {
     });
     test('posts image successfully', async () => {
       const response = await request(server)
-        .post('/users/1')
+        .patch('/users/1')
         .send({
           profile_picture: 'testurl',
-        })
-        .expect(200);
+        });
+      expect(response.status).toEqual(200);
     });
     test('updates image successfully', async () => {
       const response = await request(server)
