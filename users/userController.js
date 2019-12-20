@@ -2,10 +2,8 @@ const Users = require('./userModel');
 const generateToken = require('../utils/generateToken');
 
 const getUser = async (req, res) => {
-  const { id } = req.params;
   try {
-    const user = await Users.findById(id);
-    return res.status(200).json(user);
+    return res.status(200).json(req.user);
   } catch (error) {
     return res.status(500).json(error.message);
   }
@@ -24,11 +22,12 @@ const addUser = async (req, res) => {
     const existingUser = await Users.findBy(newUser.slack_id);
 
     if (existingUser) {
+      await generateToken(res, existingUser.id, existingUser.full_name);
       return res.status(200).json(existingUser);
     }
     const user = await Users.insert(newUser);
 
-    await generateToken(user.id, user.full_name);
+    await generateToken(res, user.id, user.full_name);
     return res.status(201).json(user);
   } catch (error) {
     return res.status(500).json(error.message);
@@ -61,9 +60,8 @@ const updateUser = async (req, res) => {
 const postImage = async (req, res) => {
   const { profilePicture } = req.body;
   const { id } = req.params;
-  const image = { profilePicture };
   try {
-    const newImage = await Users.addImage(id, image);
+    const newImage = await Users.addImage(id, profilePicture);
     return res.status(200).json(newImage);
   } catch (error) {
     return res.status(500).json(error.message);
