@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 
+
 const generateToken = (res, id, fullName) => {
   const payload = {
     subject: id,
