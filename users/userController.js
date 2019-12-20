@@ -72,11 +72,21 @@ const postImage = async (req, res) => {
   }
 };
 
-//Lines 25 - 35 may be unnecessary but I have left them in for now. I believe the updateUser covers this.
+const addInterest = async (req, res) => {
+  const changes = req.body;
+  const { id } = req.params;
+  try {
+    const newInterests = await Users.addInterest(id, changes);
+    return res.status(200).json(newInterests);
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
+};
 
 module.exports = {
   getUser,
   addUser,
   updateUser,
   postImage,
+  addInterest,
 };
