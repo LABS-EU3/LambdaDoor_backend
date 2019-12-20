@@ -18,6 +18,7 @@ server.use(
       'http://localhost:3000',
       'https://lambdadoor.netlify.com',
       'https://lambdadoor.com',
+      'https://postwoman.io/',
       '*',
     ],
     credentials: true,
