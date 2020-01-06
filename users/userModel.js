@@ -22,7 +22,7 @@ function insert(user) {
 
 function update(id, changes) {
   return db('users')
-    .update(changes)
+    .update(changes, '*')
     .where({ id });
 }
 
