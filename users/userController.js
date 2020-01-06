@@ -68,9 +68,18 @@ const postImage = async (req, res) => {
   }
 };
 
+const logoutUser = async (req, res) => {
+  try {
+    return res.clearCookie('token');
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
+};
+
 module.exports = {
   getUser,
   addUser,
   updateUser,
   postImage,
+  logoutUser,
 };
