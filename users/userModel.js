@@ -64,7 +64,6 @@ function addInterest(interest) {
     });
 }
 
-
 module.exports = {
   findById,
   findBy,
@@ -74,5 +73,4 @@ module.exports = {
   getUserById,
   addInterest,
   findInterestById,
- 
 };

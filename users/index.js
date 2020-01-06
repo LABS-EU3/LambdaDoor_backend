@@ -9,6 +9,7 @@ router.get('/:id', validate.userExists, user.getUser);
 router.post('/', user.addUser);
 router.patch('/:id', validate.userExists, user.updateUser);
 router.post('/:id', validate.userExists, user.postImage);
-router.post('/:id/interests', validate.userExists, user.addInterest);
+// router.post('/:id/interests', validate.userExists, user.addInterest);
+// Currently adding an interest does not work - changes to db to come later
 
 module.exports = router;

@@ -72,21 +72,25 @@ const postImage = async (req, res) => {
   }
 };
 
-const addInterest = async (req, res) => {
-  const changes = req.body;
-  const { id } = req.params;
-  try {
-    const newInterests = await Users.addInterest(id, changes);
-    return res.status(200).json(newInterests);
-  } catch (error) {
-    return res.status(500).json(error.message);
-  }
-};
+// The above code to post an image may not be needed in the end at all as it is    covered by update user.
+
+// const addInterest = async (req, res) => {
+//   const changes = req.body;
+//   const { id } = req.params;
+//   try {
+//     const newInterests = await Users.addInterest(id, changes);
+//     return res.status(200).json(newInterests);
+//   } catch (error) {
+//     return res.status(500).json(error.message);
+//   }
+// };
+
+// Code for adding interests will need to be changed later
 
 module.exports = {
   getUser,
   addUser,
   updateUser,
   postImage,
-  addInterest,
+  // addInterest,
 };
