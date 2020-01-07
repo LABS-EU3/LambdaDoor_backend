@@ -57,17 +57,6 @@ const updateUser = async (req, res) => {
   }
 };
 
-const postImage = async (req, res) => {
-  const { profilePicture } = req.body;
-  const { id } = req.params;
-  try {
-    const newImage = await Users.addImage(id, profilePicture);
-    return res.status(200).json(newImage);
-  } catch (error) {
-    return res.status(500).json(error.message);
-  }
-};
-
 const logoutUser = async (req, res) => {
   try {
     return res.clearCookie('token');
@@ -80,6 +69,5 @@ module.exports = {
   getUser,
   addUser,
   updateUser,
-  postImage,
   logoutUser,
 };

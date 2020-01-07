@@ -7,7 +7,6 @@ const router = express.Router();
 router.get('/:id', validate.userExists, user.getUser);
 router.post('/', user.addUser);
 router.patch('/:id', validate.userExists, user.updateUser);
-router.post('/:id', validate.userExists, user.postImage);
-router.get('/logout', user.logoutUser);
+router.get('/:id/logout', user.logoutUser);
 
 module.exports = router;
