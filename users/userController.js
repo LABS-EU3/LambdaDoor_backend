@@ -53,6 +53,7 @@ const updateUser = async (req, res) => {
     const updatedUser = await Users.update(id, changes);
     return res.status(200).json(updatedUser);
   } catch (error) {
+    console.log(error.message);
     return res.status(500).json(error.message);
   }
 };
