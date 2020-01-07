@@ -6,3 +6,11 @@
 ### About
 
 The one-stop portal for Lambda graduates looking for company information in the quest for a job.
+
+### Features
+
+- View and post interview reviews
+- View and post salary reviews
+- View and post work culture reviews
+
+### Application Links
