@@ -50,13 +50,5 @@ describe('userRouter', () => {
         });
       expect(response.status).toEqual(200);
     });
-    test('updates image successfully', async () => {
-      const response = await request(server)
-        .patch('/users/1')
-        .send({
-          profile_picture: 'testurl2',
-        })
-        .expect(200);
-    });
   });
 });
