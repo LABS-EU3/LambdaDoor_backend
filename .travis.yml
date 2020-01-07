@@ -14,7 +14,7 @@ env:
   global:
     - DB_ENV=test
 before_script:
-  - psql -c 'drop database if exists ldoor_test' -U postgres
+  - psql -c 'drop database door_test' -U postgres
   # - psql -c 'create database ldoor_test;' -U postgres
   - psql -c "ALTER ROLE postgres CONNECTION LIMIT -1"
   - npm install coveralls
