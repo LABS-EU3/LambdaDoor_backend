@@ -2,11 +2,11 @@ const request = require('supertest');
 const knex = require('../database/db-config');
 const server = require('../api/server');
 
-beforeAll(() => {
-  knex.migrate.rollback();
-  knex.migrate.latest();
-  knex.seed.run();
-});
+// beforeAll(() => {
+//   knex.migrate.rollback();
+//   knex.migrate.latest();
+//   knex.seed.run();
+// });
 
 // I changed the above code to the following few lines - this made my tests run on local. It may need to be changed to work with Circle CI
 
