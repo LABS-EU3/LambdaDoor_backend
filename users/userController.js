@@ -30,7 +30,7 @@ const addUser = async (req, res) => {
     await generateToken(res, user.id, user.full_name);
     return res.status(201).json(user);
   } catch (error) {
-    return res.status(500).json(error.message);
+    return res.status(500).json({ error: error.message });
   }
 };
 
