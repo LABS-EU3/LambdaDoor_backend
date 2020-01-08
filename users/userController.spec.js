@@ -1,26 +1,43 @@
 const request = require('supertest');
-const knex = require('../database/db-config');
+const db = require('../database/db-config');
 const server = require('../api/server');
 
-beforeAll(() => {
-  knex.migrate.rollback();
-  knex.migrate.latest();
-  knex.seed.run();
+beforeAll(async () => {
+  await db.raw('TRUNCATE users RESTART IDENTITY CASCADE');
 });
 
-// I changed the above code to the following few lines - this made my tests run on local. It may need to be changed to work with Circle CI
+const testUser = {
+  slack_id: 'slack_id',
+  name: 'name',
+  email_address: 'email_address',
+  img_72: 'image_url',
+};
 
 describe('userRouter', () => {
+  let cookie;
+  describe('POST /users/', () => {
+    test('returns a 200 response', async () => {
+      const response = await request(server)
+        .post('/users/')
+        .send(testUser)
+        .expect(201);
+      cookie = response.headers['set-cookie'];
+    });
+  });
+
   describe('GET /users/:id', () => {
     test('returns a 200 response', async () => {
       const response = await request(server)
         .get('/users/1')
-        .expect('Content-Type', /json/);
-      expect(response.status).toEqual(200);
+        .set('Cookie', cookie)
+        .expect('Content-Type', /json/)
+        .expect(200);
     });
     test('returns an error when user does not exist', async () => {
       const response = await request(server)
         .get('/users/10')
+        .set('Cookie', cookie)
+        .expect(400)
         .expect({ error: 'User does not exist' });
     });
   });
@@ -31,8 +48,9 @@ describe('userRouter', () => {
         .send({
           full_name: 'Test 2',
         })
+        .set('Cookie', cookie)
         .expect('Content-Type', /json/);
-      expect(response.status).toEqual(401);
+      expect(response.status).toEqual(400);
     });
     test('updates name successfully', async () => {
       const response = await request(server)
@@ -40,6 +58,7 @@ describe('userRouter', () => {
         .send({
           full_name: 'Test 1',
         })
+        .set('Cookie', cookie)
         .expect(200);
     });
     test('posts image successfully', async () => {
