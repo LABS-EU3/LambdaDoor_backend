@@ -20,8 +20,7 @@ describe('userRouter', () => {
       const response = await request(server)
         .post('/users/')
         .send(testUser)
-        .expect({ error: 'test' });
-      console.log(response);
+        .expect(201);
       cookie = response.headers['set-cookie'];
     });
   });
