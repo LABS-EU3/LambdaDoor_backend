@@ -61,13 +61,5 @@ describe('userRouter', () => {
         .set('Cookie', cookie)
         .expect(200);
     });
-    test('posts image successfully', async () => {
-      const response = await request(server)
-        .patch('/users/1')
-        .send({
-          profile_picture: 'testurl',
-        });
-      expect(response.status).toEqual(200);
-    });
   });
 });

@@ -5,7 +5,7 @@ const getUser = async (req, res) => {
   try {
     return res.status(200).json(req.user);
   } catch (error) {
-    return res.status(500).json(error.message);
+    return res.status(500).json({ error: error.message });
   }
 };
 
@@ -53,8 +53,7 @@ const updateUser = async (req, res) => {
     const updatedUser = await Users.update(id, changes);
     return res.status(200).json(updatedUser);
   } catch (error) {
-    console.log(error.message);
-    return res.status(500).json(error.message);
+    return res.status(500).json({ error: error.message });
   }
 };
 
@@ -62,7 +61,7 @@ const logoutUser = async (req, res) => {
   try {
     return res.clearCookie('token');
   } catch (error) {
-    return res.status(500).json(error.message);
+    return res.status(500).json({ error: error.message });
   }
 };
 
