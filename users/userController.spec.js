@@ -21,6 +21,7 @@ describe('userRouter', () => {
         .post('/users/')
         .send(testUser)
         .expect(201);
+      console.log(response);
       cookie = response.headers['set-cookie'];
     });
   });
