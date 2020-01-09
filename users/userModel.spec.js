@@ -58,6 +58,7 @@ describe('User Models', () => {
     //   await expect(actual).rejects.toThrow('User already exists');
     // });
   });
+
   describe('The update function', () => {
     it("changes user's name", async () => {
       const actual = await update(1, {
