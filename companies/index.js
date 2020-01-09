@@ -3,6 +3,7 @@ const company = require('./companyController');
 
 const router = express.Router();
 
-router.get('/companies', company.getCompanies);
+router.get('/', company.getCompanies);
+router.get('/top', company.getTopRated);
 
 module.exports = router;
