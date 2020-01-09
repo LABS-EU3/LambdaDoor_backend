@@ -5,7 +5,7 @@ const getUser = async (req, res) => {
   try {
     return res.status(200).json(req.user);
   } catch (error) {
-    return res.status(500).json(error.message);
+    return res.status(500).json({ error: error.message });
   }
 };
 
@@ -30,7 +30,7 @@ const addUser = async (req, res) => {
     await generateToken(res, user.id, user.full_name);
     return res.status(201).json(user);
   } catch (error) {
-    return res.status(500).json(error.message);
+    return res.status(500).json({ error: error.message });
   }
 };
 
@@ -53,18 +53,7 @@ const updateUser = async (req, res) => {
     const updatedUser = await Users.update(id, changes);
     return res.status(200).json(updatedUser);
   } catch (error) {
-    return res.status(500).json(error.message);
-  }
-};
-
-const postImage = async (req, res) => {
-  const { profilePicture } = req.body;
-  const { id } = req.params;
-  try {
-    const newImage = await Users.addImage(id, profilePicture);
-    return res.status(200).json(newImage);
-  } catch (error) {
-    return res.status(500).json(error.message);
+    return res.status(500).json({ error: error.message });
   }
 };
 
@@ -72,7 +61,7 @@ const logoutUser = async (req, res) => {
   try {
     return res.clearCookie('token');
   } catch (error) {
-    return res.status(500).json(error.message);
+    return res.status(500).json({ error: error.message });
   }
 };
 
@@ -80,6 +69,5 @@ module.exports = {
   getUser,
   addUser,
   updateUser,
-  postImage,
   logoutUser,
 };

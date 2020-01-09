@@ -5,7 +5,7 @@ const userExists = async (req, res, next) => {
   try {
     const user = await Users.findById(id);
     if (!user) {
-      return res.status(401).json({ error: 'User does not exist' });
+      return res.status(400).json({ error: 'User does not exist' });
     }
     req.user = user;
     return next();
