@@ -72,7 +72,7 @@ The API endpoints for the server is on Heroku and can be found [here.](https://l
 
 #### Data Model
 
-![Where To Code Database Illustration](database/DBIllustration.png)
+![Lambda Door Database Illustration](database/DBIllustration.png)
 
 #### USERS
 
