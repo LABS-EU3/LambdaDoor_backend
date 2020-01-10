@@ -29,7 +29,7 @@ exports.up = function(knex) {
     })
     .createTable('interests', table => {
       table.increments('id');
-      table.varchar('interests', 128);
+      table.varchar('interest', 128);
     })
     .createTable('user_interests', table => {
       table.increments('id');
