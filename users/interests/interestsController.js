@@ -15,8 +15,17 @@ const getInterest = async (req, res) => {
     return res.status(500).json({ error: error.message });
   }
 };
+const getUserInterests = async (req, res) => {
+  try {
+    const interests = await Interests.findByUserId(req.params.id);
+    return res.status(200).json(interests);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
 
 module.exports = {
   getInterests,
   getInterest,
+  getUserInterests,
 };

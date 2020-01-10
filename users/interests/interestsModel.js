@@ -10,8 +10,13 @@ function findById(id) {
     .first();
 }
 
-function findByUserId(userId) {
-  return db('user_interests').where({ userId });
+// eslint-disable-next-line camelcase
+function findByUserId(user_id) {
+  return db
+    .select('u.id', 'i.interest', 'u.user_id')
+    .from('user_interests as u')
+    .join('interests as i', 'i.id', 'u.interest_id')
+    .where('u.user_id', '=', user_id);
 }
 
 // eslint-disable-next-line camelcase

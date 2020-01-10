@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.get('/', interest.getInterests);
 router.get('/:id', validate.interestExists, interest.getInterest);
+router.get('/user/:id', validate.userExists, interest.getUserInterests);
 
 module.exports = router;
