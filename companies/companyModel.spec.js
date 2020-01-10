@@ -103,7 +103,7 @@ describe('Company Models', () => {
       });
       it('returns the average rating', async () => {
         const response = await getTopRated();
-        expect(response[0].average_rating).toEqual("3.5000000000000000");
+        expect(response[0].average_rating).toEqual('3.5000000000000000');
       });
     });
 
