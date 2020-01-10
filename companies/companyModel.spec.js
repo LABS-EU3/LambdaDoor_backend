@@ -74,7 +74,6 @@ describe('Company Models', () => {
     await db.raw('TRUNCATE users RESTART IDENTITY CASCADE');
     await db.raw('TRUNCATE companies RESTART IDENTITY CASCADE');
     await db.raw('TRUNCATE company_reviews RESTART IDENTITY CASCADE');
-    // await db('company_reviews').insert(testReviews);
     await db('users').insert(testUsers);
     await db('companies').insert(testCompanies);
     await db('company_reviews').insert(testReviews);
@@ -92,12 +91,13 @@ describe('Company Models', () => {
       });
 
       it('returns undefined if company not found', async () => {
-        const response = await findCompanyById(3);
+        const response = await findCompanyById(10);
         expect(response).toBeUndefined();
       });
     });
 
     afterAll(async () => {
+      await db.raw('TRUNCATE users RESTART IDENTITY CASCADE');
       await db.raw('TRUNCATE companies RESTART IDENTITY CASCADE');
       await db.raw('TRUNCATE company_reviews RESTART IDENTITY CASCADE');
     });

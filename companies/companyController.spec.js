@@ -1,5 +1,4 @@
 const request = require('supertest');
-const assert = require('assert');
 const db = require('../database/db-config');
 const server = require('../api/server');
 
