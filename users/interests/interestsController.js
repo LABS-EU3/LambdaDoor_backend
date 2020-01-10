@@ -24,8 +24,26 @@ const getUserInterests = async (req, res) => {
   }
 };
 
+const addUserInterest = async (req, res) => {
+  try {
+    const newUserInterest = {
+      user_id: req.body.user_id,
+      interest_id: req.body.interest_id,
+    };
+
+    // currently there is a missing middleware that prevents duplicates of interests
+    
+    await Interests.insert(newUserInterest);
+    const interests = await Interests.findByUserId(req.body.user_id);
+    return res.status(201).json(interests);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   getInterests,
   getInterest,
   getUserInterests,
+  addUserInterest,
 };
