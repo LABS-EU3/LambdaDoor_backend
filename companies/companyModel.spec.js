@@ -96,6 +96,17 @@ describe('Company Models', () => {
       });
     });
 
+    describe('The top companies function', () => {
+      it('returns a company', async () => {
+        const response = await getTopRated();
+        expect(response.length).toEqual(1);
+      });
+      it('returns the average rating', async () => {
+        const response = await getTopRated();
+        expect(response[0].average_rating).toEqual("3.5000000000000000");
+      });
+    });
+
     afterAll(async () => {
       await db.raw('TRUNCATE users RESTART IDENTITY CASCADE');
       await db.raw('TRUNCATE companies RESTART IDENTITY CASCADE');
