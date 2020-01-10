@@ -8,7 +8,15 @@ const getInterests = async (req, res) => {
     return res.status(500).json({ error: error.message });
   }
 };
+const getInterest = async (req, res) => {
+  try {
+    return res.status(200).json(req.interest);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
 
 module.exports = {
   getInterests,
+  getInterest,
 };
