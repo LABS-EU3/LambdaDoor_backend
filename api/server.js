@@ -10,7 +10,7 @@ const helmet = require('helmet');
 const userRouter = require('../users/index');
 const interestRouter = require('../users/interests/index');
 const companiesRouter = require('../companies/index');
-const reviewsRouter = require('../reviews/index');
+const reviewsRouter = require('../reviews/companyReviews/index');
 
 const server = express();
 

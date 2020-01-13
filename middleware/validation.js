@@ -1,5 +1,5 @@
 const Users = require('../users/userModel');
-const Reviews = require('../reviews/reviewsModel');
+const Reviews = require('../reviews/companyReviews/reviewsModel');
 const Interests = require('../users/interests/interestsModel');
 
 const userExists = async (req, res, next) => {
@@ -61,4 +61,5 @@ module.exports = {
   userExists,
   interestExists,
   userInterestExists,
+  reviewExists,
 };
