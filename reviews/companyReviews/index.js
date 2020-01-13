@@ -1,5 +1,5 @@
 const express = require('express');
-const reviews = require('./reviewsController');
+const reviews = require('./companyReviewsController');
 const validate = require('../../middleware/validation');
 
 const router = express.Router();

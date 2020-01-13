@@ -1,5 +1,5 @@
 const Users = require('../users/userModel');
-const Reviews = require('../reviews/companyReviews/reviewsModel');
+const Reviews = require('../reviews/companyReviews/companyReviewsModel');
 const Interests = require('../users/interests/interestsModel');
 
 const userExists = async (req, res, next) => {
