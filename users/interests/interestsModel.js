@@ -9,6 +9,11 @@ function findById(id) {
     .where({ id })
     .first();
 }
+function findUserInterestById(id) {
+  return db('user_interests')
+    .where({ id })
+    .first();
+}
 
 // eslint-disable-next-line camelcase
 function findByUserId(user_id) {
@@ -36,7 +41,7 @@ function update(id, changes) {
 
 function remove(id) {
   return db('user_interests')
-    .where('id', id)
+    .where({ id: id })
     .del();
 }
 
@@ -44,6 +49,7 @@ module.exports = {
   findAll,
   findById,
   findByUserId,
+  findUserInterestById,
   insert,
   update,
   remove,

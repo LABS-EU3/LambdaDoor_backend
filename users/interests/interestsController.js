@@ -15,6 +15,7 @@ const getInterest = async (req, res) => {
     return res.status(500).json({ error: error.message });
   }
 };
+
 const getUserInterests = async (req, res) => {
   try {
     const interests = await Interests.findByUserId(req.params.id);
@@ -32,10 +33,30 @@ const addUserInterest = async (req, res) => {
     };
 
     // currently there is a missing middleware that prevents duplicates of interests
-    
+
     await Interests.insert(newUserInterest);
     const interests = await Interests.findByUserId(req.body.user_id);
     return res.status(201).json(interests);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+const getUserInterest = async (req, res) => {
+  try {
+    return res.status(200).json(req.interest);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
+const deleteUserInterest = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    await Interests.remove(id);
+    return res
+      .status(200)
+      .json({ message: 'Successfully Deleted', deleted: req.interest });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
@@ -46,4 +67,6 @@ module.exports = {
   getInterest,
   getUserInterests,
   addUserInterest,
+  getUserInterest,
+  deleteUserInterest,
 };

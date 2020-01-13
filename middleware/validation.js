@@ -28,8 +28,22 @@ const interestExists = async (req, res, next) => {
     return res.status(500).json({ error: error.message });
   }
 };
+const userInterestExists = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const interest = await Interests.findUserInterestById(id);
+    if (!interest) {
+      return res.status(400).json({ error: 'user interest does not exist' });
+    }
+    req.interest = interest;
+    return next();
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
 
 module.exports = {
   userExists,
   interestExists,
+  userInterestExists,
 };
