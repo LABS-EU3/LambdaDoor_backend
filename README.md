@@ -1,7 +1,7 @@
 # LambdaDoor API
 
 [![Build Status](https://travis-ci.com/LABS-EU3/lambdaDoor_backend.svg?branch=develop)](https://travis-ci.com/LABS-EU3/lambdaDoor_backend)
-[![Coverage Status](https://coveralls.io/repos/github/LABS-EU3/lambdaDoor_backend/badge.svg?branch=ft-edit-profile-name-and-photo)](https://coveralls.io/github/LABS-EU3/lambdaDoor_backend?branch=ft-edit-profile-name-and-photo)
+[![Coverage Status](https://coveralls.io/repos/github/LABS-EU3/lambdaDoor_backend/badge.svg?branch=ft-edit-profile-name-and-photo)](https://coveralls.io/github/LABS-EU3/lambdaDoor_backend?branch=develop)
 
 ### About
 
@@ -17,7 +17,7 @@ The one-stop portal for Lambda graduates looking for company information in the 
 
 ### [Product Vision Document](https://www.notion.so/EU3-Lambda-Door-e78fd9396061487b8b458a28912d66c4)
 
-### [API Link](https://lambdadoor-staging.herokuapp.com/)
+### [API Link](https://lambdadoor.herokuapp.com/)
 
 ### [Trello board](https://trello.com/b/YdfO1w9X/lambda-door)
 
@@ -59,16 +59,19 @@ Test Tools
 
 ## API Documentation
 
-The API endpoints for the server is on Heroku and can be found [here.](https://lambdadoor-staging.herokuapp.com/)
+The API endpoints for the server is on Heroku and can be found [here.](https://lambdadoor.herokuapp.com/)
 
 #### User Routes
 
-| Method | Endpoint            | Access Control      | Description                            |
-| ------ | ------------------- | ------------------- | -------------------------------------- |
-| POST   | `/users/`           | all users           | Adds a new user if user doesn't exist. |
-| GET    | `/users/:id`        | all users           | Returns info for a user.               |
-| PATCH  | `/users/:id`        | all users           | Edits information for a user.          |
-| GET    | `/users/:id/logout` | all users           | Logs out a user by deleting cookies.   |
+
+
+| Method | Endpoint            | Access Control | Description                            |
+| ------ | ------------------- | -------------- | -------------------------------------- |
+| POST   | `/users/`           | all users      | Adds a new user if user doesn't exist. |
+| GET    | `/users/:id`        | all users      | Returns info for a user.               |
+| PATCH  | `/users/:id`        | all users      | Edits information for a user.          |
+| GET    | `/users/:id/logout` | all users      | Logs out a user by deleting cookies.   |
+
 
 #### Data Model
 
@@ -97,7 +100,7 @@ The API endpoints for the server is on Heroku and can be found [here.](https://l
 
 ### Add a new user [POST]
 
-**URL**: _https://lambdadoor-staging.herokuapp.com/users_
+**URL**: _https://lambdadoor.herokuapp.com/users_
 
 **Returns**: An object containing the user credentials.
 
@@ -130,7 +133,7 @@ Input
 
 ### Edit User[PATCH]
 
-**URL**: _https://lambdadoor-staging.herokuapp.com/users/16_
+**URL**: _https://lambdadoor.herokuapp.com/users/16_
 
 **Returns**: An array containing an object which holds the users credentials.
 
@@ -164,7 +167,7 @@ Returns
 
 ### Get a user [GET]
 
-**URL**: _https://lambdadoor-staging.herokuapp.com/users/16_
+**URL**: _https://lambdadoor.herokuapp.com/users/16_
 
 **Returns**: An object with the user details
 
