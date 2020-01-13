@@ -66,9 +66,9 @@ The API endpoints for the server is on Heroku and can be found [here.](https://l
 | Method | Endpoint            | Access Control      | Description                            |
 | ------ | ------------------- | ------------------- | -------------------------------------- |
 | POST   | `/users/`           | all users           | Adds a new user if user doesn't exist. |
-| GET    | `/users/:id`        | owners, supervisors | Returns info for a user.               |
-| PATCH  | `/users/:id`        | owners, supervisors | Edits information for a user.          |
-| GET    | `/users/:id/logout` | owners, supervisors | Logs out a user by deleting cookies.   |
+| GET    | `/users/:id`        | all users           | Returns info for a user.               |
+| PATCH  | `/users/:id`        | all users           | Edits information for a user.          |
+| GET    | `/users/:id/logout` | all users           | Logs out a user by deleting cookies.   |
 
 #### Data Model
 
@@ -185,6 +185,108 @@ Returns
     "updated_at": null
 }
 ```
+
+#### Company Routes
+
+| Method | Endpoint                | Access Control       | Description                                             |
+| ------ | ----------------------- | -------------------- | ------------------------------------------------------- |
+| GET    | `/companies/`           | all users            | Returns all companies in the db.                        |
+| GET    | `/companies/top`        | all users            | Returns 5 top rated companies.                          |
+| GET    | `/companies/:id/closest`| all users            | Returns the closest companies to the user's location.   |
+
+#### COMPANIES
+
+---
+
+```javascript
+{
+  id int [pk, increment]
+  name varchar
+  website varchar
+  location varchar
+  latitude numeric
+  longitude numeric
+  type varchar
+  description varchar
+  logo varchar
+  created_at timestamp
+}
+```
+
+## Actions
+
+### Get all companies [GET]
+
+**URL**: _https://lambdadoor-staging.herokuapp.com/companies
+
+**Returns**: An array of companies in the db
+
+Returns
+
+```javascript
+[
+    {
+        "id": 1,
+        "name": "Accenture",
+        "website": "www.accenture.com.",
+        "location": "Atlanta, GA",
+        "type": "Business",
+        "logo": "",
+        "description": "",
+        "created_at": null,
+        "updated_at": null,
+        "latitude": 33.7537,
+        "longitude": -85
+    },
+
+   ...
+]
+```
+
+### Get top-rated companies [GET]
+
+**URL**: _https://lambdadoor-staging.herokuapp.com/companies/top
+
+**Returns**: An array of the five top-rated companies in the db and their average rating
+
+Returns
+
+```javascript
+[
+    {
+        "id": 5,
+        "name": "DoNotPay Inc",
+        "description": "",
+        "average_rating": "5.0000000000000000"
+    },
+
+  ...
+] 
+```
+
+### Get closest companies to the user's location [GET]
+
+**URL**: _https://lambdadoor-staging.herokuapp.com/companies/:id/closest
+
+**Returns**: An array of the closest companies to the user's location
+
+Returns
+
+```javascript
+[
+    {
+        "id": 2,
+        "name": "Anthem, Inc.",
+        "website": "https://www.antheminc.com",
+        "description": "",
+        "latitude": 33.8,
+        "longitude": -84.5
+    },
+
+    ...
+]
+```
+
 
 ## Environment Variables
 
