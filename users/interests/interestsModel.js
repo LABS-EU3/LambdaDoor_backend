@@ -10,8 +10,11 @@ function findById(id) {
     .first();
 }
 function findUserInterestById(id) {
-  return db('user_interests')
-    .where({ id })
+  return db
+    .select('u.id', 'i.id as interest_id', 'i.interest', 'u.user_id')
+    .from('user_interests as u')
+    .join('interests as i', 'i.id', 'u.interest_id')
+    .where('u.interest_id', '=', id)
     .first();
 }
 

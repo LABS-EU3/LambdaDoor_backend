@@ -32,7 +32,6 @@ server.use(express.json());
 server.use('/users', userRouter);
 server.use('/interests', interestRouter);
 
-
 server.get('/', (req, res) => {
   return res.json({ message: 'API is up 🚀' });
 });
