@@ -1,4 +1,4 @@
-const db = require('../database/db-config');
+const db = require('../../database/db-config');
 
 function getReviews(id) {
   return db('company_reviews').where({ user_id: id });
