@@ -55,6 +55,8 @@ async function getClosest(id) {
     });
 }
 
+// The current distance is set at approximately 111km from the user's position (1 degree of latitude or longitude/plus and minus 0.5). This can easily be adjusted here if desired.
+
 module.exports = {
   getCompanies,
   getTopRated,
