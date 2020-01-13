@@ -30,7 +30,6 @@ function findUserById(id) {
 
 async function getClosest(id) {
   const user = await findUserById(id);
-  console.log(user);
   return db('companies as c')
     .select(
       'c.id',
