@@ -43,10 +43,20 @@ const updateUserReview = async (req, res) => {
     return res.status(500).json({ error: error.message });
   }
 };
+const addUserReview = async (req, res) => {
+  try {
+    const newUserReview = req.body;
+    const review = await Reviews.insert(newUserReview);
+    return res.status(201).json(review);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
 
 module.exports = {
   getUserReviews,
   deleteUserReview,
   updateUserReview,
   findUserReviewById,
+  addUserReview,
 };

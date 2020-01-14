@@ -22,9 +22,18 @@ function updateReview(id, changes) {
     .update(changes);
 }
 
+function insert(review) {
+  return db('company_reviews')
+    .insert(review, 'id')
+    .then(ids => {
+      return findReviewById(ids[0]);
+    });
+}
+
 module.exports = {
   getReviews,
   findReviewById,
   deleteReview,
   updateReview,
+  insert,
 };
