@@ -1,3 +1,4 @@
+/* eslint-disable node/no-unsupported-features/es-syntax */
 const request = require('supertest');
 const db = require('../../database/db-config');
 const server = require('../../api/server');
@@ -55,6 +56,23 @@ describe('companyReviews router', () => {
         .get('/companyreviews/user/2')
         .expect(400)
         .expect({ error: 'User does not exist' });
+    });
+  });
+
+  describe('PATCH /:id', () => {
+    test('returns a 200 response if review exists', async () => {
+      const response = await request(server)
+        .patch('/companyreviews/1')
+        .send({ ratings: 5 })
+        .expect(200);
+
+      expect(response.body.ratings).toBe(5);
+    });
+
+    test("returns a 400 if review doesn't exist", async () => {
+      await request(server)
+        .patch('/companyreviews/2')
+        .expect(400);
     });
   });
 

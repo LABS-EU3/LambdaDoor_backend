@@ -3,6 +3,7 @@ const {
   deleteReview,
   findReviewById,
   getReviews,
+  updateReview,
 } = require('./companyReviewsModel');
 
 const testUser = {
@@ -68,6 +69,14 @@ describe('Review Models', () => {
       expect(actual).toBeUndefined();
     });
   });
+  describe('updateUserReview function', () => {
+    it('updates a review', async () => {
+      await updateReview(1, { ratings: 5, is_currently_employed: 0 });
+      const actual = await findReviewById(1);
+      expect(actual.ratings).toEqual(5);
+      expect(actual.is_currently_employed).toEqual(false);
+    });
+  });
   describe('deleteReview function', () => {
     it('deletes a review', async () => {
       await deleteReview(1);
@@ -75,6 +84,7 @@ describe('Review Models', () => {
       expect(actual.length).toEqual(0);
     });
   });
+
   afterAll(async () => {
     await db.raw('TRUNCATE users RESTART IDENTITY CASCADE');
   });

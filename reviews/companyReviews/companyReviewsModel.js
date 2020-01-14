@@ -18,8 +18,8 @@ function deleteReview(id) {
 
 function updateReview(id, changes) {
   return db('company_reviews')
-    .update(changes)
-    .where({ id });
+    .where({ id })
+    .update(changes);
 }
 
 module.exports = {
