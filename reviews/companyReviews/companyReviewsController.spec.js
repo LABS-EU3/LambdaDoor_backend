@@ -89,6 +89,23 @@ describe('companyReviews router', () => {
         .expect(400);
     });
   });
+
+  describe('POST /:id', () => {
+    test('returns a 201 response if user created succesfully', async () => {
+      const response = await request(server)
+        .post('/companyreviews/1')
+        .send(testReview)
+        .expect(201);
+
+      expect(response.body.ratings).toBe(4);
+    });
+
+    test('returns a 400 if review not filled properly', async () => {
+      await request(server)
+        .post('/companyreviews/2')
+        .expect(400);
+    });
+  });
 });
 
 afterAll(async () => {
