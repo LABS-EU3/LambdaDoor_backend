@@ -16,7 +16,6 @@ env:
 before_script:
   - psql -c 'create database ldoor_test;' -U postgres
   - psql -c "CREATE USER randomuser WITH PASSWORD null;" -U postgres
-  - psql -c "ALTER ROLE postgres CONNECTION LIMIT -1"
   - npm install coveralls
   - npm i -g knex
   - knex migrate:latest --env=ci
