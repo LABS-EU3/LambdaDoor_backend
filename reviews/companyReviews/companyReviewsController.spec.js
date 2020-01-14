@@ -93,4 +93,6 @@ describe('companyReviews router', () => {
 
 afterAll(async () => {
   await db.raw('TRUNCATE users RESTART IDENTITY CASCADE');
+  await db.raw('TRUNCATE companies RESTART IDENTITY CASCADE');
+  await db.raw('TRUNCATE company_reviews RESTART IDENTITY CASCADE');
 });
