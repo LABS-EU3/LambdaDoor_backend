@@ -194,6 +194,7 @@ Returns
 | GET    | `/companies/top`         | all users      | Returns 5 top rated companies.                        |
 | GET    | `/companies/:id/closest` | all users      | Returns the closest companies to the user's location. |
 
+
 #### COMPANIES
 
 ---
@@ -217,7 +218,8 @@ Returns
 
 ### Get all companies [GET]
 
-**URL**: \_https://lambdadoor-staging.herokuapp.com/companies
+**URL**: _https://lambdadoor.herokuapp.com/companies
+
 
 **Returns**: An array of companies in the db
 
@@ -245,7 +247,8 @@ Returns
 
 ### Get top-rated companies [GET]
 
-**URL**: \_https://lambdadoor-staging.herokuapp.com/companies/top
+**URL**: _https://lambdadoor.herokuapp.com/companies/top
+
 
 **Returns**: An array of the five top-rated companies in the db and their average rating
 
@@ -261,12 +264,14 @@ Returns
     },
 
   ...
-]
+] 
+
 ```
 
 ### Get closest companies to the user's location [GET]
 
-**URL**: \_https://lambdadoor-staging.herokuapp.com/companies/:id/closest
+**URL**: _https://lambdadoor.herokuapp.com/companies/:id/closest
+
 
 **Returns**: An array of the closest companies to the user's location
 
