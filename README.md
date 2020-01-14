@@ -1,7 +1,7 @@
 # LambdaDoor API
 
 [![Build Status](https://travis-ci.com/LABS-EU3/lambdaDoor_backend.svg?branch=develop)](https://travis-ci.com/LABS-EU3/lambdaDoor_backend)
-[![Coverage Status](https://coveralls.io/repos/github/LABS-EU3/lambdaDoor_backend/badge.svg?branch=ft-edit-profile-name-and-photo)](https://coveralls.io/github/LABS-EU3/lambdaDoor_backend?branch=develop)
+[![Coverage Status](https://coveralls.io/repos/github/LABS-EU3/lambdaDoor_backend/badge.svg?branch=develop)](https://coveralls.io/github/LABS-EU3/lambdaDoor_backend?branch=develop)
 
 ### About
 
@@ -217,7 +217,7 @@ Returns
 
 ### Get all companies [GET]
 
-**URL**: _https://lambdadoor-staging.herokuapp.com/companies_
+**URL**: _https://lambdadoor.herokuapp.com/companies
 
 **Returns**: An array of companies in the db
 
@@ -245,7 +245,8 @@ Returns
 
 ### Get top-rated companies [GET]
 
-**URL**: _https://lambdadoor-staging.herokuapp.com/companies/top_
+**URL**: _https://lambdadoor.herokuapp.com/companies/top
+
 
 **Returns**: An array of the five top-rated companies in the db and their average rating
 
@@ -261,12 +262,14 @@ Returns
     },
 
   ...
-]
+] 
+
 ```
 
 ### Get closest companies to the user's location [GET]
 
-**URL**: _https://lambdadoor-staging.herokuapp.com/companies/:id/closest_
+**URL**: _https://lambdadoor.herokuapp.com/companies/:id/closest
+
 
 **Returns**: An array of the closest companies to the user's location
 
@@ -294,7 +297,7 @@ Returns
 | GET    | `/companyreviews/user/:id` | all users      | Returns all of the user's reviews. |
 | GET    | `/companyreviews/:id`      | all users      | Returns the selected review.       |
 | DELETE | `/companyreviews/:id`      | all users      | Deletes the selected review.       |
-| PUT    | `/companyreviews/:id`      | all users      | Updates the selected review.       |
+| PATCH  | `/companyreviews/:id`      | all users      | Updates the selected review.       |
 | POST   | `/companyreviews/:id`      | all users      | Add a new review.                  |
 
 #### COMPANY REVIEWS
