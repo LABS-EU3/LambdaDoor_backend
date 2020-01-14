@@ -23,6 +23,10 @@ module.exports = {
     password: null,
     host: '127.0.0.1',
     database: 'ldoor_test',
+    migrations: {
+      directory: './database/migrations',
+    },
+    seeds: { directory: './database/seeds' },
   },
 
   staging: {
