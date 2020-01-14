@@ -3,6 +3,7 @@ const {
   getCompanies,
   getTopRated,
   findCompanyById,
+  getClosest,
 } = require('./companyModel');
 
 const testUsers = [
@@ -12,6 +13,8 @@ const testUsers = [
     full_name: 'name1',
     email_address: 'email_address1',
     profile_picture: 'image_url1',
+    latitude: 5,
+    longitude: 54,
   },
   {
     slack_id: 'slack_id2',
@@ -19,6 +22,8 @@ const testUsers = [
     full_name: 'name2',
     email_address: 'email_address2',
     profile_picture: 'image_url2',
+    latitude: 8,
+    longitude: 30,
   },
 ];
 
@@ -28,7 +33,7 @@ const testCompanies = [
     name: 'Test Company',
     website: 'www.web.co',
     location: 'here',
-    longitude: '54.5',
+    longitude: '54.4',
     latitude: '5.4',
     type: 'tech company',
     description: 'This is a large tech company.',
@@ -103,7 +108,18 @@ describe('Company Models', () => {
       });
       it('returns the average rating', async () => {
         const response = await getTopRated();
-        expect(response[0].average_rating).toEqual("3.5000000000000000");
+        expect(response[0].average_rating).toEqual('3.5000000000000000');
+      });
+    });
+
+    describe('The getClosest function', () => {
+      it('returns a company', async () => {
+        const response = await getClosest(1);
+        expect(response.length).toEqual(1);
+      });
+      it('returns an empty array if there are no companies within 110km', async () => {
+        const response = await getClosest(2);
+        expect(response.length).toEqual(0);
       });
     });
 

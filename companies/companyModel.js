@@ -22,8 +22,45 @@ function findCompanyById(id) {
     .first();
 }
 
+function findUserById(id) {
+  return db('users')
+    .where({ id })
+    .first();
+}
+
+async function getClosest(id) {
+  const user = await findUserById(id);
+  return db('companies as c')
+    .select(
+      'c.id',
+      'c.name',
+      'c.website',
+      'c.description',
+      'c.latitude',
+      'c.longitude'
+    )
+    .where(function() {
+      this.where('c.latitude', '<', Number(user.latitude) + 0.5).andWhere(
+        'c.latitude',
+        '>',
+        Number(user.latitude) - 0.5
+      );
+    })
+    .andWhere(function() {
+      this.where('c.longitude', '<', Number(user.longitude) + 0.5).andWhere(
+        'c.longitude',
+        '>',
+        Number(user.longitude) - 0.5
+      );
+    });
+}
+
+// The current distance is set at approximately 111km from the user's position (1 degree of latitude or longitude/plus and minus 0.5). This can easily be adjusted here if desired.
+
 module.exports = {
   getCompanies,
   getTopRated,
   findCompanyById,
+  getClosest,
+  findUserById,
 };
