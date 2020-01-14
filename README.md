@@ -188,11 +188,12 @@ Returns
 
 #### Company Routes
 
-| Method | Endpoint                 | Access Control | Description                                           |
-| ------ | ------------------------ | -------------- | ----------------------------------------------------- |
-| GET    | `/companies/`            | all users      | Returns all companies in the db.                      |
-| GET    | `/companies/top`         | all users      | Returns 5 top rated companies.                        |
-| GET    | `/companies/:id/closest` | all users      | Returns the closest companies to the user's location. |
+
+| Method | Endpoint                | Access Control       | Description                                             |
+| ------ | ----------------------- | -------------------- | ------------------------------------------------------- |
+| GET    | `/companies/`           | all users            | Returns all companies in the db.                        |
+| GET    | `/companies/top`        | all users            | Returns 5 top rated companies.                          |
+| GET    | `/companies/:id/closest`| all users            | Returns the closest companies to the user's location.   |
 
 
 #### COMPANIES
@@ -219,7 +220,6 @@ Returns
 ### Get all companies [GET]
 
 **URL**: _https://lambdadoor.herokuapp.com/companies
-
 
 **Returns**: An array of companies in the db
 
@@ -265,7 +265,6 @@ Returns
 
   ...
 ] 
-
 ```
 
 ### Get closest companies to the user's location [GET]
@@ -291,6 +290,150 @@ Returns
     ...
 ]
 ```
+
+
+#### Company Review Routes
+
+| Method | Endpoint                   | Access Control | Description                        |
+| ------ | -------------------------- | -------------- | ---------------------------------- |
+| GET    | `/companyreviews/user/:id` | all users      | Returns all of the user's reviews. |
+| GET    | `/companyreviews/:id`      | all users      | Returns the selected review.       |
+| DELETE | `/companyreviews/:id`      | all users      | Deletes the selected review.       |
+| PATCH  | `/companyreviews/:id`      | all users      | Updates the selected review.       |
+| POST   | `/companyreviews/:id`      | all users      | Add a new review.                  |
+
+#### COMPANY REVIEWS
+
+---
+
+```javascript
+{
+  id int [pk, increment]
+  user_id int
+  company_id int
+  ratings int
+  is_currently_employed boolean
+  review_headline varchar
+  pros varchar
+  cons varchar
+  is_accepting_questions boolean
+  created_at timestamp
+  updated_at timestamp
+}
+```
+
+## Actions
+
+### Get all of the user's reviews [GET]
+
+**URL**: _https://lambdadoor-staging.herokuapp.com/companyreviews/user/:id_
+
+**Returns**: An array of the user's reviews
+
+Returns
+
+```javascript
+[
+  {
+    id: 3,
+    user_id: 3,
+    company_id: 1,
+    ratings: 5,
+    is_currently_employed: true,
+    review_headline: 'Flexible Working Hours and Great Benefits.',
+    pros: 'They care about you',
+    cons: "There aren't many opportunities to progress your career",
+    is_accepting_questions: true,
+    created_at: null,
+    updated_at: null,
+  },
+];
+```
+
+### Get a review by review id [GET]
+
+**URL**: _https://lambdadoor-staging.herokuapp.com/companyreviews/:id_
+
+**Returns**: The selected review.
+
+Returns
+
+```javascript
+[
+  {
+    id: 3,
+    user_id: 3,
+    company_id: 1,
+    ratings: 5,
+    is_currently_employed: true,
+    review_headline: 'Flexible Working Hours and Great Benefits.',
+    pros: 'They care about you.',
+    cons: "There aren't many opportunities to progress your career.",
+    is_accepting_questions: true,
+    created_at: null,
+    updated_at: null,
+  },
+];
+```
+
+### Update an individual review [PUT]
+
+**URL**: _https://lambdadoor-staging.herokuapp.com/companyreviews/:id_
+
+**Returns**: The updated review.
+
+
+```javascript
+[
+  {
+    id: 3,
+    user_id: 3,
+    company_id: 1,
+    ratings: 5,
+    is_currently_employed: true,
+    review_headline: 'Flexible Working Hours and Great Benefits.',
+    pros: 'They care about you. The pay is good.',
+    cons: "There aren't many opportunities to progress your career.",
+    is_accepting_questions: false,
+    created_at: null,
+    updated_at: null,
+  },
+];
+```
+
+
+### Delete a user's review [DELETE]
+
+**URL**: _https://lambdadoor-staging.herokuapp.com/companyreviews/:id_
+
+**Returns**: A 204 status
+
+
+### Add a user's review [POST]
+
+**URL**: _https://lambdadoor-staging.herokuapp.com/companyreviews/:id_
+
+**Returns**: A 201 status and The added Review
+
+
+```javascript
+[
+  {
+    id: 3,
+    user_id: 3,
+    company_id: 1,
+    ratings: 5,
+    is_currently_employed: true,
+    review_headline: 'Flexible Working Hours and Great Benefits.',
+    pros: 'They care about you. The pay is good.',
+    cons: "There aren't many opportunities to progress your career.",
+    is_accepting_questions: false,
+    created_at: null,
+    updated_at: null,
+  },
+];
+```
+
 
 ## Environment Variables
 
