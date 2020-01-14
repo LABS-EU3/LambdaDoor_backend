@@ -16,7 +16,7 @@ const deleteUserReview = async (req, res) => {
   try {
     const { id } = req.params;
     await Reviews.deleteReview(id);
-    return res.status(204);
+    return res.sendStatus(204);
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
