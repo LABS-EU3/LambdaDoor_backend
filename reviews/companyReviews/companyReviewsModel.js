@@ -16,8 +16,15 @@ function deleteReview(id) {
     .del();
 }
 
+function updateReview(id, changes) {
+  return db('company_reviews')
+    .update(changes)
+    .where({ id });
+}
+
 module.exports = {
   getReviews,
   findReviewById,
   deleteReview,
+  updateReview,
 };

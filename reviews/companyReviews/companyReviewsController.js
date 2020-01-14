@@ -22,7 +22,31 @@ const deleteUserReview = async (req, res) => {
   }
 };
 
+const findUserReviewById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const review = await Reviews.findReviewById(id);
+    return res.status(200).json(review);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
+const updateUserReview = async (req, res) => {
+  const { id } = req.params;
+  const changes = req.body;
+  try {
+    await Reviews.updateReview(id, changes);
+    const updatedReview = await Reviews.findReviewById(id);
+    return res.status(200).json(updatedReview);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   getUserReviews,
   deleteUserReview,
+  updateUserReview,
+  findUserReviewById,
 };
