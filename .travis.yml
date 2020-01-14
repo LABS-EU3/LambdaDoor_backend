@@ -19,7 +19,7 @@ before_script:
   - psql -c "ALTER ROLE postgres CONNECTION LIMIT -1"
   - npm install coveralls
   - npm i -g knex
-  - knex migrate:latest
+  - knex migrate:latest --env=ci
 script:
   - npm run ci:test
 after_script:
