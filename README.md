@@ -188,11 +188,13 @@ Returns
 
 #### Company Routes
 
-| Method | Endpoint                 | Access Control | Description                                           |
-| ------ | ------------------------ | -------------- | ----------------------------------------------------- |
-| GET    | `/companies/`            | all users      | Returns all companies in the db.                      |
-| GET    | `/companies/top`         | all users      | Returns 5 top rated companies.                        |
-| GET    | `/companies/:id/closest` | all users      | Returns the closest companies to the user's location. |
+
+| Method | Endpoint                | Access Control       | Description                                             |
+| ------ | ----------------------- | -------------------- | ------------------------------------------------------- |
+| GET    | `/companies/`           | all users            | Returns all companies in the db.                        |
+| GET    | `/companies/top`        | all users            | Returns 5 top rated companies.                          |
+| GET    | `/companies/:id/closest`| all users            | Returns the closest companies to the user's location.   |
+
 
 #### COMPANIES
 
@@ -263,7 +265,6 @@ Returns
 
   ...
 ] 
-
 ```
 
 ### Get closest companies to the user's location [GET]
@@ -289,6 +290,7 @@ Returns
     ...
 ]
 ```
+
 
 #### Company Review Routes
 
@@ -431,6 +433,7 @@ Returns
   },
 ];
 ```
+
 
 ## Environment Variables
 
