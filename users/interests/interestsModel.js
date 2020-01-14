@@ -14,7 +14,7 @@ function findUserInterestById(id) {
     .select('u.id', 'i.id as interest_id', 'i.interest', 'u.user_id')
     .from('user_interests as u')
     .join('interests as i', 'i.id', 'u.interest_id')
-    .where('u.interest_id', '=', id)
+    .where('u.id', '=', id)
     .first();
 }
 

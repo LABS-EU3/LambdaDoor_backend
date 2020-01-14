@@ -10,7 +10,7 @@
     "migrate": "npx knex migrate:latest",
     "rollback": "npx knex migrate:rollback",
     "seed": "npx knex seed:run",
-    "test": "cross-env NODE_ENV=test jest --coverage --ci --runInBand --detectOpenHandles --forceExit"
+    "test": "cross-env DB_ENV=test jest --coverage --ci --runInBand --detectOpenHandles --forceExit"
   },
   "repository": {
     "type": "git",
