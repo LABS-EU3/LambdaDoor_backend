@@ -19,10 +19,12 @@ module.exports = {
   },
   ci: {
     client: 'pg',
-    username: 'randomuser',
-    password: null,
-    host: '127.0.0.1',
-    database: 'ldoor_test',
+    connection: {
+      username: 'randomuser',
+      password: null,
+      host: '127.0.0.1',
+      database: 'ldoor_test',
+    },
     migrations: {
       directory: './database/migrations',
     },
