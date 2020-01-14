@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - 'node'
+  - 'stable'
 install: npm install
 services:
   - postgresql
@@ -12,13 +12,15 @@ cache:
     - 'node_modules'
 env:
   global:
-    - DB_ENV=test
+    - DB_ENV=ci
 before_script:
-  - psql -c 'create database ldoor_test' -U postgres
-  - psql -c "ALTER ROLE postgres CONNECTION LIMIT -1"
+  - psql -c 'create database ldoor_test;' -U postgres
+  - psql -c "CREATE USER randomuser WITH PASSWORD null;" -U postgres
   - npm install coveralls
+  - npm i -g knex
+  - knex migrate:latest --env=ci
 script:
-  - npm test
+  - npm run ci:test
 after_script:
   - jest --forceExit --coverage  --coverageReporters=text-lcov | coveralls
 notifications:
