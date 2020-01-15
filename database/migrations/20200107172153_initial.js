@@ -29,6 +29,18 @@ exports.up = function(knex) {
     })
     .createTable('interests', table => {
       table.increments('id');
+      table.varchar('interest', 128);
+    })
+    .createTable('user_interests', table => {
+      table.increments('id');
+      table
+        .integer('interest_id', 128)
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('interests')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE');
       table
         .integer('user_id', 128)
         .unsigned()
@@ -37,7 +49,6 @@ exports.up = function(knex) {
         .inTable('users')
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
-      table.varchar('interests', 128);
     })
     .createTable('company_reviews', table => {
       table.increments('id');
@@ -105,6 +116,14 @@ exports.up = function(knex) {
         .onUpdate('CASCADE');
       table.varchar('text');
       table.varchar('description');
+      table
+        .integer('interest_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('interests')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE');
       table.varchar('salary');
       table.varchar('currency');
       table.boolean('is_accepting_questions');
@@ -117,6 +136,7 @@ exports.down = function(knex) {
     .dropTableIfExists('salary_reviews')
     .dropTableIfExists('interview_process_reviews')
     .dropTableIfExists('company_reviews')
+    .dropTableIfExists('user_interests')
     .dropTableIfExists('interests')
     .dropTableIfExists('companies')
     .dropTableIfExists('users');

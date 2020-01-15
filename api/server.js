@@ -8,8 +8,9 @@ const cors = require('cors');
 const helmet = require('helmet');
 
 const userRouter = require('../users/index');
+const interestRouter = require('../users/interests/index');
 const companiesRouter = require('../companies/index');
-const reviewsRouter = require('../reviews/index');
+const reviewsRouter = require('../reviews/companyReviews/index');
 
 const server = express();
 
@@ -31,6 +32,7 @@ server.use(helmet());
 server.use(express.json());
 
 server.use('/users', userRouter);
+server.use('/interests', interestRouter);
 server.use('/companies', companiesRouter);
 server.use('/companyreviews', reviewsRouter);
 
