@@ -13,7 +13,7 @@ function getTopRated() {
     .groupBy('c.id', 'c.name', 'c.description')
     .orderBy('average_rating', 'desc')
     .whereNotNull('cr.ratings')
-    .limit(5);
+    .limit(10);
 }
 
 function findCompanyById(id) {
