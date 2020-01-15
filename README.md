@@ -299,7 +299,7 @@ Returns
 | GET    | `/companyreviews/user/:id` | all users      | Returns all of the user's reviews. |
 | GET    | `/companyreviews/:id`      | all users      | Returns the selected review.       |
 | DELETE | `/companyreviews/:id`      | all users      | Deletes the selected review.       |
-| PATCH    | `/companyreviews/:id`    | all users      | Updates the selected review.       |
+| PATCH  | `/companyreviews/:id`      | all users      | Updates the selected review.       |
 
 #### COMPANY REVIEWS
 
