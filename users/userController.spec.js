@@ -3,7 +3,7 @@ const db = require('../database/db-config');
 const server = require('../api/server');
 
 beforeAll(async () => {
-  await db.raw('TRUNCATE users RESTART IDENTITY CASCADE');
+  // await db.raw('TRUNCATE users RESTART IDENTITY CASCADE');
 });
 
 const testUser = {

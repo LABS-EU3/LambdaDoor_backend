@@ -7,8 +7,8 @@ exports.seed = function(knex) {
       username: 'Lisawilton',
       email_address: 'lisa@lambdaschool.com',
       location: '',
-      longitude: '',
-      latitude: '',
+      longitude: '0.1278',
+      latitude: '51.5074',
       profile_picture: '',
     },
     {
@@ -17,8 +17,8 @@ exports.seed = function(knex) {
       username: 'chiomaeze',
       email_address: 'chioma@lambdaschool.com',
       location: '',
-      longitude: '',
-      latitude: '',
+      longitude: '-84.386330',
+      latitude: '33.753746',
       profile_picture: '',
     },
     {

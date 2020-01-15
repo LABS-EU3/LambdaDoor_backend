@@ -116,6 +116,14 @@ exports.up = function(knex) {
         .onUpdate('CASCADE');
       table.varchar('text');
       table.varchar('description');
+      table
+        .integer('interest_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('interests')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE');
       table.varchar('salary');
       table.varchar('currency');
       table.boolean('is_accepting_questions');
