@@ -250,6 +250,7 @@ Returns
 **URL**: _https://lambdadoor.herokuapp.com/companies/top
 
 
+
 **Returns**: An array of the five top-rated companies in the db and their average rating
 
 Returns
