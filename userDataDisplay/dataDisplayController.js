@@ -1,6 +1,6 @@
 const db = require('./dataDisplayModel');
 
-const getJobRoles = async (req, res) => {
+const GetJobRoles = async (req, res) => {
   try {
     const Roles = await db.JobRole();
     return res.status(200).json(Roles);
@@ -10,5 +10,5 @@ const getJobRoles = async (req, res) => {
 };
 
 module.exports = {
-  getJobRoles,
+  GetJobRoles,
 };
