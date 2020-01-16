@@ -9,6 +9,7 @@ exports.seed = function(knex) {
       salary: 95000,
       currency: 'USD',
       is_accepting_questions: 0,
+      is_current_employee: 0,
     },
     {
       user_id: 2,
@@ -18,6 +19,7 @@ exports.seed = function(knex) {
       salary: 98000,
       currency: 'USD',
       is_accepting_questions: 0,
+      is_current_employee: 0,
     },
     {
       user_id: 3,
@@ -27,6 +29,7 @@ exports.seed = function(knex) {
       salary: 3000000,
       currency: 'NGN',
       is_accepting_questions: 1,
+      is_current_employee: 1,
     },
     {
       user_id: 4,
@@ -36,6 +39,7 @@ exports.seed = function(knex) {
       salary: 85000,
       currency: 'USD',
       is_accepting_questions: 1,
+      is_current_employee: 1,
     },
     {
       user_id: 5,
@@ -45,6 +49,7 @@ exports.seed = function(knex) {
       salary: '4800000',
       currency: 'NGN',
       is_accepting_questions: 0,
+      is_current_employee: 0,
     },
   ]);
 };
