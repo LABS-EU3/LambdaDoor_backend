@@ -32,7 +32,12 @@ const getCompanyAndReview = async (req, res) => {
   const { id } = req.params;
   try {
     const response = await Companies.companyAndReviews(id);
-    return res.status(200).json(response);
+    if (response.length > 0) {
+      return res.status(200).json(response);
+    }
+    return res.json({
+      message: 'Such Company with reviews does not exist in the database',
+    });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
