@@ -28,8 +28,19 @@ const getClosestCompanies = async (req, res) => {
   }
 };
 
+const getCompanyAndReview = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const response = await Companies.companyAndReviews(id);
+    return res.status(200).json(response);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   getCompanies,
   getTopRated,
   getClosestCompanies,
+  getCompanyAndReview,
 };

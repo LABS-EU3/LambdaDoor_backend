@@ -28,6 +28,14 @@ function findUserById(id) {
     .first();
 }
 
+function companyAndReviews(id) {
+  return db
+    .from('companies as c')
+    .rightJoin('company_reviews as cr', 'c.id', 'cr.company_id')
+    .select('cr.ratings', 'cr.review_headline', 'cr.review', 'c.name')
+    .where('c.id', id);
+}
+
 async function getClosest(id) {
   const user = await findUserById(id);
   return db('companies as c')
@@ -63,4 +71,5 @@ module.exports = {
   findCompanyById,
   getClosest,
   findUserById,
+  companyAndReviews,
 };
