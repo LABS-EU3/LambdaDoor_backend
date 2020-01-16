@@ -127,6 +127,7 @@ exports.up = function(knex) {
       table.varchar('salary');
       table.varchar('currency');
       table.boolean('is_accepting_questions');
+      table.boolean('is_current_employee');
       table.timestamps('created_at');
     });
 };
