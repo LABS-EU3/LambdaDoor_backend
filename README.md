@@ -550,6 +550,46 @@ Returns
 ];
 ```
 
+## DATA VISUALIZATION
+
+### Data Visualization Routes
+
+| Method | Endpoint       | Access Control | Description                             |
+| ------ | ---------------| -------------- | ----------------------------------------|
+| GET    | `/dataDisplay` | all users      | Returns an Array of reviewed Job roles. |
+
+
+### Actions
+
+### Get all of the user's reviews [GET]
+
+**URL**: _https://lambdadoor.herokuapp.com/dataDisplay_
+
+**Returns**: Returns an Array of all salary reviews, grouped by interest.
+
+Returns
+
+```javascript
+[
+    {
+        "interest": "Full Stack",
+        "id": 4,
+        "count": "1"
+    },
+    {
+        "interest": "Software Engineer",
+        "id": 1,
+        "count": "3"
+    },
+    {
+        "interest": "Front End",
+        "id": 2,
+        "count": "1"
+    }
+];
+```
+
+
 
 ## Environment Variables
 
