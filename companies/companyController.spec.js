@@ -21,6 +21,15 @@ const testUsers = [
     latitude: 5,
     longitude: 54,
   },
+  {
+    slack_id: 'slack_id3',
+    username: 'user3',
+    full_name: 'name3',
+    email_address: 'email_address3',
+    profile_picture: 'image_url3',
+    latitude: 5,
+    longitude: 54,
+  },
 ];
 
 const testCompanies = [
@@ -68,6 +77,15 @@ const testReviews = [
     review: 'This is another test review',
     is_accepting_questions: false,
   },
+  {
+    user_id: 3,
+    company_id: 2,
+    ratings: 3,
+    is_currently_employed: true,
+    review_headline: 'TestReview3',
+    review: 'Nothing Good to write',
+    is_accepting_questions: false,
+  },
 ];
 
 beforeAll(async () => {
@@ -82,12 +100,12 @@ beforeAll(async () => {
 describe('companyRouter', () => {
   describe('GET /companies', () => {
     test('returns a 200 response', async () => {
-      const response = await request(server)
+      await request(server)
         .get('/companies')
         .expect(200);
     });
     test('returns a json object', async () => {
-      const response = await request(server)
+      await request(server)
         .get('/companies')
         .expect('Content-Type', /json/);
     });
@@ -98,12 +116,12 @@ describe('companyRouter', () => {
 
     describe('GET /companies/top', () => {
       test('returns a 200 response', async () => {
-        const response = await request(server)
+        await request(server)
           .get('/companies/top')
           .expect(200);
       });
       test('returns a json object', async () => {
-        const response = await request(server)
+        await request(server)
           .get('/companies/top')
           .expect('Content-Type', /json/);
       });
@@ -111,19 +129,28 @@ describe('companyRouter', () => {
 
     describe('GET /:id/closest', () => {
       test('returns a 200 response', async () => {
-        const response = await request(server)
+        await request(server)
           .get('/companies/2/closest')
           .expect(200);
       });
       test('returns a json object', async () => {
-        const response = await request(server)
+        await request(server)
           .get('/companies/1/closest')
           .expect('Content-Type', /json/);
       });
       test('returns a 500 response if there is no existing user', async () => {
-        const response = await request(server)
+        await request(server)
           .get('/companies/6/closest')
           .expect(500);
+      });
+    });
+
+    describe('GET /a single company with various reviews', () => {
+      test('returns a 200 response', async () => {
+        await request(server)
+          .get('/companies/1/companyReview')
+          .expect('Content-Type', /json/)
+          .expect(200);
       });
     });
 

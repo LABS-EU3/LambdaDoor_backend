@@ -189,11 +189,12 @@ Returns
 #### Company Routes
 
 
-| Method | Endpoint                | Access Control       | Description                                             |
-| ------ | ----------------------- | -------------------- | ------------------------------------------------------- |
-| GET    | `/companies/`           | all users            | Returns all companies in the db.                        |
-| GET    | `/companies/top`        | all users            | Returns 5 top rated companies.                          |
-| GET    | `/companies/:id/closest`| all users            | Returns the closest companies to the user's location.   |
+| Method | Endpoint                      | Access Control       | Description                                              |
+| ------ | ----------------------------- | -------------------- | -------------------------------------------------------- |
+| GET    | `/companies/`                 | all users            | Returns all companies in the db.                         |
+| GET    | `/companies/top`              | all users            | Returns 10 top rated companies.                           |
+| GET    | `/companies/:id/closest`      | all users            | Returns the closest companies to the user's location.    |
+| GET    | `/companies/:id/companyReview`| all users            | Returns a single company along with its various reviews. |
 
 
 #### COMPANIES
@@ -289,6 +290,32 @@ Returns
     },
 
     ...
+]
+```
+
+### Get a company with its reviews [GET]
+
+**URL**: _https://lambdadoor.herokuapp.com/companies/:id/companyReview
+
+
+**Returns**: An array of a single company along with its various reviews.
+
+Returns
+
+```javascript
+[
+    {
+        "ratings": 5,
+        "review_headline": "Flexible Working Hours and Great Benefits.",
+        "review": "They care about you",
+        "name": "Accenture"
+    },
+    {
+        "ratings": 4,
+        "review_headline": "Very good",
+        "review": "I work in Accenture",
+        "name": "Accenture"
+    }
 ]
 ```
 

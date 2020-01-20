@@ -6,5 +6,6 @@ const router = express.Router();
 router.get('/', company.getCompanies);
 router.get('/top', company.getTopRated);
 router.get('/:id/closest', company.getClosestCompanies);
+router.get('/:id/companyReview', company.getCompanyAndReview);
 
 module.exports = router;
