@@ -5,7 +5,7 @@ const getUserReviews = async (req, res) => {
     const {
       user: { id },
     } = req;
-    const userReviews = await Reviews.getReviews(id);
+    const userReviews = await Reviews.getAllUserReviews(id);
     return res.status(200).json(userReviews);
   } catch (error) {
     return res.status(500).json({ error: error.message });

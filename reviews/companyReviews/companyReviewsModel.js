@@ -1,6 +1,6 @@
 const db = require('../../database/db-config');
 
-function getReviews(id) {
+function getAllUserReviews(id) {
   return db
     .select(
       'cr.id',
@@ -56,7 +56,7 @@ function insert(review) {
 }
 
 module.exports = {
-  getReviews,
+  getAllUserReviews,
   findReviewById,
   deleteReview,
   updateReview,
