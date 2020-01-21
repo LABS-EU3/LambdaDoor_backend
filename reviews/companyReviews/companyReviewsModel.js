@@ -1,5 +1,13 @@
 const db = require('../../database/db-config');
 
+function findReviewByCompanyId(id) {
+  return db
+    .select('cr.id', 'cr.ratings', 'cr.review_headline', 'cr.review')
+    .from('companies as c')
+    .join('company_reviews as cr', 'cr.company_id', 'c.id')
+    .where('c.id', '=', id);
+}
+
 function getReviews(id) {
   return db
     .select(
@@ -61,4 +69,5 @@ module.exports = {
   deleteReview,
   updateReview,
   insert,
+  findReviewByCompanyId,
 };
