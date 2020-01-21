@@ -11,8 +11,8 @@ exports.up = function(knex) {
         .notNullable();
       table.varchar('profile_picture', 240);
       table.varchar('location');
-      table.varchar('longitude');
-      table.varchar('latitude');
+      table.float('longitude');
+      table.float('latitude');
       table.timestamps('created_at');
     })
     .createTable('companies', table => {
@@ -20,8 +20,8 @@ exports.up = function(knex) {
       table.varchar('name', 128).notNullable();
       table.varchar('website');
       table.varchar('location');
-      table.varchar('longitude');
-      table.varchar('latitude');
+      table.float('longitude');
+      table.float('latitude');
       table.string('type', 128);
       table.varchar('logo', 128);
       table.varchar('description', 128);
@@ -29,6 +29,18 @@ exports.up = function(knex) {
     })
     .createTable('interests', table => {
       table.increments('id');
+      table.varchar('interest', 128);
+    })
+    .createTable('user_interests', table => {
+      table.increments('id');
+      table
+        .integer('interest_id', 128)
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('interests')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE');
       table
         .integer('user_id', 128)
         .unsigned()
@@ -37,7 +49,6 @@ exports.up = function(knex) {
         .inTable('users')
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
-      table.varchar('interests', 128);
     })
     .createTable('company_reviews', table => {
       table.increments('id');
@@ -105,9 +116,18 @@ exports.up = function(knex) {
         .onUpdate('CASCADE');
       table.varchar('text');
       table.varchar('description');
+      table
+        .integer('interest_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('interests')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE');
       table.varchar('salary');
       table.varchar('currency');
       table.boolean('is_accepting_questions');
+      table.boolean('is_current_employee');
       table.timestamps('created_at');
     });
 };
@@ -117,6 +137,7 @@ exports.down = function(knex) {
     .dropTableIfExists('salary_reviews')
     .dropTableIfExists('interview_process_reviews')
     .dropTableIfExists('company_reviews')
+    .dropTableIfExists('user_interests')
     .dropTableIfExists('interests')
     .dropTableIfExists('companies')
     .dropTableIfExists('users');

@@ -6,7 +6,7 @@ const getUser = async (req, res) => {
   try {
     return res.status(200).json(req.user);
   } catch (error) {
-    return res.status(500).json(error.message);
+    return res.status(500).json({ error: error.message });
   }
 };
 const checkSlackName = async (id, slack_name, username) => {
@@ -40,7 +40,7 @@ const addUser = async (req, res) => {
     await generateToken(res, user.id, user.full_name);
     return res.status(201).json(user);
   } catch (error) {
-    return res.status(500).json(error.message);
+    return res.status(500).json({ error: error.message });
   }
 };
 
@@ -63,16 +63,18 @@ const updateUser = async (req, res) => {
     const updatedUser = await Users.update(id, changes);
     return res.status(200).json(updatedUser);
   } catch (error) {
-    console.log(error.message);
-    return res.status(500).json(error.message);
+    return res.status(500).json({ error: error.message });
   }
 };
 
 const logoutUser = async (req, res) => {
   try {
-    return res.clearCookie('token');
+    return res
+      .clearCookie('token')
+      .status(204)
+      .end();
   } catch (error) {
-    return res.status(500).json(error.message);
+    return res.status(500).json({ error: error.message });
   }
 };
 

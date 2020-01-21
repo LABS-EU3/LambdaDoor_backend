@@ -26,16 +26,9 @@ function update(id, changes) {
     .where({ id });
 }
 
-function addImage(id, profilePicture) {
-  return db('users')
-    .update(profilePicture)
-    .where({ id });
-}
-
 module.exports = {
   findById,
   findBy,
   insert,
   update,
-  addImage,
 };
