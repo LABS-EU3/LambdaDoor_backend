@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const Users = require('./userModel');
 const generateToken = require('../utils/generateToken');
 
@@ -8,7 +9,11 @@ const getUser = async (req, res) => {
     return res.status(500).json(error.message);
   }
 };
-
+const checkSlackName = async (id, slack_name, username) => {
+  if (slack_name !== username) {
+    await Users.update(id, { username: slack_name });
+  }
+};
 const addUser = async (req, res) => {
   try {
     const newUser = {
@@ -22,6 +27,11 @@ const addUser = async (req, res) => {
     const existingUser = await Users.findBy(newUser.slack_id);
 
     if (existingUser) {
+      await checkSlackName(
+        existingUser.id,
+        newUser.username,
+        existingUser.username
+      );
       await generateToken(res, existingUser.id, existingUser.full_name);
       return res.status(200).json(existingUser);
     }

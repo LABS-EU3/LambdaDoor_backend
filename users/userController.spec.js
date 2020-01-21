@@ -2,10 +2,10 @@ const request = require('supertest');
 const knex = require('../database/db-config');
 const server = require('../api/server');
 
-beforeAll(() => {
-  knex.migrate.rollback();
-  knex.migrate.latest();
-  knex.seed.run();
+beforeAll(async () => {
+  await knex.migrate.rollback();
+  await knex.migrate.latest();
+  await knex.seed.run();
 });
 
 // I changed the above code to the following few lines - this made my tests run on local. It may need to be changed to work with Circle CI
@@ -16,12 +16,12 @@ describe('userRouter', () => {
       const response = await request(server)
         .get('/users/1')
         .expect('Content-Type', /json/);
+        console.log(response)
       expect(response.status).toEqual(200);
     });
     test('returns an error when user does not exist', async () => {
-      const response = await request(server)
-        .get('/users/10')
-        .expect({ error: 'User does not exist' });
+      const response = await request(server).get('/users/10');
+      expect(response.status).toEqual(400);
     });
   });
   describe('PUT /users/:id', () => {
