@@ -188,14 +188,13 @@ Returns
 
 #### Company Routes
 
-
-| Method | Endpoint                      | Access Control       | Description                                              |
-| ------ | ----------------------------- | -------------------- | -------------------------------------------------------- |
-| GET    | `/companies/`                 | all users            | Returns all companies in the db.                         |
-| GET    | `/companies/top`              | all users            | Returns 10 top rated companies.                           |
-| GET    | `/companies/:id/closest`      | all users            | Returns the closest companies to the user's location.    |
-| GET    | `/companies/:id/companyReview`| all users            | Returns a single company along with its various reviews. |
-
+| Method | Endpoint                       | Access Control | Description                                              |
+| ------ | ------------------------------ | -------------- | -------------------------------------------------------- |
+| GET    | `/companies/`                  | all users      | Returns all companies in the db.                         |
+| GET    | `/companies/top`               | all users      | Returns 10 top rated companies.                          |
+| GET    | `/companies/:id/closest`       | all users      | Returns the closest companies to the user's location.    |
+| GET    | `/companies/:id/companyReview` | all users      | Returns a single company along with its various reviews. |
+| POST   | `/companies/`                  | all users      | Adds a single company to the db                          |
 
 #### COMPANIES
 
@@ -220,7 +219,7 @@ Returns
 
 ### Get all companies [GET]
 
-**URL**: _https://lambdadoor.herokuapp.com/companies
+**URL**: \_https://lambdadoor.herokuapp.com/companies
 
 **Returns**: An array of companies in the db
 
@@ -248,9 +247,7 @@ Returns
 
 ### Get top-rated companies [GET]
 
-**URL**: _https://lambdadoor.herokuapp.com/companies/top
-
-
+**URL**: \_https://lambdadoor.herokuapp.com/companies/top
 
 **Returns**: An array of the five top-rated companies in the db and their average rating
 
@@ -271,8 +268,7 @@ Returns
 
 ### Get closest companies to the user's location [GET]
 
-**URL**: _https://lambdadoor.herokuapp.com/companies/:id/closest
-
+**URL**: \_https://lambdadoor.herokuapp.com/companies/:id/closest
 
 **Returns**: An array of the closest companies to the user's location
 
@@ -295,8 +291,7 @@ Returns
 
 ### Get a company with its reviews [GET]
 
-**URL**: _https://lambdadoor.herokuapp.com/companies/:id/companyReview
-
+**URL**: \_https://lambdadoor.herokuapp.com/companies/:id/companyReview
 
 **Returns**: An array of a single company along with its various reviews.
 
@@ -304,19 +299,56 @@ Returns
 
 ```javascript
 [
-    {
-        "ratings": 5,
-        "review_headline": "Flexible Working Hours and Great Benefits.",
-        "review": "They care about you",
-        "name": "Accenture"
-    },
-    {
-        "ratings": 4,
-        "review_headline": "Very good",
-        "review": "I work in Accenture",
-        "name": "Accenture"
-    }
-]
+  {
+    ratings: 5,
+    review_headline: 'Flexible Working Hours and Great Benefits.',
+    review: 'They care about you',
+    name: 'Accenture',
+  },
+  {
+    ratings: 4,
+    review_headline: 'Very good',
+    review: 'I work in Accenture',
+    name: 'Accenture',
+  },
+];
+```
+
+### Adds a new Company [POST]
+
+**URL**: \_https://lambdadoor.herokuapp.com/companies/
+
+**Returns**: An object conatining the company that was posted
+
+Input
+
+```javascript
+{
+  "name": 'Accenture',
+  'website': 'www.accenture.com.',
+  'location': 'Atlanta, GA',
+  'longitude': -85.0,
+  'latitude': 33.7537,
+  'type': 'Business',
+  'logo': '',
+  'description': '',
+}
+```
+
+Returns
+
+```javascript
+{
+  "id": 1,
+  "name": 'Accenture',
+  'website': 'www.accenture.com.',
+  'location': 'Atlanta, GA',
+  'longitude': -85.0,
+  'latitude': 33.7537,
+  'type': 'Business',
+  'logo': '',
+  'description': '',
+}
 ```
 
 #### Company Review Routes
@@ -352,7 +384,7 @@ Returns
 
 ### Get all of the user's reviews [GET]
 
-**URL**: _https://lambdadoor-staging.herokuapp.com/companyreviews/user/:id_
+**URL**: _https://lambdadoor.herokuapp.com/companyreviews/user/:id_
 
 **Returns**: An array of the user's reviews
 
@@ -378,7 +410,7 @@ Returns
 
 ### Get a review by review id [GET]
 
-**URL**: _https://lambdadoor-staging.herokuapp.com/companyreviews/:id_
+**URL**: _https://lambdadoor.herokuapp.com/companyreviews/:id_
 
 **Returns**: The selected review.
 
@@ -404,10 +436,9 @@ Returns
 
 ### Update an individual review [PATCH]
 
-**URL**: _https://lambdadoor-staging.herokuapp.com/companyreviews/:id_
+**URL**: _https://lambdadoor.herokuapp.com/companyreviews/:id_
 
 **Returns**: The updated review.
-
 
 ```javascript
 [
@@ -427,13 +458,11 @@ Returns
 ];
 ```
 
-
 ### Delete a user's review [DELETE]
 
-**URL**: _https://lambdadoor-staging.herokuapp.com/companyreviews/:id_
+**URL**: _https://lambdadoor.herokuapp.com/companyreviews/:id_
 
 **Returns**: A 204 status
-
 
 #### Company Review Routes
 
@@ -525,7 +554,6 @@ Returns
 
 **Returns**: The updated review.
 
-
 ```javascript
 [
   {
@@ -544,20 +572,17 @@ Returns
 ];
 ```
 
-
 ### Delete a user's review [DELETE]
 
 **URL**: _https://lambdadoor.herokuapp.com/companyreviews/:id_
 
 **Returns**: A 204 status
 
-
 ### Add a user's review [POST]
 
 **URL**: _https://lambdadoor.herokuapp.com/companyreviews/:id_
 
 **Returns**: A 201 status and The added Review
-
 
 ```javascript
 [
@@ -582,9 +607,8 @@ Returns
 ### Data Visualization Routes
 
 | Method | Endpoint       | Access Control | Description                             |
-| ------ | ---------------| -------------- | ----------------------------------------|
+| ------ | -------------- | -------------- | --------------------------------------- |
 | GET    | `/dataDisplay` | all users      | Returns an Array of reviewed Job roles. |
-
 
 ### Actions
 
@@ -598,25 +622,23 @@ Returns
 
 ```javascript
 [
-    {
-        "interest": "Full Stack",
-        "id": 4,
-        "count": "1"
-    },
-    {
-        "interest": "Software Engineer",
-        "id": 1,
-        "count": "3"
-    },
-    {
-        "interest": "Front End",
-        "id": 2,
-        "count": "1"
-    }
+  {
+    interest: 'Full Stack',
+    id: 4,
+    count: '1',
+  },
+  {
+    interest: 'Software Engineer',
+    id: 1,
+    count: '3',
+  },
+  {
+    interest: 'Front End',
+    id: 2,
+    count: '1',
+  },
 ];
 ```
-
-
 
 ## Environment Variables
 
