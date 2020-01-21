@@ -17,6 +17,16 @@ function getReviews() {
     .leftJoin('companies as c', 'sr.company_id', 'c.id');
 }
 
+function getAvgReviewsByCompany(id) {
+  return db
+    .select('sr.description')
+    .from('salary_reviews as sr')
+    .avg('salary')
+    .groupBy('description')
+    .where('company_id', '=', id);
+}
+
 module.exports = {
   getReviews,
+  getAvgReviewsByCompany,
 };
