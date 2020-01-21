@@ -21,6 +21,10 @@ function findCompanyById(id) {
     .where({ id })
     .first();
 }
+async function addCompany(company) {
+  const ids = await db('companies').insert(company, 'id');
+  return findCompanyById(ids[0]);
+}
 
 function findUserById(id) {
   return db('users')
@@ -63,4 +67,5 @@ module.exports = {
   findCompanyById,
   getClosest,
   findUserById,
+  addCompany,
 };

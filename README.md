@@ -193,6 +193,7 @@ Returns
 | GET    | `/companies/`            | all users      | Returns all companies in the db.                      |
 | GET    | `/companies/top`         | all users      | Returns 10 top rated companies.                       |
 | GET    | `/companies/:id/closest` | all users      | Returns the closest companies to the user's location. |
+| POST   | `/companies/`            | all users      | Adds a single company to the db                       |
 
 #### COMPANIES
 
@@ -287,6 +288,68 @@ Returns
 ]
 ```
 
+### Get a company with its reviews [GET]
+
+**URL**: \_https://lambdadoor.herokuapp.com/companies/:id/companyReview
+
+**Returns**: An array of a single company along with its various reviews.
+
+Returns
+
+```javascript
+[
+  {
+    ratings: 5,
+    review_headline: 'Flexible Working Hours and Great Benefits.',
+    review: 'They care about you',
+    name: 'Accenture',
+  },
+  {
+    ratings: 4,
+    review_headline: 'Very good',
+    review: 'I work in Accenture',
+    name: 'Accenture',
+  },
+];
+```
+
+### Adds a new Company [POST]
+
+**URL**: \_https://lambdadoor.herokuapp.com/companies/
+
+**Returns**: An object conatining the company that was posted
+
+Input
+
+```javascript
+{
+  "name": 'Accenture',
+  'website': 'www.accenture.com.',
+  'location': 'Atlanta, GA',
+  'longitude': -85.0,
+  'latitude': 33.7537,
+  'type': 'Business',
+  'logo': '',
+  'description': '',
+}
+```
+
+Returns
+
+```javascript
+{
+  "id": 1,
+  "name": 'Accenture',
+  'website': 'www.accenture.com.',
+  'location': 'Atlanta, GA',
+  'longitude': -85.0,
+  'latitude': 33.7537,
+  'type': 'Business',
+  'logo': '',
+  'description': '',
+}
+```
+
 #### Company Review Routes
 
 | Method | Endpoint                      | Access Control | Description                                      |
@@ -321,7 +384,7 @@ Returns
 
 ### Get all of the user's reviews [GET]
 
-**URL**: _https://lambdadoor-staging.herokuapp.com/companyreviews/user/:id_
+**URL**: _https://lambdadoor.herokuapp.com/companyreviews/user/:id_
 
 **Returns**: An array of the user's reviews
 
@@ -347,7 +410,7 @@ Returns
 
 ### Get a review by review id [GET]
 
-**URL**: _https://lambdadoor-staging.herokuapp.com/companyreviews/:id_
+**URL**: _https://lambdadoor.herokuapp.com/companyreviews/:id_
 
 **Returns**: The selected review.
 
@@ -373,7 +436,7 @@ Returns
 
 ### Update an individual review [PATCH]
 
-**URL**: _https://lambdadoor-staging.herokuapp.com/companyreviews/:id_
+**URL**: _https://lambdadoor.herokuapp.com/companyreviews/:id_
 
 **Returns**: The updated review.
 
@@ -397,7 +460,7 @@ Returns
 
 ### Delete a user's review [DELETE]
 
-**URL**: _https://lambdadoor-staging.herokuapp.com/companyreviews/:id_
+**URL**: _https://lambdadoor.herokuapp.com/companyreviews/:id_
 
 **Returns**: A 204 status
 

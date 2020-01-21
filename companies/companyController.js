@@ -9,6 +9,34 @@ const getCompanies = async (req, res) => {
   }
 };
 
+const addCompany = async (req, res) => {
+  const {
+    name,
+    website,
+    location,
+    longitude,
+    latitude,
+    type,
+    description,
+    logo,
+  } = req.body;
+  try {
+    const response = await Companies.addCompany({
+      name,
+      website,
+      location,
+      longitude,
+      latitude,
+      type,
+      description,
+      logo,
+    });
+    return res.status(200).json(response);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
 const getTopRated = async (req, res) => {
   try {
     const response = await Companies.getTopRated();
@@ -32,4 +60,5 @@ module.exports = {
   getCompanies,
   getTopRated,
   getClosestCompanies,
+  addCompany,
 };
