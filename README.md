@@ -194,8 +194,6 @@ Returns
 | GET    | `/companies/`                 | all users            | Returns all companies in the db.                         |
 | GET    | `/companies/top`              | all users            | Returns 10 top rated companies.                           |
 | GET    | `/companies/:id/closest`      | all users            | Returns the closest companies to the user's location.    |
-| GET    | `/companies/:id/companyReview`| all users            | Returns a single company along with its various reviews. |
-
 
 #### COMPANIES
 
@@ -293,40 +291,16 @@ Returns
 ]
 ```
 
-### Get a company with its reviews [GET]
-
-**URL**: _https://lambdadoor.herokuapp.com/companies/:id/companyReview
-
-
-**Returns**: An array of a single company along with its various reviews.
-
-Returns
-
-```javascript
-[
-    {
-        "ratings": 5,
-        "review_headline": "Flexible Working Hours and Great Benefits.",
-        "review": "They care about you",
-        "name": "Accenture"
-    },
-    {
-        "ratings": 4,
-        "review_headline": "Very good",
-        "review": "I work in Accenture",
-        "name": "Accenture"
-    }
-]
-```
-
 #### Company Review Routes
 
-| Method | Endpoint                   | Access Control | Description                        |
-| ------ | -------------------------- | -------------- | ---------------------------------- |
-| GET    | `/companyreviews/user/:id` | all users      | Returns all of the user's reviews. |
-| GET    | `/companyreviews/:id`      | all users      | Returns the selected review.       |
-| DELETE | `/companyreviews/:id`      | all users      | Deletes the selected review.       |
-| PATCH  | `/companyreviews/:id`      | all users      | Updates the selected review.       |
+| Method | Endpoint                           | Access Control | Description                                      |
+| ------ | ---------------------------------- | -------------- | ------------------------------------------------ |
+| GET    | `/companyreviews/user/:id`         | all users      | Returns all of the user's reviews.               |
+| GET    | `/companyreviews/:id`              | all users      | Returns the selected review.                     |
+| DELETE | `/companyreviews/:id`              | all users      | Deletes the selected review.                     |
+| PATCH  | `/companyreviews/:id`              | all users      | Updates the selected review.                     |
+| GET    | `/companyreviews/reviews/:id`      | all users      | Returns a single company along with its reviews. |
+
 
 #### COMPANY REVIEWS
 
@@ -437,13 +411,14 @@ Returns
 
 #### Company Review Routes
 
-| Method | Endpoint                   | Access Control | Description                        |
-| ------ | -------------------------- | -------------- | ---------------------------------- |
-| GET    | `/companyreviews/user/:id` | all users      | Returns all of the user's reviews. |
-| GET    | `/companyreviews/:id`      | all users      | Returns the selected review.       |
-| DELETE | `/companyreviews/:id`      | all users      | Deletes the selected review.       |
-| PATCH  | `/companyreviews/:id`      | all users      | Updates the selected review.       |
-| POST   | `/companyreviews/:id`      | all users      | Add a new review.                  |
+| Method | Endpoint                           | Access Control | Description                                      |
+| ------ | ---------------------------------- | -------------- | ------------------------------------------------ |
+| GET    | `/companyreviews/user/:id`         | all users      | Returns all of the user's reviews.               |
+| GET    | `/companyreviews/:id`              | all users      | Returns the selected review.                     |
+| DELETE | `/companyreviews/:id`              | all users      | Deletes the selected review.                     |
+| PATCH  | `/companyreviews/:id`              | all users      | Updates the selected review.                     |
+| POST   | `/companyreviews/:id`              | all users      | Add a new review.                                |
+| GET    | `/companyreviews/reviews/:id`      | all users      | Returns a single company along with its reviews. |
 
 #### COMPANY REVIEWS
 
@@ -575,6 +550,32 @@ Returns
     updated_at: null,
   },
 ];
+```
+
+### Get a company with its reviews [GET]
+
+**URL**: _https://lambdadoor.herokuapp.com/companyreviews/reviews/:id
+
+
+**Returns**: An array of a single company along with its various reviews.
+
+Returns
+
+```javascript
+[
+    {
+        "ratings": 5,
+        "review_headline": "Flexible Working Hours and Great Benefits.",
+        "review": "They care about you",
+        "name": "Accenture"
+    },
+    {
+        "ratings": 4,
+        "review_headline": "Very good",
+        "review": "I work in Accenture",
+        "name": "Accenture"
+    }
+]
 ```
 
 ## DATA VISUALIZATION
