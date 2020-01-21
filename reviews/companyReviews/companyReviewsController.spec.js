@@ -12,6 +12,7 @@ const testUser = {
 };
 
 const testCompany = {
+  id: 1,
   name: 'Accenture',
   website: 'www.accenture.com.',
   location: 'Atlanta, GA',
@@ -104,6 +105,14 @@ describe('companyReviews router', () => {
       await request(server)
         .post('/companyreviews/2')
         .expect(400);
+    });
+  });
+
+  describe('GET /companyreviews/reviews/:id', () => {
+    test('returns a 200 response if review was fetched succesfully', async () => {
+      await request(server)
+        .get('/companyreviews/reviews/1')
+        .expect(200);
     });
   });
 });

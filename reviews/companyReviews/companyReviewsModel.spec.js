@@ -4,6 +4,7 @@ const {
   findReviewById,
   getReviews,
   updateReview,
+  findReviewByCompanyId,
 } = require('./companyReviewsModel');
 
 const testUser = {
@@ -15,6 +16,7 @@ const testUser = {
 };
 
 const testCompany = {
+  id: 1,
   name: 'Accenture',
   website: 'www.accenture.com.',
   location: 'Atlanta, GA',
@@ -45,6 +47,13 @@ describe('Review Models', () => {
     await db('users').insert(testUser);
     await db('companies').insert(testCompany);
     await db('company_reviews').insert(testReview);
+  });
+  describe('getReviews function', () => {
+    it('gets all reviews for a company id', async () => {
+      const actual = await findReviewByCompanyId(1);
+      console.log(actual);
+      expect(actual.length).toBe(1);
+    });
   });
   describe('getReviews function', () => {
     it('gets all reviews for a user id', async () => {
