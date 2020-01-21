@@ -36,16 +36,6 @@ const testReview3 = {
   is_accepting_questions: 1,
   is_current_employee: 1,
 };
-const testReview4 = {
-  user_id: 1,
-  company_id: 1,
-  description: 'Data Analyst',
-  interest_id: 1,
-  salary: 3500000,
-  currency: 'NGN',
-  is_accepting_questions: 0,
-  is_current_employee: 0,
-};
 
 beforeAll(async () => {
   await db.raw('TRUNCATE users RESTART IDENTITY CASCADE');
@@ -109,14 +99,14 @@ describe('companyReviews router', () => {
     test('returns a 201 response if user created salary review succesfully', async () => {
       const response = await request(server)
         .post('/salaryreviews/')
-        .send(testReview4)
+        .send(testReview3)
         .expect(201);
 
-      expect(response.body.description).toBe('Data Analyst');
+      expect(response.body.description).toBe('Junior Developer');
     });
   });
 
-  describe('GET /companyreviews/reviews/:id', () => {
+  describe('GET /salaryreviews/reviews/:id', () => {
     test('returns a 200 response if salary review was fetched succesfully', async () => {
       await request(server)
         .get('/salaryreviews/reviews/1')
