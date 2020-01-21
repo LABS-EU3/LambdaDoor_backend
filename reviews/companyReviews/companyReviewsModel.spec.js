@@ -51,7 +51,6 @@ describe('Review Models', () => {
   describe('getReviews function', () => {
     it('gets all reviews for a company id', async () => {
       const actual = await findReviewByCompanyId(1);
-      console.log(actual);
       expect(actual.length).toBe(1);
     });
   });
