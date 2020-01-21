@@ -108,7 +108,7 @@ describe('companyReviews router', () => {
   describe('POST /', () => {
     test('returns a 201 response if user created salary review succesfully', async () => {
       const response = await request(server)
-        .post('/salaryreviews/1')
+        .post('/salaryreviews/')
         .send(testReview4)
         .expect(201);
 
