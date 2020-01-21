@@ -7,7 +7,7 @@ function getReviews() {
       'sr.user_id',
       'sr.company_id',
       'sr.text',
-      'c.name',
+      'c.name as company_name',
       'sr.description',
       'sr.salary',
       'sr.currency',

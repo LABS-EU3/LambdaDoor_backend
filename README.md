@@ -627,6 +627,8 @@ Returns
 ];
 ```
 
+#### Salary Review Routes
+
 ## DATA VISUALIZATION
 
 ### Data Visualization Routes
