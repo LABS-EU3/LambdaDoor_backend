@@ -384,7 +384,7 @@ Returns
 
 ### Get all of the user's reviews [GET]
 
-**URL**: _https://lambdadoor-staging.herokuapp.com/companyreviews/user/:id_
+**URL**: _https://lambdadoor.herokuapp.com/companyreviews/user/:id_
 
 **Returns**: An array of the user's reviews
 
@@ -410,7 +410,7 @@ Returns
 
 ### Get a review by review id [GET]
 
-**URL**: _https://lambdadoor-staging.herokuapp.com/companyreviews/:id_
+**URL**: _https://lambdadoor.herokuapp.com/companyreviews/:id_
 
 **Returns**: The selected review.
 
@@ -436,7 +436,7 @@ Returns
 
 ### Update an individual review [PATCH]
 
-**URL**: _https://lambdadoor-staging.herokuapp.com/companyreviews/:id_
+**URL**: _https://lambdadoor.herokuapp.com/companyreviews/:id_
 
 **Returns**: The updated review.
 
@@ -460,7 +460,7 @@ Returns
 
 ### Delete a user's review [DELETE]
 
-**URL**: _https://lambdadoor-staging.herokuapp.com/companyreviews/:id_
+**URL**: _https://lambdadoor.herokuapp.com/companyreviews/:id_
 
 **Returns**: A 204 status
 
