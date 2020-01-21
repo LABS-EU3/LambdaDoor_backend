@@ -2,7 +2,7 @@ const db = require('../../database/db-config');
 const {
   deleteReview,
   findReviewById,
-  getReviews,
+  getAllUserReviews,
   updateReview,
 } = require('./companyReviewsModel');
 
@@ -46,15 +46,15 @@ describe('Review Models', () => {
     await db('companies').insert(testCompany);
     await db('company_reviews').insert(testReview);
   });
-  describe('getReviews function', () => {
+  describe('getAllUserReviews function', () => {
     it('gets all reviews for a user id', async () => {
-      const actual = await getReviews(1);
+      const actual = await getAllUserReviews(1);
       expect(actual.length).toEqual(1);
       expect(actual[0].user_id).toEqual(1);
     });
 
     it('returns undefined if user not found', async () => {
-      const actual = await getReviews(2);
+      const actual = await getAllUserReviews(2);
       expect(actual.length).toEqual(0);
     });
   });
@@ -80,7 +80,7 @@ describe('Review Models', () => {
   describe('deleteReview function', () => {
     it('deletes a review', async () => {
       await deleteReview(1);
-      const actual = await getReviews(1);
+      const actual = await getAllUserReviews(1);
       expect(actual.length).toEqual(0);
     });
   });
