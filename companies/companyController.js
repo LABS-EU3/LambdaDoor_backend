@@ -9,6 +9,17 @@ const getCompanies = async (req, res) => {
   }
 };
 
+const getCompany = async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  try {
+    const response = await Companies.findCompanyById(id);
+    return res.status(200).json(response);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
 const addCompany = async (req, res) => {
   const {
     name,
@@ -73,6 +84,7 @@ const getCompanyAndReview = async (req, res) => {
 
 module.exports = {
   getCompanies,
+  getCompany,
   getTopRated,
   getClosestCompanies,
   getCompanyAndReview,

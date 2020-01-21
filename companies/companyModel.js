@@ -1,7 +1,22 @@
 const db = require('../database/db-config');
 
 function getCompanies() {
-  return db('companies');
+  return db
+    .select(
+      'c.id',
+      'c.name',
+      'c.description',
+      'c.website',
+      'c.location',
+      'c.type',
+      'c.logo',
+      'c.latitude',
+      'c.longitude'
+    )
+    .avg('cr.ratings as average_rating')
+    .from('companies as c')
+    .leftJoin('company_reviews as cr', 'c.id', 'cr.company_id')
+    .groupBy('c.id', 'c.name', 'c.description');
 }
 
 function getTopRated() {
@@ -17,10 +32,26 @@ function getTopRated() {
 }
 
 function findCompanyById(id) {
-  return db('companies')
-    .where({ id })
+  return db
+    .select(
+      'c.id',
+      'c.name',
+      'c.description',
+      'c.website',
+      'c.location',
+      'c.type',
+      'c.logo',
+      'c.latitude',
+      'c.longitude'
+    )
+    .avg('cr.ratings as average_rating')
+    .from('companies as c')
+    .leftJoin('company_reviews as cr', 'c.id', 'cr.company_id')
+    .groupBy('c.id', 'c.name', 'c.description')
+    .where('c.id', id)
     .first();
 }
+
 async function addCompany(company) {
   const ids = await db('companies').insert(company, 'id');
   return findCompanyById(ids[0]);
