@@ -3,6 +3,7 @@ const db = require('../database/db-config');
 const server = require('../api/server');
 
 beforeAll(async () => {
+
   // await db.raw('TRUNCATE users RESTART IDENTITY CASCADE');
 });
 
@@ -46,6 +47,7 @@ describe('userRouter', () => {
         .set('Cookie', cookie)
         .expect(400)
         .expect({ error: 'User does not exist' });
+
     });
   });
   describe('PUT /users/:id', () => {
