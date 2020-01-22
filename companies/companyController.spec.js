@@ -145,15 +145,6 @@ describe('companyRouter', () => {
       });
     });
 
-    describe('GET /a single company with various reviews', () => {
-      test('returns a 200 response', async () => {
-        await request(server)
-          .get('/companies/1/companyReview')
-          .expect('Content-Type', /json/)
-          .expect(200);
-      });
-    });
-
     afterAll(async () => {
       await db.raw('TRUNCATE companies RESTART IDENTITY CASCADE');
     });

@@ -197,6 +197,7 @@ Returns
 | GET    | `/companies/:id`               | all users      | Returns a company by company ID.                         |
 | POST   | `/companies/`                  | all users      | Adds a single company to the db                          |
 
+
 #### COMPANIES
 
 ---
@@ -378,12 +379,13 @@ Returns
 
 #### Company Review Routes
 
-| Method | Endpoint                   | Access Control | Description                        |
-| ------ | -------------------------- | -------------- | ---------------------------------- |
-| GET    | `/companyreviews/user/:id` | all users      | Returns all of the user's reviews. |
-| GET    | `/companyreviews/:id`      | all users      | Returns the selected review.       |
-| DELETE | `/companyreviews/:id`      | all users      | Deletes the selected review.       |
-| PATCH  | `/companyreviews/:id`      | all users      | Updates the selected review.       |
+| Method | Endpoint                      | Access Control | Description                                      |
+| ------ | ----------------------------- | -------------- | ------------------------------------------------ |
+| GET    | `/companyreviews/user/:id`    | all users      | Returns all of the user's reviews.               |
+| GET    | `/companyreviews/:id`         | all users      | Returns the selected review.                     |
+| DELETE | `/companyreviews/:id`         | all users      | Deletes the selected review.                     |
+| PATCH  | `/companyreviews/:id`         | all users      | Updates the selected review.                     |
+| GET    | `/companyreviews/reviews/:id` | all users      | Returns a single company along with its reviews. |
 
 #### COMPANY REVIEWS
 
@@ -491,13 +493,14 @@ Returns
 
 #### Company Review Routes
 
-| Method | Endpoint                   | Access Control | Description                        |
-| ------ | -------------------------- | -------------- | ---------------------------------- |
-| GET    | `/companyreviews/user/:id` | all users      | Returns all of the user's reviews. |
-| GET    | `/companyreviews/:id`      | all users      | Returns the selected review.       |
-| DELETE | `/companyreviews/:id`      | all users      | Deletes the selected review.       |
-| PATCH  | `/companyreviews/:id`      | all users      | Updates the selected review.       |
-| POST   | `/companyreviews/:id`      | all users      | Add a new review.                  |
+| Method | Endpoint                      | Access Control | Description                                      |
+| ------ | ----------------------------- | -------------- | ------------------------------------------------ |
+| GET    | `/companyreviews/user/:id`    | all users      | Returns all of the user's reviews.               |
+| GET    | `/companyreviews/:id`         | all users      | Returns the selected review.                     |
+| DELETE | `/companyreviews/:id`         | all users      | Deletes the selected review.                     |
+| PATCH  | `/companyreviews/:id`         | all users      | Updates the selected review.                     |
+| POST   | `/companyreviews/:id`         | all users      | Add a new review.                                |
+| GET    | `/companyreviews/reviews/:id` | all users      | Returns a single company along with its reviews. |
 
 #### COMPANY REVIEWS
 
@@ -627,8 +630,167 @@ Returns
 ];
 ```
 
+<<<<<<< HEAD
 #### Salary Review Routes
 
+=======
+### Get a company with its reviews [GET]
+
+**URL**: \_https://lambdadoor.herokuapp.com/companyreviews/reviews/:id
+
+**Returns**: An array of a single company along with its various reviews.
+
+Returns
+
+```javascript
+[
+  {
+    ratings: 5,
+    review_headline: 'Flexible Working Hours and Great Benefits.',
+    review: 'They care about you',
+    name: 'Accenture',
+  },
+  {
+    ratings: 4,
+    review_headline: 'Very good',
+    review: 'I work in Accenture',
+    name: 'Accenture',
+  },
+];
+```
+
+#### Salary Review Routes
+
+| Method | Endpoint                     | Access Control | Description                                             |
+| ------ | ---------------------------- | -------------- | ------------------------------------------------------- |
+| GET    | `/salaryreviews/user/:id`    | all users      | Returns all of the user's salary reviews.               |
+| GET    | `/salaryreviews/:id`         | all users      | Returns the selected review.                            |
+| DELETE | `/salaryreviews/:id`         | all users      | Deletes the selected review.                            |
+| PATCH  | `/salaryreviews/:id`         | all users      | Updates the selected review.                            |
+| POST   | `/salaryreviews/`            | all users      | Add a new review.                                       |
+| GET    | `/salaryreviews/reviews/:id` | all users      | Returns a single company along with its salary reviews. |
+
+#### SALARY REVIEWS
+
+---
+
+## Actions
+
+### Get all of the user's salary reviews [GET]
+
+**URL**: _https://lambdadoor.herokuapp.com/salaryreviews/user/:id_
+
+**Returns**: An array of the user's salary reviews
+
+Returns
+
+```javascript
+[
+  {
+    id: 3,
+    company_id: 10,
+    description: 'Junior Developer',
+    salary: '3000000',
+    currency: 'NGN',
+    interest: 'Software Engineer',
+    is_accepting_questions: true,
+    is_current_employee: true,
+  },
+];
+```
+
+### Get a salary review by review id [GET]
+
+**URL**: _https://lambdadoor.herokuapp.com/salaryreviews/:id_
+
+**Returns**: The selected salary review.
+
+Returns
+
+```javascript
+[
+  {
+    id: 2,
+    description: 'Software Engineer',
+    salary: '98000',
+    currency: 'USD',
+    interest_id: 1,
+  },
+];
+```
+
+### Update a single review of the user[PATCH]
+
+**URL**: _https://lambdadoor.herokuapp.com/salaryreviews/:id_
+
+**Returns**: The updated salary review.
+
+```javascript
+[
+  {
+    id: 3,
+    description: 'Junior Data scientist',
+    salary: '3000000',
+    currency: 'NGN',
+    interest_id: 2,
+  },
+];
+```
+
+### Delete a user's salary review [DELETE]
+
+**URL**: _https://lambdadoor.herokuapp.com/salaryreviews/:id_
+
+**Returns**: A 204 status
+
+### Add a user's salary review [POST]
+
+**URL**: \_https://lambdadoor.herokuapp.com/salaryreviews/
+
+**Returns**: A 201 status and The added Review
+
+```javascript
+[
+  {
+    id: 9,
+    description: 'Junior Data scientist',
+    salary: '3000000',
+    currency: 'NGN',
+    interest_id: 2,
+  },
+];
+```
+
+### Get a company with its salary reviews [GET]
+
+**URL**: \_https://lambdadoor.herokuapp.com/salaryreviews/reviews/:id
+
+**Returns**: An array of a single company along with its various salary reviews.
+
+Returns
+
+```javascript
+[
+  {
+    id: 1,
+    description: 'Accenture Programmer',
+    salary: '95000',
+    currency: 'USD',
+    interest_id: 2,
+    interest: 'Front End',
+  },
+  {
+    id: 4,
+    description: 'Accenture Technical Specialist',
+    salary: '85000',
+    currency: 'USD',
+    interest_id: 4,
+    interest: 'Full Stack',
+  },
+];
+```
+
+>>>>>>> 819aebbca8ac6f015918b74453b34deef88bcbfa
 ## DATA VISUALIZATION
 
 ### Data Visualization Routes

@@ -4,7 +4,6 @@ const {
   getTopRated,
   findCompanyById,
   getClosest,
-  companyAndReviews,
 } = require('./companyModel');
 
 const testUsers = [
@@ -120,17 +119,6 @@ describe('Company Models', () => {
       });
       it('returns an empty array if there are no companies within 110km', async () => {
         const response = await getClosest(2);
-        expect(response.length).toEqual(0);
-      });
-    });
-
-    describe('The company with reviews Model', () => {
-      it("returns a company along with it's reviews", async () => {
-        const response = await companyAndReviews(1);
-        expect(response.length).toEqual(2);
-      });
-      it('returns an empty array if there is no such company in the database', async () => {
-        const response = await companyAndReviews(2);
         expect(response.length).toEqual(0);
       });
     });

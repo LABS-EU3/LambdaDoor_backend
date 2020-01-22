@@ -1,5 +1,15 @@
 const Reviews = require('./companyReviewsModel');
 
+const getCompanyReviews = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const companyReviews = await Reviews.findReviewByCompanyId(id);
+    return res.status(200).json(companyReviews);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
 const getUserReviews = async (req, res) => {
   try {
     const {
@@ -59,4 +69,5 @@ module.exports = {
   updateUserReview,
   findUserReviewById,
   addUserReview,
+  getCompanyReviews,
 };
