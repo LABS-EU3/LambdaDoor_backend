@@ -1,10 +1,6 @@
 const db = require('../../database/db-config');
-<<<<<<< HEAD
-const { getReviews } = require('./salaryReviewsModel');
-
-const testUser = {
-=======
 const {
+  getReviews,
   deleteSalaryReview,
   findSalaryReviewById,
   getUsersSalaryReviews,
@@ -13,7 +9,6 @@ const {
 } = require('./salaryReviewsModel');
 
 const testUser2 = {
->>>>>>> 819aebbca8ac6f015918b74453b34deef88bcbfa
   full_name: 'Test 2',
   slack_id: 'slack_id_two',
   username: 'second_name',
@@ -21,15 +16,11 @@ const testUser2 = {
   profile_picture: 'testurltwo',
 };
 
-<<<<<<< HEAD
-const testCompany = {
-=======
 const interest2 = {
   interest: 'Software Engineer',
 };
 const testCompany2 = {
   id: 1,
->>>>>>> 819aebbca8ac6f015918b74453b34deef88bcbfa
   name: 'Accenture',
   website: 'www.accenture.com.',
   location: 'Atlanta, GA',
@@ -40,17 +31,6 @@ const testCompany2 = {
   description: '',
 };
 
-<<<<<<< HEAD
-const testSalaryReview = {
-  user_id: 1,
-  company_id: 1,
-  text: 'null',
-  description: 'Accenture Programmer',
-  salary: '95000',
-  currency: 'USD',
-  is_accepting_questions: false,
-  interest_id: 3,
-=======
 const testReview2 = {
   user_id: 1,
   company_id: 1,
@@ -60,7 +40,6 @@ const testReview2 = {
   currency: 'USD',
   is_accepting_questions: 0,
   is_current_employee: 0,
->>>>>>> 819aebbca8ac6f015918b74453b34deef88bcbfa
 };
 
 describe('Review Models', () => {
@@ -68,23 +47,6 @@ describe('Review Models', () => {
     await db.raw('TRUNCATE users RESTART IDENTITY CASCADE');
     await db.raw('TRUNCATE companies RESTART IDENTITY CASCADE');
     await db.raw('TRUNCATE salary_reviews RESTART IDENTITY CASCADE');
-<<<<<<< HEAD
-
-    await db('users').insert(testUser);
-    await db('companies').insert(testCompany);
-    await db('salary_reviews').insert(testSalaryReview);
-  });
-  describe('getReviews function', () => {
-    it('gets all salary reviews', async () => {
-      const actual = await getReviews();
-      expect(actual.length).toEqual(1);
-    });
-
-    afterAll(async () => {
-      await db.raw('TRUNCATE users RESTART IDENTITY CASCADE');
-    });
-  });
-=======
     await db.raw('TRUNCATE interests RESTART IDENTITY CASCADE');
 
     await db('users').insert(testUser2);
@@ -138,5 +100,4 @@ describe('Review Models', () => {
   afterAll(async () => {
     await db.raw('TRUNCATE users RESTART IDENTITY CASCADE');
   });
->>>>>>> 819aebbca8ac6f015918b74453b34deef88bcbfa
 });
