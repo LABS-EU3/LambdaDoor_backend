@@ -4,7 +4,7 @@ const validate = require('../../middleware/validation');
 
 const router = express.Router();
 router.get('/', reviews.getSalaryReviews);
-router.get('/:id', reviews.getAvgSalaryReviewsByCompany);
+router.get('/avg/:id', reviews.getAvgSalaryReviewsByCompany);
 router.post('/', reviews.addUseSalaryrReview);
 router.delete(
   '/:id',
