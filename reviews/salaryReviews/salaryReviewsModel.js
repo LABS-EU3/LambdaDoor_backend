@@ -11,7 +11,10 @@ function getReviews() {
       'sr.description',
       'sr.salary',
       'sr.currency',
-      'sr.is_accepting_questions'
+      'sr.is_accepting_questions',
+      'sr.is_anonymous',
+      'sr.job_title',
+      'sr.interest_id'
     )
     .from('salary_reviews as sr')
     .leftJoin('companies as c', 'sr.company_id', 'c.id');
@@ -19,10 +22,11 @@ function getReviews() {
 
 function getAvgReviewsByCompany(id) {
   return db
-    .select('sr.description')
+    .select('sr.interest_id', 'i.interest', 'sr.currency')
     .from('salary_reviews as sr')
+    .leftJoin('interests as i', 'sr.interest_id', 'i.id')
     .avg('salary')
-    .groupBy('description')
+    .groupBy('sr.interest_id', 'i.interest', 'sr.currency')
     .where('company_id', '=', id);
 }
 
