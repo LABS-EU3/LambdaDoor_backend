@@ -171,7 +171,6 @@ describe('salaryReviews router', () => {
       const response = await request(server)
         .get('/salaryreviews/avg/1')
         .send(testSalaryReviews);
-      console.log(response.body);
       expect(response.body[0].avg).toBe(3250000);
     });
   });
