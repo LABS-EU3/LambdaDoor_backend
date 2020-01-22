@@ -37,7 +37,6 @@ describe('userRouter', () => {
     test('returns a 200 response', async () => {
       await request(server)
         .get('/users/1')
-(400);
         .set('Cookie', cookie)
         .expect('Content-Type', /json/)
         .expect(200);
