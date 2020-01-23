@@ -2,7 +2,7 @@ const db = require('../../database/db-config');
 
 function findReviewByCompanyId(id) {
   return db
-    .select('cr.id', 'cr.ratings', 'cr.review_headline', 'cr.review')
+    .select('cr.id', 'cr.ratings', 'cr.review_headline', 'cr.review', 'c.name')
     .from('companies as c')
     .join('company_reviews as cr', 'cr.company_id', 'c.id')
     .where('c.id', '=', id);
@@ -35,7 +35,8 @@ function findReviewById(id) {
       'cr.review',
       'cr.is_accepting_questions',
       'c.name',
-      'cr.user_id'
+      'cr.user_id',
+      'c.id as company_id'
     )
     .from('company_reviews as cr')
     .join('companies as c', 'cr.company_id', 'c.id')
