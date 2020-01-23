@@ -1,9 +1,28 @@
 const Reviews = require('./salaryReviewsModel');
 
+const getSalaryReviews = async (req, res) => {
+  try {
+    const salaryReviews = await Reviews.getReviews();
+    return res.status(200).json(salaryReviews);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
 const getSalaryReviewsByCompany = async (req, res) => {
   try {
     const { id } = req.params;
     const salaryReviews = await Reviews.salaryReviewByCompanyId(id);
+    return res.status(200).json(salaryReviews);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
+const getAvgSalaryReviewsByCompany = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const salaryReviews = await Reviews.getAvgReviewsByCompany(id);
     return res.status(200).json(salaryReviews);
   } catch (error) {
     return res.status(500).json({ error: error.message });
@@ -62,6 +81,8 @@ const addUseSalaryrReview = async (req, res) => {
 };
 
 module.exports = {
+  getSalaryReviews,
+  getAvgSalaryReviewsByCompany,
   getUserSalaryReviews,
   deleteUserSalaryReview,
   updateUserSalaryrReview,

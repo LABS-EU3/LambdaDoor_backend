@@ -658,8 +658,10 @@ Returns
 
 | Method | Endpoint                     | Access Control | Description                                             |
 | ------ | ---------------------------- | -------------- | ------------------------------------------------------- |
+| GET    | `/salaryreviews`             | all users      | Returns all of the salary reviews.                      |
 | GET    | `/salaryreviews/user/:id`    | all users      | Returns all of the user's salary reviews.               |
 | GET    | `/salaryreviews/:id`         | all users      | Returns the selected review.                            |
+| GET    | `/salaryreviews/avg/:id`     | all users      | Returns the average salaries by company id              |
 | DELETE | `/salaryreviews/:id`         | all users      | Deletes the selected review.                            |
 | PATCH  | `/salaryreviews/:id`         | all users      | Updates the selected review.                            |
 | POST   | `/salaryreviews/`            | all users      | Add a new review.                                       |
@@ -670,6 +672,33 @@ Returns
 ---
 
 ## Actions
+
+### Get all salary reviews [GET]
+
+**URL**: _https://lambdadoor.herokuapp.com/salaryreviews_
+
+**Returns**: An array of all salary reviews
+
+Returns
+
+```javascript
+[
+  {
+    id: 1,
+    user_id: 1,
+    company_id: 1,
+    text: null,
+    company_name: 'Accenture',
+    description: 'Software Engineer',
+    salary: 95000,
+    currency: 'USD',
+    is_accepting_questions: false,
+    is_anonymous: false,
+    job_title: 'Accenture Programmer',
+    interest_id: 2,
+  },
+];
+```
 
 ### Get all of the user's salary reviews [GET]
 
@@ -710,6 +739,31 @@ Returns
     salary: '98000',
     currency: 'USD',
     interest_id: 1,
+  },
+];
+```
+
+### Get the average salaries for job types for a particular company using company id [GET]
+
+**URL**: _https://lambdadoor.herokuapp.com/salaryreviews/avg/:id_
+
+**Returns**: An array of the average salaries within the company
+
+Returns
+
+```javascript
+[
+  {
+    interest_id: 2,
+    interest: 'Front End',
+    currency: 'USD',
+    avg: 95000,
+  },
+  {
+    interest_id: 4,
+    interest: 'Full Stack',
+    currency: 'USD',
+    avg: 67500,
   },
 ];
 ```

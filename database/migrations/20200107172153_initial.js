@@ -124,7 +124,7 @@ exports.up = function(knex) {
         .inTable('interests')
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
-      table.varchar('salary');
+      table.float('salary');
       table.varchar('currency');
       table.boolean('is_accepting_questions');
       table.boolean('is_current_employee');
