@@ -56,6 +56,7 @@ function getUsersSalaryReviews(id) {
       'sr.salary',
       'sr.currency',
       'i.interest',
+      'i.id',
       'sr.is_accepting_questions',
       'sr.is_current_employee',
       'c.name'
