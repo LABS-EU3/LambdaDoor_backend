@@ -1,5 +1,6 @@
 const db = require('../../database/db-config');
 const {
+  getReviews,
   deleteSalaryReview,
   findSalaryReviewById,
   getUsersSalaryReviews,

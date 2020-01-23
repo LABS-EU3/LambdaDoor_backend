@@ -1,5 +1,35 @@
 const db = require('../../database/db-config');
 
+function getReviews() {
+  return db
+    .select(
+      'sr.id',
+      'sr.user_id',
+      'sr.company_id',
+      'sr.text',
+      'c.name as company_name',
+      'sr.description',
+      'sr.salary',
+      'sr.currency',
+      'sr.is_accepting_questions',
+      'sr.is_anonymous',
+      'sr.job_title',
+      'sr.interest_id'
+    )
+    .from('salary_reviews as sr')
+    .leftJoin('companies as c', 'sr.company_id', 'c.id');
+}
+
+function getAvgReviewsByCompany(id) {
+  return db
+    .select('sr.interest_id', 'i.interest', 'sr.currency')
+    .from('salary_reviews as sr')
+    .leftJoin('interests as i', 'sr.interest_id', 'i.id')
+    .avg('salary')
+    .groupBy('sr.interest_id', 'i.interest', 'sr.currency')
+    .where('company_id', '=', id);
+}
+
 function salaryReviewByCompanyId(id) {
   return db
     .select(
@@ -73,6 +103,8 @@ function insertSalaryReview(review) {
 }
 
 module.exports = {
+  getReviews,
+  getAvgReviewsByCompany,
   getUsersSalaryReviews,
   findSalaryReviewById,
   deleteSalaryReview,
