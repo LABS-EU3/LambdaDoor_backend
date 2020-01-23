@@ -197,7 +197,6 @@ Returns
 | GET    | `/companies/:id`               | all users      | Returns a company by company ID.                         |
 | POST   | `/companies/`                  | all users      | Adds a single company to the db                          |
 
-
 #### COMPANIES
 
 ---
@@ -659,8 +658,10 @@ Returns
 
 | Method | Endpoint                     | Access Control | Description                                             |
 | ------ | ---------------------------- | -------------- | ------------------------------------------------------- |
+| GET    | `/salaryreviews`             | all users      | Returns all of the salary reviews.                      |
 | GET    | `/salaryreviews/user/:id`    | all users      | Returns all of the user's salary reviews.               |
 | GET    | `/salaryreviews/:id`         | all users      | Returns the selected review.                            |
+| GET    | `/salaryreviews/avg/:id`     | all users      | Returns the average salaries by company id              |
 | DELETE | `/salaryreviews/:id`         | all users      | Deletes the selected review.                            |
 | PATCH  | `/salaryreviews/:id`         | all users      | Updates the selected review.                            |
 | POST   | `/salaryreviews/`            | all users      | Add a new review.                                       |
@@ -671,6 +672,33 @@ Returns
 ---
 
 ## Actions
+
+### Get all salary reviews [GET]
+
+**URL**: _https://lambdadoor.herokuapp.com/salaryreviews_
+
+**Returns**: An array of all salary reviews
+
+Returns
+
+```javascript
+[
+  {
+    id: 1,
+    user_id: 1,
+    company_id: 1,
+    text: null,
+    company_name: 'Accenture',
+    description: 'Software Engineer',
+    salary: 95000,
+    currency: 'USD',
+    is_accepting_questions: false,
+    is_anonymous: false,
+    job_title: 'Accenture Programmer',
+    interest_id: 2,
+  },
+];
+```
 
 ### Get all of the user's salary reviews [GET]
 
@@ -711,6 +739,31 @@ Returns
     salary: '98000',
     currency: 'USD',
     interest_id: 1,
+  },
+];
+```
+
+### Get the average salaries for job types for a particular company using company id [GET]
+
+**URL**: _https://lambdadoor.herokuapp.com/salaryreviews/avg/:id_
+
+**Returns**: An array of the average salaries within the company
+
+Returns
+
+```javascript
+[
+  {
+    interest_id: 2,
+    interest: 'Front End',
+    currency: 'USD',
+    avg: 95000,
+  },
+  {
+    interest_id: 4,
+    interest: 'Full Stack',
+    currency: 'USD',
+    avg: 67500,
   },
 ];
 ```
@@ -782,6 +835,131 @@ Returns
     currency: 'USD',
     interest_id: 4,
     interest: 'Full Stack',
+  },
+];
+```
+
+#### Interview Review Routes
+
+| Method | Endpoint                       | Access Control | Description                                                |
+| ------ | ------------------------------ | -------------- | ---------------------------------------------------------- |
+| GET    | `/interviewreview/user/:id`    | all users      | Returns all of the user's interview reviews.               |
+| GET    | `/interviewreview/:id`         | all users      | Returns the selected review.                               |
+| DELETE | `/interviewreview/:id`         | all users      | Deletes the selected review.                               |
+| PATCH  | `/interviewreview/:id`         | all users      | Updates the selected review.                               |
+| POST   | `/interviewreview/`            | all users      | Add a new review.                                          |
+| GET    | `/interviewreview/reviews/:id` | all users      | Returns a single company along with its interview reviews. |
+
+#### INTERVIEW REVIEWS
+
+---
+
+## Actions
+
+### Get all of the user's interview reviews [GET]
+
+**URL**: _https://lambdadoor.herokuapp.com/interviewreviews/user/:id_
+
+**Returns**: An array of the user's interview reviews
+
+Returns
+
+```javascript
+[
+  {
+    id: 1,
+    text:
+      'Six rounds of phone/tech interviews over a long time period. It seemed a bit scattered and could have been way more efficient. I felt like some of the interviews got repetitive.',
+    user_id: 1,
+    name: 'Accenture',
+  },
+];
+```
+
+### Get an interview review by review id [GET]
+
+**URL**: _https://lambdadoor.herokuapp.com/interviewreviews/:id_
+
+**Returns**: The selected interview review.
+
+Returns
+
+```javascript
+{
+  "id": 6,
+  "text": "Six rounds of phone/tech interviews over a long time period. It seemed a bit scattered and could have been way more efficient. I felt like some of the interviews got repetitive.",
+  "user_id": 1,
+  "name": "Accenture"
+}
+
+```
+
+### Update a single review of the user[PATCH]
+
+**URL**: _https://lambdadoor.herokuapp.com/interviewreviews/:id_
+
+**Returns**: The updated interview review.
+
+```javascript
+{
+  "id": 6,
+  "text": "Six rounds of phone/tech interviews over a long time period. It seemed a bit scattered and could have been way more efficient. I felt like some of the interviews got repetitive.",
+  "user_id": 1,
+  "name": "Accenture"
+}
+```
+
+### Delete a user's interview review [DELETE]
+
+**URL**: _https://lambdadoor.herokuapp.com/interviewreviews/:id_
+
+**Returns**: A 204 status
+
+### Add a user's interview review [POST]
+
+**URL**: \_https://lambdadoor.herokuapp.com/interviewreviews/
+
+**Returns**: A 201 status and The added Review
+
+```javascript
+{
+  "id": 6,
+  "text": "Six rounds of phone/tech interviews over a long time period. It seemed a bit scattered and could have been way more efficient. I felt like some of the interviews got repetitive.",
+  "user_id": 1,
+  "name": "Accenture"
+}
+```
+
+### Get a company with its interview reviews [GET]
+
+**URL**: \_https://lambdadoor.herokuapp.com/interviewreviews/reviews/:id
+
+**Returns**: An array of a single company along with its various interview reviews.
+
+Returns
+
+```javascript
+[
+  {
+    id: 1,
+    text:
+      'Six rounds of phone/tech interviews over a long time period. It seemed a bit scattered and could have been way more efficient. I felt like some of the interviews got repetitive.',
+    user_id: 1,
+    name: 'Accenture',
+  },
+  {
+    id: 5,
+    text:
+      'Six rounds of phone/tech interviews over a long time period. It seemed a bit scattered and could have been way more efficient. I felt like some of the interviews got repetitive.',
+    user_id: 1,
+    name: 'Accenture',
+  },
+  {
+    id: 6,
+    text:
+      'Six rounds of phone/tech interviews over a long time period. It seemed a bit scattered and could have been way more efficient. I felt like some of the interviews got repetitive.',
+    user_id: 1,
+    name: 'Accenture',
   },
 ];
 ```

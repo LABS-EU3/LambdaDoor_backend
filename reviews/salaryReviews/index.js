@@ -3,6 +3,8 @@ const reviews = require('./salaryReviewsController');
 const validate = require('../../middleware/validation');
 
 const router = express.Router();
+router.get('/', reviews.getSalaryReviews);
+router.get('/avg/:id', reviews.getAvgSalaryReviewsByCompany);
 router.post('/', reviews.addUseSalaryrReview);
 router.delete(
   '/:id',
