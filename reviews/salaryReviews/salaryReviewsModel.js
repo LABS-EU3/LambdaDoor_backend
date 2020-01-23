@@ -75,10 +75,12 @@ function findSalaryReviewById(id) {
       'sr.salary',
       'sr.currency',
       'sr.interest_id',
+      'i.interest',
       'c.name'
     )
     .from('salary_reviews as sr')
     .join('companies as c', 'sr.company_id', 'c.id')
+    .leftJoin('interests as i', 'sr.interest_id', 'i.id')
     .where('sr.id', '=', id)
     .first();
 }
