@@ -49,7 +49,6 @@ const updateUserInterviewReview = async (req, res) => {
     const updatedReview = await Reviews.findInterviewReviewById(id);
     return res.status(200).json(updatedReview);
   } catch (error) {
-    console.log(error.message);
     return res.status(500).json({ error: error.message });
   }
 };
