@@ -2,9 +2,17 @@ const db = require('../../database/db-config');
 
 function interviewReviewByCompanyId(id) {
   return db
-    .select('i.id', 'i.text', 'i.user_id', 'c.name')
+    .select(
+      'i.id',
+      'i.text',
+      'i.user_id',
+      'i.company_id',
+      'c.name',
+      'u.full_name'
+    )
     .from('interview_process_reviews as i')
     .join('companies as c', 'c.id', 'i.company_id')
+    .join('users as u', 'u.id', 'i.user_id')
     .where('c.id', '=', id);
 }
 
@@ -18,9 +26,17 @@ function getUsersInterviewReviews(id) {
 
 function findInterviewReviewById(id) {
   return db
-    .select('i.id', 'i.text', 'i.user_id', 'c.name')
+    .select(
+      'i.id',
+      'i.text',
+      'i.user_id',
+      'i.company_id',
+      'c.name',
+      'u.full_name'
+    )
     .from('interview_process_reviews as i')
     .join('companies as c', 'c.id', 'i.company_id')
+    .join('users as u', 'u.id', 'i.user_id')
     .where('i.id', '=', id)
     .first();
 }
