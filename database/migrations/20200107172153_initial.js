@@ -24,7 +24,7 @@ exports.up = function(knex) {
       table.float('latitude');
       table.string('type', 128);
       table.varchar('logo', 128);
-      table.varchar('description', 128);
+      table.varchar('description');
       table.timestamps('created_at');
     })
     .createTable('interests', table => {
@@ -70,7 +70,7 @@ exports.up = function(knex) {
         .onUpdate('CASCADE');
       table.integer('ratings', 128);
       table.boolean('is_currently_employed');
-      table.varchar('review_headline');
+      table.varchar('review_headline', 128);
       table.varchar('review');
       table.boolean('is_accepting_questions');
       table.timestamps('created_at');
