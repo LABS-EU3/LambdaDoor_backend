@@ -9,7 +9,8 @@ exports.seed = function(knex) {
       latitude: 33.7537,
       type: 'Business',
       logo: '',
-      description: '',
+      description:
+        'We partner with our clients to drive real innovation—the kind that turns an idea into an industry.',
     },
     {
       name: 'Anthem, Inc.',
@@ -19,7 +20,8 @@ exports.seed = function(knex) {
       latitude: 33.8,
       type: 'Health',
       logo: '',
-      description: '',
+      description:
+        'Improving Lives and Communities. Simplifying Healthcare. Expecting More.',
     },
     {
       name: 'Ahalogy',
@@ -29,7 +31,8 @@ exports.seed = function(knex) {
       latitude: 31,
       type: 'Business',
       logo: '',
-      description: '',
+      description:
+        'Ahalogy is the market leader in trend-driven influencer, content and social media marketing',
     },
     {
       name: 'Bad Rabbit',
@@ -39,7 +42,8 @@ exports.seed = function(knex) {
       latitude: 31,
       type: 'Technology',
       logo: '',
-      description: '',
+      description:
+        'At Bad Rabbit, we make the systems you have work better for you.',
     },
     {
       name: 'DoNotPay Inc',
@@ -49,7 +53,8 @@ exports.seed = function(knex) {
       latitude: 31,
       type: 'Technology',
       logo: '',
-      description: '',
+      description:
+        'Fight corporations, beat bureaucracy and sue anyone at the press of a button.',
     },
     {
       name: 'Newfront Insurance',
@@ -59,7 +64,8 @@ exports.seed = function(knex) {
       latitude: 31,
       type: 'insurance',
       logo: '',
-      description: '',
+      description:
+        "We're are a modern brokerage innovating on behalf of our client",
     },
     {
       name: 'Unspun',
@@ -69,7 +75,8 @@ exports.seed = function(knex) {
       latitude: 31,
       type: 'Commerce',
       logo: '',
-      description: '',
+      description:
+        "digital customization, automated manufacturing customized denim like you've never seen before.",
     },
     {
       name: 'rideOS',
@@ -79,17 +86,19 @@ exports.seed = function(knex) {
       latitude: 31,
       type: 'Technology',
       logo: '',
-      description: '',
+      description:
+        'Software to efficiently move people and things throughout the world',
     },
     {
-      name: 'Mesa',
-      website: '',
-      location: 'Austin, TX',
+      name: 'Lambda School',
+      website: 'https://lambdaschool.com/',
+      location: 'Silicon Valley, CA.',
       longitude: -80,
       latitude: 31,
-      type: 'Software',
+      type: 'Software Education',
       logo: '',
-      description: '',
+      description:
+        'Lambda School is your gateway to a new career in just 9 months. ',
     },
     {
       name: 'Paystack',
@@ -99,7 +108,8 @@ exports.seed = function(knex) {
       latitude: 31,
       type: 'FinTech',
       logo: '',
-      description: '',
+      description:
+        'Paystack helps businesses in Africa get paid by anyone, anywhere in the world',
     },
     {
       name: 'BuyCoins',
@@ -109,7 +119,8 @@ exports.seed = function(knex) {
       latitude: 31,
       type: 'Crypto',
       logo: '',
-      description: '',
+      description:
+        'The easiest way to buy and sell Bitcoin, Ethereum & Litecoin.',
     },
     {
       name: 'Chipper Cash',
@@ -119,7 +130,8 @@ exports.seed = function(knex) {
       latitude: 31,
       type: 'FinTech',
       logo: '',
-      description: '',
+      description:
+        'Chipper is the largest mobile cross-border money transfer platform in Africa',
     },
     {
       name: 'Cowrywise',
@@ -129,7 +141,7 @@ exports.seed = function(knex) {
       latitude: 31,
       type: 'FinTech',
       logo: '',
-      description: '',
+      description: 'Get your money working with impressive interest rates',
     },
   ]);
 };
