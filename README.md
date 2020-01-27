@@ -196,6 +196,10 @@ Returns
 | GET    | `/companies/:id/companyReview` | all users      | Returns a single company along with its various reviews. |
 | GET    | `/companies/:id`               | all users      | Returns a company by company ID.                         |
 | POST   | `/companies/`                  | all users      | Adds a single company to the db                          |
+| PATCH  |  `/companies/:id/...`          | admin          | Edits Company info                                       |
+| (contd)| `.../process.env.ADMIN_PREVILEGE_TOKEN`         |                                                          |   
+
+  complete PATCH endpoint (`/companies/:id/process.env.ADMIN_PREVILEGE_TOKEN`)
 
 #### COMPANIES
 
