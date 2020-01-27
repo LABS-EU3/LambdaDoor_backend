@@ -196,8 +196,7 @@ Returns
 | GET    | `/companies/:id/companyReview` | all users      | Returns a single company along with its various reviews. |
 | GET    | `/companies/:id`               | all users      | Returns a company by company ID.                         |
 | POST   | `/companies/`                  | all users      | Adds a single company to the db                          |
-| PATCH  |  `/companies/:id/...`          | admin          | Edits Company info                                       |
-| (contd)| `.../process.env.ADMIN_PREVILEGE_TOKEN`         |                                                          |   
+| PATCH  |  `/companies/:id/`             | admin          | Edits Company info                                       |                                
 
   complete PATCH endpoint (`/companies/:id/process.env.ADMIN_PREVILEGE_TOKEN`)
 
@@ -298,6 +297,31 @@ Returns
 ### Get a company by Id [GET]
 
 **URL**: _https://lambdadoor.herokuapp.com/companies/1_
+
+**Returns**: An object which holds the company details and average rating
+
+Returns
+
+```javascript
+{
+    "id": 1,
+    "name": "Accenture",
+    "description": "",
+    "website": "www.accenture.com.",
+    "location": "Atlanta, GA",
+    "type": "Business",
+    "logo": "",
+    "latitude": 33.7537,
+    "longitude": -85,
+    "average_rating": "4.5000000000000000"
+}
+```
+
+
+### Update a company Info by Id [PATCH]
+
+**URL**: _https://lambdadoor.herokuapp.com/companies/1_
+**Headers** : passcode = process.env.ADMIN_PREVILEGE_TOKEN
 
 **Returns**: An object which holds the company details and average rating
 
