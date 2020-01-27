@@ -68,6 +68,16 @@ const getClosestCompanies = async (req, res) => {
 
 const updateCompany = async (req, res) => {
   const { id } = req.params;
+  const { passcode } = req.headers;
+  if (!passcode) {
+    return res
+      .status(403)
+      .json({ message: ' You are not allowed to access this endpoint!' });
+  }
+  if (passcode !== process.env.ADMIN_PREVILEGE_TOKEN) {
+    return res.status(401).json({ message: ' You have the wrong passcode!' });
+  }
+
   // eslint-disable-next-line camelcase
   const comp_id = Number(id);
   const changes = req.body;
