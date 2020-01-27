@@ -66,10 +66,25 @@ const getClosestCompanies = async (req, res) => {
   }
 };
 
+const updateCompany = async (req, res) => {
+  const { id } = req.params;
+  // eslint-disable-next-line camelcase
+  const comp_id = Number(id);
+  const changes = req.body;
+  try {
+    await Companies.updateCompanyInfo(comp_id, changes);
+    const updatedCompany = await Companies.findCompanyById(comp_id);
+    return res.status(200).json(updatedCompany);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   getCompanies,
   getCompany,
   getTopRated,
   getClosestCompanies,
   addCompany,
+  updateCompany,
 };

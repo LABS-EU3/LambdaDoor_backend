@@ -3,6 +3,7 @@ const Reviews = require('../reviews/companyReviews/companyReviewsModel');
 const Interests = require('../users/interests/interestsModel');
 const salaryReviews = require('../reviews/salaryReviews/salaryReviewsModel');
 const interviewReviews = require('../reviews/interviewReviews/interviewReviewModel');
+const Companies = require('../companies/companyModel');
 
 const userExists = async (req, res, next) => {
   const { id } = req.params;
@@ -87,6 +88,20 @@ const interviewReviewExists = async (req, res, next) => {
   }
 };
 
+const companyExists = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const company = await Companies.findCompanyById(id);
+    if (!company) {
+      return res.status(400).json({ error: 'Company does not exist' });
+    }
+    req.company = company;
+    return next();
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   userExists,
   interestExists,
@@ -94,4 +109,5 @@ module.exports = {
   reviewExists,
   salaryReviewExists,
   interviewReviewExists,
+  companyExists,
 };
