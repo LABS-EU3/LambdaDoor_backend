@@ -9,6 +9,7 @@ function findReviewByCompanyId(id) {
       'cr.review',
       'c.name',
       'c.id as company_id',
+      'cr.is_accepting_questions',
       'users.full_name',
       'users.id as user_id'
     )
