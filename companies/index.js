@@ -9,10 +9,6 @@ router.get('/top', company.getTopRated);
 router.get('/:id', company.getCompany);
 router.get('/:id/closest', company.getClosestCompanies);
 router.post('/', company.addCompany);
-router.patch(
-  `/:id/${process.env.ADMIN_PREVILEGE_TOKEN}`,
-  validate.companyExists,
-  company.updateCompany
-);
+router.patch(`/:id`, validate.companyExists, company.updateCompany);
 
 module.exports = router;
