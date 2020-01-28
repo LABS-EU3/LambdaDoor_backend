@@ -14,6 +14,22 @@ function companySearch(searchTerms) {
     );
 }
 
+function salarySearch(searchTerms) {
+  return db
+    .select('*')
+    .from('salary_reviews as sr')
+    .leftJoin('interests as i', 'sr.interest_id', 'i.id')
+    .leftJoin('companies as c', 'sr.company_id', 'c.id')
+    .whereRaw(
+      'LOWER(i.interest) LIKE ?',
+      `%${searchTerms.search_query.toLowerCase()}%`
+    )
+    .orWhereRaw(
+      'LOWER(c.location) LIKE ?',
+      `%${searchTerms.search_query.toLowerCase()}%`
+    );
+}
+
 function interviewSearch(searchTerms) {
   return db
     .select('*', 'i.interest', 'c.location')
@@ -32,5 +48,6 @@ function interviewSearch(searchTerms) {
 
 module.exports = {
   companySearch,
+  salarySearch,
   interviewSearch,
 };

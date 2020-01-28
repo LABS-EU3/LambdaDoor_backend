@@ -10,6 +10,16 @@ const getCompanyResults = async (req, res) => {
   }
 };
 
+const getSalaryResults = async (req, res) => {
+  try {
+    const searchTerms = req.body;
+    const searchResults = await Search.salarySearch(searchTerms);
+    return res.status(200).json(searchResults);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
 const getInterviewResults = async (req, res) => {
   try {
     const searchTerms = req.body;
@@ -22,5 +32,6 @@ const getInterviewResults = async (req, res) => {
 
 module.exports = {
   getCompanyResults,
+  getSalaryResults,
   getInterviewResults,
 };
