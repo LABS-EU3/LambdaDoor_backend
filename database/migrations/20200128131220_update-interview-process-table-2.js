@@ -4,7 +4,6 @@ exports.up = function(knex) {
     table
       .integer('interest_id')
       .unsigned()
-      .notNullable()
       .references('id')
       .inTable('interests')
       .onDelete('CASCADE')
