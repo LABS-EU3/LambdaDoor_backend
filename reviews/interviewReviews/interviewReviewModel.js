@@ -7,6 +7,7 @@ function interviewReviewByCompanyId(id) {
       'i.text',
       'i.user_id',
       'i.company_id',
+      'i.is_accepting_questions',
       'c.name',
       'u.full_name'
     )
@@ -18,7 +19,7 @@ function interviewReviewByCompanyId(id) {
 
 function getUsersInterviewReviews(id) {
   return db
-    .select('i.id', 'i.text', 'i.user_id', 'c.name')
+    .select('i.id', 'i.text', 'i.user_id', 'i.is_accepting_questions', 'c.name')
     .from('interview_process_reviews as i')
     .join('companies as c', 'c.id', 'i.company_id')
     .where('i.user_id', '=', id);
@@ -31,6 +32,7 @@ function findInterviewReviewById(id) {
       'i.text',
       'i.user_id',
       'i.company_id',
+      'i.is_accepting_questions',
       'c.name',
       'u.full_name'
     )

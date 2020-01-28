@@ -54,11 +54,20 @@ const updateUserInterviewReview = async (req, res) => {
 };
 const addInterviewReview = async (req, res) => {
   try {
-    const { user_id, company_id, text, created_at } = req.body;
+    const {
+      user_id,
+      company_id,
+      text,
+      created_at,
+      is_accepting_questions,
+      is_current_employee,
+    } = req.body;
     const review = await Reviews.insertInterviewReview({
       user_id,
       company_id,
       text,
+      is_accepting_questions,
+      is_current_employee,
       created_at,
     });
     return res.status(201).json(review);
