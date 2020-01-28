@@ -7,7 +7,7 @@ exports.up = function(knex) {
 
 exports.down = function(knex) {
   return knex.schema.table('interview_process_reviews', table => {
-    table.boolean('is_current_employee');
-    table.boolean('is_accepting_questions');
+    table.dropColumn('is_current_employee');
+    table.dropColumn('is_accepting_questions');
   });
 };
