@@ -1,9 +1,5 @@
 const db = require('../../database/db-config');
-const {
-  companySearch,
-  salarySearch,
-  interviewSearch,
-} = require('./searchModel');
+const { companySearch } = require('./searchModel');
 
 const testUsers = [
   {
@@ -104,42 +100,6 @@ describe('Review Models', () => {
       expect(actual.length).toBe(1);
     });
   });
-  //   describe('getSalaryReviews function', () => {
-  //     it('gets all salary reviews for a user id', async () => {
-  //       const actual = await getUsersSalaryReviews(1);
-  //       expect(actual.length).toEqual(1);
-  //     });
-
-  //     it('returns undefined if user not found', async () => {
-  //       const actual = await getUsersSalaryReviews(2);
-  //       expect(actual.length).toEqual(0);
-  //     });
-  //   });
-  //   describe('findSalaryReview function', () => {
-  //     it('find salary review by review id', async () => {
-  //       const actual = await findSalaryReviewById(1);
-  //       expect(actual.id).toEqual(1);
-  //     });
-
-  //     it('returns undefined if salary review is not found', async () => {
-  //       const actual = await findSalaryReviewById(3);
-  //       expect(actual).toBeUndefined();
-  //     });
-  //   });
-  //   describe('updateUserSalaryReview function', () => {
-  //     it('updates a salary review', async () => {
-  //       await updateSalaryReview(1, { description: 'Data Scientist' });
-  //       const actual = await findSalaryReviewById(1);
-  //       expect(actual.description).toEqual('Data Scientist');
-  //     });
-  //   });
-  //   describe('deleteSalaryReview function', () => {
-  //     it('deletes a salary review', async () => {
-  //       await deleteSalaryReview(1);
-  //       const actual = await getUsersSalaryReviews(1);
-  //       expect(actual.length).toEqual(0);
-  //     });
-  //   });
 
   afterAll(async () => {
     await db.raw('TRUNCATE users RESTART IDENTITY CASCADE');

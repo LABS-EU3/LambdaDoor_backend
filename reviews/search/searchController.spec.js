@@ -69,8 +69,7 @@ const testInterviewReview = {
 const testSalaryReview = {
   user_id: 1,
   company_id: 1,
-  description:
-    'Sofware Engineer',
+  description: 'Sofware Engineer',
   interest_id: 1,
   salary: 3000000,
   currency: 'Nigerian Naira',
@@ -78,9 +77,7 @@ const testSalaryReview = {
   is_current_employee: 0,
   job_title: 'Junior Developer',
   is_anonymous: false,
- 
 };
-
 
 beforeAll(async () => {
   await db.raw('TRUNCATE users RESTART IDENTITY CASCADE');
@@ -126,78 +123,6 @@ describe('searchInterviews router', () => {
     });
   });
 });
-
-//     test("returns a 400 if user doesn't exist", async () => {
-//       await request(server)
-//         .get('/salaryreviews/user/4')
-//         .expect(400);
-//     });
-//   });
-
-//   describe('PATCH /:id', () => {
-//     test('returns a 200 response if salary review exists', async () => {
-//       const response = await request(server)
-//         .patch('/salaryreviews/1')
-//         .send({ salary: 2800000 })
-//         .expect(200);
-
-//       expect(response.body.salary).toEqual(2800000);
-//     });
-
-//     test("returns a 400 if salary review doesn't exist", async () => {
-//       await request(server)
-//         .patch('/salaryreviews/4')
-//         .expect(400);
-//     });
-//   });
-
-//   describe('DELETE /:id', () => {
-//     test('returns a 204 response if salary review exists', async () => {
-//       await request(server)
-//         .delete('/salaryreviews/1')
-//         .expect(204);
-//     });
-
-//     test("returns a 400 if salary review doesn't exist", async () => {
-//       await request(server)
-//         .delete('/salaryreviews/4')
-//         .expect(400);
-//     });
-//   });
-
-//   describe('POST /', () => {
-//     test('returns a 201 response if user created salary review succesfully', async () => {
-//       const response = await request(server)
-//         .post('/salaryreviews/')
-//         .send(testReview3)
-//         .expect(201);
-
-//       expect(response.body.description).toBe('Junior Developer');
-//     });
-//   });
-
-//   describe('GET /salaryreviews/reviews/:id', () => {
-//     test('returns a 200 response if salary review was fetched succesfully', async () => {
-//       await request(server)
-//         .get('/salaryreviews/reviews/1')
-//         .expect(200);
-//     });
-//   });
-
-//   describe('GET /salaryreviews/avg/:id', () => {
-//     test('returns a 200 response if successful', async () => {
-//       await request(server)
-//         .get('/salaryreviews/avg/1')
-//         .expect(200);
-//     });
-//     test('returns the average salary for an interest', async () => {
-//       const response = await request(server)
-//         .get('/salaryreviews/avg/1')
-//         .send(testSalaryReviews);
-//       expect(response.body[0].avg).toBe(3250000);
-//     });
-//   });
-// });
 
 afterAll(async () => {
   await db.raw('TRUNCATE users RESTART IDENTITY CASCADE');
