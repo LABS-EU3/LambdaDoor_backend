@@ -56,7 +56,7 @@ function getUsersSalaryReviews(id) {
       'sr.salary',
       'sr.currency',
       'i.interest',
-      { interest_id: 'i.id' },
+      'interest_id as i.id',
       'sr.is_accepting_questions',
       'sr.is_current_employee',
       'c.name'
@@ -71,11 +71,14 @@ function findSalaryReviewById(id) {
   return db
     .select(
       'sr.id',
+      'sr.company_id',
       'sr.description',
       'sr.salary',
       'sr.currency',
-      'sr.interest_id',
       'i.interest',
+      'interest_id as i.id',
+      'sr.is_accepting_questions',
+      'sr.is_current_employee',
       'c.name'
     )
     .from('salary_reviews as sr')
