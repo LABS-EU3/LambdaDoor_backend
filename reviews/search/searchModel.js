@@ -25,6 +25,10 @@ function salarySearch(searchTerms) {
       `%${searchTerms.search_query.toLowerCase()}%`
     )
     .orWhereRaw(
+      'LOWER(sr.job_title) LIKE ?',
+      `%${searchTerms.search_query.toLowerCase()}%`
+    )
+    .orWhereRaw(
       'LOWER(c.location) LIKE ?',
       `%${searchTerms.search_query.toLowerCase()}%`
     );
@@ -38,6 +42,10 @@ function interviewSearch(searchTerms) {
     .leftJoin('companies as c', 'ipr.company_id', 'c.id')
     .whereRaw(
       'LOWER(i.interest) LIKE ?',
+      `%${searchTerms.search_query.toLowerCase()}%`
+    )
+    .orWhereRaw(
+      'LOWER(ipr.job_title) LIKE ?',
       `%${searchTerms.search_query.toLowerCase()}%`
     )
     .orWhereRaw(

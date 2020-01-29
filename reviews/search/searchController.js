@@ -2,7 +2,7 @@ const Search = require('./searchModel');
 
 const getCompanyResults = async (req, res) => {
   try {
-    const searchTerms = req.body;
+    const searchTerms = req.query;
     const searchResults = await Search.companySearch(searchTerms);
     return res.status(200).json(searchResults);
   } catch (error) {
@@ -12,7 +12,7 @@ const getCompanyResults = async (req, res) => {
 
 const getSalaryResults = async (req, res) => {
   try {
-    const searchTerms = req.body;
+    const searchTerms = req.query;
     const searchResults = await Search.salarySearch(searchTerms);
     return res.status(200).json(searchResults);
   } catch (error) {
@@ -22,7 +22,7 @@ const getSalaryResults = async (req, res) => {
 
 const getInterviewResults = async (req, res) => {
   try {
-    const searchTerms = req.body;
+    const searchTerms = req.query;
     const searchResults = await Search.interviewSearch(searchTerms);
     return res.status(200).json(searchResults);
   } catch (error) {
