@@ -8,6 +8,8 @@ function interviewReviewByCompanyId(id) {
       'i.user_id',
       'i.company_id',
       'i.is_accepting_questions',
+      'i.is_current_employee',
+      'c.id as company_id',
       'c.name',
       'u.full_name'
     )
@@ -42,6 +44,7 @@ function findInterviewReviewById(id) {
       'i.company_id',
       'i.is_accepting_questions',
       'i.is_current_employee',
+      'c.id as company_id',
       'c.name',
       'u.full_name'
     )
