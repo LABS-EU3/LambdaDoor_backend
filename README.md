@@ -1030,6 +1030,28 @@ Returns
 ];
 ```
 
+## REQUEST REFERRAL
+
+### Request Referral Routes
+
+| Method | Endpoint       | Access Control | Description                             |
+| ------ | -------------- | -------------- | --------------------------------------- |
+| POST   | `/referral`    | all users      | Returns text that request is successful |
+
+### Actions
+
+### Request Refferal [POST]
+
+**URL**: _https://lambdadoor.herokuapp.com/referral_
+
+**Returns**: Returns text that request is successful.
+
+Returns
+
+```text
+  Referral sent successfully!
+```
+
 ### Search Routes
 
 | Method | Endpoint                             | Access Control | Description                                                |
