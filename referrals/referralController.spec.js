@@ -5,7 +5,7 @@ const referrals = require('./referralController');
 const testReferral = {
   name: 'Chioma Nkem-Eze',
   senderEmail: 'fake@gmail.com',
-  recipientEmail: 'gmail@yahoo.com',
+  recipientEmail: 'fake@gmail.com',
   description: 'Thanks for your review, please refer me!',
 };
 
