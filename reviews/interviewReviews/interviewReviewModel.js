@@ -11,7 +11,8 @@ function interviewReviewByCompanyId(id) {
       'i.is_current_employee',
       'c.id as company_id',
       'c.name',
-      'u.full_name'
+      'u.full_name',
+      'u.email_address'
     )
     .from('interview_process_reviews as i')
     .join('companies as c', 'c.id', 'i.company_id')
@@ -46,7 +47,8 @@ function findInterviewReviewById(id) {
       'i.is_current_employee',
       'c.id as company_id',
       'c.name',
-      'u.full_name'
+      'u.full_name',
+      'u.email_address'
     )
     .from('interview_process_reviews as i')
     .join('companies as c', 'c.id', 'i.company_id')
