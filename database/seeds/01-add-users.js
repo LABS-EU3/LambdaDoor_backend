@@ -22,10 +22,10 @@ exports.seed = function(knex) {
       profile_picture: '',
     },
     {
-      full_name: 'Victor Aworo',
+      full_name: 'Victor Arowo',
       slack_id: 'Victor',
       username: 'Victor',
-      email_address: 'vic@lambdaschool.com',
+      email_address: 'arowov@gmail.com',
       location: '',
       longitude: 0,
       latitude: 0,
