@@ -1052,6 +1052,123 @@ Returns
   Referral sent successfully!
 ```
 
+### Search Routes
+
+| Method | Endpoint                             | Access Control | Description                                                |
+| ------ | ------------------------------       | -------------- | ---------------------------------------------------------- |
+| GET    | `/search/companies?search_query=foo` | all users      | Returns company search results by company name or location |
+|        |                                      |                |                                                            |
+| GET    | `/search/interviews?search_query=foo`| all users      | Returns interview review search results by interest, job   |
+|        |                                      |                | title or location.                                         |
+| GET    | `/search/salaries?search_query=foo`  | all users      | Returns salary review search results by interest, job title|
+|        |                                      |                | or location.                                               |
+
+#### SEARCH
+
+---
+
+## Actions
+
+### Search companies [GET]
+
+**URL**: _https://lambdadoor.herokuapp.com/search/companies?search_query=acc_
+
+**Returns**: Returns an Array of all matching companies.
+
+Returns
+
+```javascript
+[
+    {
+        "id": 1,
+        "name": "Accenture",
+        "website": "www.accenture.com.",
+        "location": "Atlanta, GA",
+        "longitude": -85,
+        "latitude": 33.7537,
+        "type": "Business",
+        "logo": "",
+        "description": "We partner with our clients to drive real innovation—the kind that turns an idea into an industry.",
+        "created_at": null,
+        "updated_at": null
+    }
+]
+
+```
+
+### Search salary reviews [GET]
+
+**URL**: _https://lambdadoor.herokuapp.com/search/salaries?search_query=dev_
+
+**Returns**: Returns an Array of all matching salary reviews.
+
+Returns
+
+```javascript
+[
+    {
+        "id": 10,
+        "user_id": 3,
+        "company_id": 10,
+        "text": null,
+        "description": "Paystack helps businesses in Africa get paid by anyone, anywhere in the world",
+        "interest_id": 1,
+        "salary": 3000000,
+        "currency": "Nigerian Naira",
+        "is_accepting_questions": true,
+        "is_current_employee": true,
+        "created_at": null,
+        "updated_at": null,
+        "job_title": "Junior Developer",
+        "is_anonymous": false,
+        "interest": "Software Engineer",
+        "name": "Paystack",
+        "website": "https://paystack.com/",
+        "location": "Lagos, NG",
+        "longitude": -80,
+        "latitude": 31,
+        "type": "FinTech",
+        "logo": ""
+    }
+]
+```
+
+### Search interview reviews [GET]
+
+**URL**: _https://lambdadoor.herokuapp.com/search/interviews?search_query=san_
+
+**Returns**: Returns an Array of all matching salary reviews.
+
+Returns
+
+```javascript
+[
+    {
+        "id": 6,
+        "user_id": 3,
+        "company_id": 6,
+        "text": "There is one phone interview for an hour. If you clear this interview, you will be invited for an onsite interview. There are five interviews onsite, all in one day. Interviews are in a casual environment. After the first two interviews, you take a break and are escorted for lunch.",
+        "created_at": null,
+        "updated_at": null,
+        "is_accepting_questions": false,
+        "is_current_employee": false,
+        "job_title": null,
+        "interest_id": 2,
+        "interest": "Front End",
+        "name": "Newfront Insurance",
+        "website": "https://www.newfrontinsurance.com",
+        "location": "San Francisco, CA",
+        "longitude": -80,
+        "latitude": 31,
+        "type": "insurance",
+        "logo": "",
+        "description": "We're are a modern brokerage innovating on behalf of our client"
+    }
+]
+```
+
+
+
 ## Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables.

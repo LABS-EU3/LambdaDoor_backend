@@ -15,6 +15,7 @@ const interestRouter = require('../users/interests/index');
 const salaryReviewsRouter = require('../reviews/salaryReviews/index');
 const companyReviewsRouter = require('../reviews/companyReviews/index');
 const interviewReviewRouter = require('../reviews/interviewReviews/index');
+const searchRouter = require('../reviews/search/index');
 
 const server = express();
 
@@ -43,6 +44,7 @@ server.use('/referral', referralRouter);
 server.use('/salaryreviews', salaryReviewsRouter);
 server.use('/companyreviews', companyReviewsRouter);
 server.use('/interviewreviews', interviewReviewRouter);
+server.use('/search', searchRouter);
 
 server.get('/', (req, res) => {
   return res.json({ message: 'API is up 🚀' });
