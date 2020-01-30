@@ -20,9 +20,9 @@ transporter.use(
       layoutsDir: './templates',
       defaultLayout: 'referral.hbs',
     },
-    viewPath: './template',
+    viewPath: './templates',
     extName: '.hbs',
-  }),
+  })
 );
 
 module.exports = transporter;
