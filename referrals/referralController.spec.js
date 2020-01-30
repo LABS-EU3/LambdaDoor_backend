@@ -1,5 +1,6 @@
 const request = require('supertest');
 const server = require('../api/server');
+const transporter = require('../utils/nodemailer');
 
 const testReferral = {
   name: 'Chioma Nkem-Eze',
@@ -10,6 +11,7 @@ const testReferral = {
 
 describe('referralRouter', () => {
   describe('POST /referral', () => {
+    jest.spyOn(transporter, 'transporter').mockResolvedValue({ success: true });
     test('returns a 200 response if request sent succesfully', async () => {
       const response = await request(server)
         .post('/referral')
