@@ -96,7 +96,6 @@ describe('Review Models', () => {
     it('gets returns a company that matches the query', async () => {
       const searchTerms = { search_query: 'acc' };
       const actual = await companySearch(searchTerms);
-      console.log(searchTerms.search_query);
       expect(actual.length).toBe(1);
     });
   });
