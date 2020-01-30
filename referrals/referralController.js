@@ -2,7 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const transporter = require('../utils/nodemailer');
 
-
 const sendMail = async (req, res) => {
   const { name, description, senderEmail, recipientEmail } = req.body;
 
