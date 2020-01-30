@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const hbs = require('nodemailer-express-handlebars');
 
 const transporter = nodemailer.createTransport({
   host: 'mail.privateemail.com',
@@ -9,5 +10,19 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASSWORD,
   },
 });
+
+transporter.use(
+  'compile',
+  hbs({
+    viewEngine: {
+      extName: '.handlebars',
+      partialsDir: './',
+      layoutsDir: './templates',
+      defaultLayout: 'referral.hbs',
+    },
+    viewPath: './template',
+    extName: '.hbs',
+  }),
+);
 
 module.exports = transporter;

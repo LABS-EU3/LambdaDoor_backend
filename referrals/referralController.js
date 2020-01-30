@@ -1,14 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const Handlebars = require('handlebars');
 const transporter = require('../utils/nodemailer');
 
-const source = fs.readFileSync(
-  path.join(__dirname, '../templates/referral.hbs'),
-  'utf8'
-);
-
-const template = Handlebars.compile(source);
 
 const sendMail = async (req, res) => {
   const { name, description, senderEmail, recipientEmail } = req.body;
@@ -18,11 +11,12 @@ const sendMail = async (req, res) => {
       from: 'support@lambdadoor.com',
       to: recipientEmail,
       subject: 'Lambda Door: Referral Request',
-      html: template({
+      template: 'referral',
+      context: {
         message: description,
         email: senderEmail,
         name,
-      }),
+      },
     },
     (error, data) => {
       if (error) {
