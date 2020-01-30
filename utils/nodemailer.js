@@ -3,10 +3,10 @@ const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
   host: 'mail.privateemail.com',
   port: 587,
-  secure: true,
+  secure: false,
   auth: {
     user: 'support@lambdadoor.com',
-    pass: '@Ldoor2020',
+    pass: process.env.EMAIL_PASSWORD,
   },
 });
 
