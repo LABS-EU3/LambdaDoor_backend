@@ -13,7 +13,7 @@ const template = Handlebars.compile(source);
 const sendMail = async (req, res) => {
   const { name, description, senderEmail, recipientEmail } = req.body;
 
-  transporter().sendMail(
+  transporter.sendMail(
     {
       from: 'support@lambdadoor.com',
       to: recipientEmail,
