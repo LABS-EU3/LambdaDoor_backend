@@ -40,6 +40,8 @@ function salaryReviewByCompanyId(id) {
       'sr.interest_id',
       'i.interest',
       'c.name',
+      'sr.is_accepting_questions',
+      'sr.is_anonymous',
       'users.email_address'
     )
     .from('companies as c')
