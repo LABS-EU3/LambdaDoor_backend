@@ -1,7 +1,7 @@
 const request = require('supertest');
 const server = require('../api/server');
 
-const test = {
+const testReferral = {
   name: 'Chioma Nkem-Eze',
   senderEmail: 'fegaeze@gmail.com',
   recipientEmail: 'fegaeze@gmail.com',
@@ -13,16 +13,16 @@ describe('referralRouter', () => {
     test('returns a 200 response if request sent succesfully', async () => {
       const response = await request(server)
         .post('/referral')
-        .send(test)
+        .send(testReferral)
         .expect(200);
 
       expect(response.body.text).toBe('Referral sent successfully!');
     });
 
-    // test("returns a 500 if the request doesn't have a body", async () => {
-    //   await request(server)
-    //     .post('/referral')
-    //     .expect(500);
-    // });
+    test("returns a 500 if the request doesn't have a body", async () => {
+      await request(server)
+        .post('/referral')
+        .expect(500);
+    });
   });
 });
