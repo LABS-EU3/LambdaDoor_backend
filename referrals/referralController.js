@@ -11,15 +11,16 @@ const source = fs.readFileSync(
 const template = Handlebars.compile(source);
 
 const sendMail = async (req, res) => {
-  const { name, description, email } = req.body;
+  const { name, description, senderEmail, recipientEmail } = req.body;
 
   transporter.sendMail(
     {
       from: 'support@lambdadoor.com',
-      to: email,
-      subject: 'Lambdadoor: Referral Request',
+      to: recipientEmail,
+      subject: 'Lambda Door: Referral Request',
       html: template({
         message: description,
+        email: senderEmail,
         name,
       }),
     },
