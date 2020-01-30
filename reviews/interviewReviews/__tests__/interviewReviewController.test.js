@@ -27,6 +27,8 @@ const testReview3 = {
   user_id: 1,
   company_id: 1,
   text: 'Good Review',
+  job_title: 'React Developer',
+  interest_id: 1,
 };
 
 beforeAll(async () => {
