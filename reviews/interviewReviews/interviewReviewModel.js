@@ -13,7 +13,7 @@ function interviewReviewByCompanyId(id) {
       'c.id as company_id',
       'c.name',
       'u.full_name',
-      'u.email_address'
+      'u.email_address',
       'int.interest'
     )
     .from('interview_process_reviews as i')
@@ -55,7 +55,7 @@ function findInterviewReviewById(id) {
       'c.id as company_id',
       'c.name',
       'u.full_name',
-      'u.email_address'
+      'u.email_address',
       'int.interest'
     )
     .from('interview_process_reviews as i')
