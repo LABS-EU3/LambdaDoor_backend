@@ -39,11 +39,15 @@ function salaryReviewByCompanyId(id) {
       'sr.currency',
       'sr.interest_id',
       'i.interest',
-      'c.name'
+      'c.name',
+      'sr.is_accepting_questions',
+      'sr.is_anonymous',
+      'users.email_address'
     )
     .from('companies as c')
     .join('salary_reviews as sr', 'sr.company_id', 'c.id')
     .leftJoin('interests as i', 'sr.interest_id', 'i.id')
+    .leftJoin('users', 'users.id', 'sr.user_id')
     .where('c.id', '=', id);
 }
 
