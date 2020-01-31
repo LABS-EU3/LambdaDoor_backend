@@ -60,6 +60,16 @@ describe('companyReviews router', () => {
     });
   });
 
+  describe('companyReviews router', () => {
+    describe('GET /:id', () => {
+      test('returns a 200 response if review exists', async () => {
+        await request(server)
+          .get('/companyreviews/1')
+          .expect(200);
+      });
+    });
+  });
+
   describe('PATCH /:id', () => {
     test('returns a 200 response if review exists', async () => {
       const response = await request(server)

@@ -62,6 +62,20 @@ describe('interviewReview router', () => {
     });
   });
 
+  describe('GET /:id', () => {
+    test('returns a 200 response if review exists', async () => {
+      await request(server)
+        .get('/interviewreviews/1')
+        .expect(200);
+    });
+
+    test("returns a 400 if review doesn't exist", async () => {
+      await request(server)
+        .get('/interviewreviews/20')
+        .expect(400);
+    });
+  });
+
   describe('PATCH /:id', () => {
     test('returns a 200 response if interview review exists', async () => {
       const response = await request(server)
@@ -109,6 +123,21 @@ describe('interviewReview router', () => {
       await request(server)
         .get('/interviewreviews/reviews/1')
         .expect(200);
+    });
+  });
+
+  describe('GET /interviewreviews/avg/:id', () => {
+    test('returns a 404 to show error', async () => {
+      await request(server)
+        .get('/interviewreviews/avg/1')
+        .expect(404);
+    });
+  });
+  describe('GET /interviewreviews/', () => {
+    test('returns a 404 to show error', async () => {
+      await request(server)
+        .get('/interviewreviews/')
+        .expect(404);
     });
   });
 });
