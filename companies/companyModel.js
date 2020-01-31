@@ -72,8 +72,10 @@ async function getClosest(id) {
       'c.website',
       'c.description',
       'c.latitude',
-      'c.longitude'
+      'c.longitude',
+      'cr.ratings'
     )
+    .leftJoin('company_reviews as cr', 'c.id', 'cr.company_id')
     .where(function() {
       this.where('c.latitude', '<', Number(user.latitude) + 0.5).andWhere(
         'c.latitude',
