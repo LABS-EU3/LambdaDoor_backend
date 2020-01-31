@@ -35,7 +35,7 @@ exports.seed = function(knex) {
       full_name: 'Emily Abrahart',
       slack_id: 'Emily',
       username: 'Emily',
-      email_address: 'emily@lambdaschool.com',
+      email_address: 'emilyabrahart@gmail.com',
       location: '',
       longitude: 0,
       latitude: 0,
