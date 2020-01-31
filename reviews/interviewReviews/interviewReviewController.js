@@ -61,6 +61,8 @@ const addInterviewReview = async (req, res) => {
       created_at,
       is_accepting_questions,
       is_current_employee,
+      job_title,
+      interest_id,
     } = req.body;
     const review = await Reviews.insertInterviewReview({
       user_id,
@@ -69,6 +71,8 @@ const addInterviewReview = async (req, res) => {
       is_accepting_questions,
       is_current_employee,
       created_at,
+      job_title,
+      interest_id,
     });
     return res.status(201).json(review);
   } catch (error) {

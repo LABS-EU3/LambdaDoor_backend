@@ -27,15 +27,23 @@ const testReview3 = {
   user_id: 1,
   company_id: 1,
   text: 'Good Review',
+  job_title: 'React Developer',
+  interest_id: 1,
+};
+
+const testInterest = {
+  interest: 'Software Engineer',
 };
 
 beforeAll(async () => {
   await db.raw('TRUNCATE users RESTART IDENTITY CASCADE');
   await db.raw('TRUNCATE companies RESTART IDENTITY CASCADE');
+  await db.raw('TRUNCATE interests RESTART IDENTITY CASCADE');
   await db.raw('TRUNCATE interview_process_reviews RESTART IDENTITY CASCADE');
 
   await db('users').insert(testUser3);
   await db('companies').insert(testCompany3);
+  await db('interests').insert(testInterest);
   await db('interview_process_reviews').insert(testReview3);
 });
 
