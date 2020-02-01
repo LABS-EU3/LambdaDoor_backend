@@ -65,7 +65,7 @@ function findUserById(id) {
 
 async function getClosest(id) {
   const user = await findUserById(id);
-  return db('companies as c')
+  return db
     .select(
       'c.id',
       'c.name',
@@ -74,6 +74,10 @@ async function getClosest(id) {
       'c.latitude',
       'c.longitude'
     )
+    .avg('cr.ratings as average_rating')
+    .from('companies as c')
+    .leftJoin('company_reviews as cr', 'c.id', 'cr.company_id')
+    .groupBy('c.id', 'c.name', 'c.description')
     .where(function() {
       this.where('c.latitude', '<', Number(user.latitude) + 0.5).andWhere(
         'c.latitude',
