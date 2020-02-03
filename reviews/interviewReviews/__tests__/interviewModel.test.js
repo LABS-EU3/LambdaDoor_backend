@@ -90,6 +90,7 @@ describe('Review Models', () => {
   });
 
   afterAll(async () => {
+    await db.raw('TRUNCATE interview_process_reviews RESTART IDENTITY CASCADE');
     await db.raw('TRUNCATE users RESTART IDENTITY CASCADE');
   });
 });
