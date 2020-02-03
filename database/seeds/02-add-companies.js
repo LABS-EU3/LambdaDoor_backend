@@ -3,7 +3,7 @@ exports.seed = function(knex) {
   return knex('companies').insert([
     {
       name: 'Accenture',
-      website: 'www.accenture.com.',
+      website: 'https://www.accenture.com.',
       location: 'Atlanta, GA',
       longitude: -85.0,
       latitude: 33.7537,
