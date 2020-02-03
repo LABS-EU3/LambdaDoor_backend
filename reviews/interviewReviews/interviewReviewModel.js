@@ -13,13 +13,11 @@ function interviewReviewByCompanyId(id) {
       'c.id as company_id',
       'c.name',
       'u.full_name',
-      'u.email_address',
-      'int.interest'
+      'u.email_address'
     )
     .from('interview_process_reviews as i')
     .join('companies as c', 'c.id', 'i.company_id')
     .join('users as u', 'u.id', 'i.user_id')
-    .join('interests as int', 'int.id', 'i.interest_id')
     .where('c.id', '=', id);
 }
 
@@ -33,12 +31,10 @@ function getUsersInterviewReviews(id) {
       'i.is_current_employee',
       'i.job_title',
       'c.id as company_id',
-      'c.name',
-      'int.interest'
+      'c.name'
     )
     .from('interview_process_reviews as i')
     .join('companies as c', 'c.id', 'i.company_id')
-    .join('interests as int', 'int.id', 'i.interest_id')
     .where('i.user_id', '=', id);
 }
 
@@ -55,13 +51,11 @@ function findInterviewReviewById(id) {
       'c.id as company_id',
       'c.name',
       'u.full_name',
-      'u.email_address',
-      'int.interest'
+      'u.email_address'
     )
     .from('interview_process_reviews as i')
     .join('companies as c', 'c.id', 'i.company_id')
     .join('users as u', 'u.id', 'i.user_id')
-    .join('interests as int', 'int.id', 'i.interest_id')
     .where('i.id', '=', id)
     .first();
 }
