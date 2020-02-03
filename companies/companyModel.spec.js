@@ -4,6 +4,8 @@ const {
   getTopRated,
   findCompanyById,
   getClosest,
+  addCompany,
+  updateCompanyInfo,
 } = require('./companyModel');
 
 const testUsers = [
@@ -98,6 +100,54 @@ describe('Company Models', () => {
       it('returns undefined if company not found', async () => {
         const response = await findCompanyById(10);
         expect(response).toBeUndefined();
+      });
+    });
+
+    describe('The addCompany function', () => {
+      it('adds company ', async () => {
+        const data = {
+          id: 3,
+          name: 'Test Company3',
+          website: 'www.web.co.co',
+          location: 'here',
+          longitude: '55.5',
+          latitude: '6.4',
+          type: 'finance company',
+          description: 'This is a large finance company.',
+          logo: 'another image',
+        };
+        const response = await addCompany(data);
+        expect(response.id).toEqual(3);
+      });
+    });
+
+    describe('The updateCompany function', () => {
+      it('updates company ', async () => {
+        const data = {
+          id: 4,
+          name: 'Test Company4',
+          website: 'www.web.co.co',
+          location: 'here',
+          longitude: '55.5',
+          latitude: '6.4',
+          type: 'finance company',
+          description: 'This is a large finance company.',
+          logo: 'another image',
+        };
+        const dataUpdate = {
+          id: 4,
+          name: 'Test Company4 Update',
+          website: 'www.web.co.co',
+          location: 'here',
+          longitude: '55.5',
+          latitude: '6.4',
+          type: 'finance company',
+          description: 'This is a large finance company.',
+          logo: 'another image',
+        };
+        const createCompany = await addCompany(data);
+        const response = await updateCompanyInfo(createCompany.id, dataUpdate);
+        expect(response).toEqual(1);
       });
     });
 
