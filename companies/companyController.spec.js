@@ -145,6 +145,45 @@ describe('companyRouter', () => {
       });
     });
 
+    describe('PATCH /:id', () => {
+      test('returns a 400 response for a bad request', async () => {
+        await request(server)
+          .patch('/companies/6/')
+          .expect(400);
+      });
+      test('returns a 200 response if interview review exists', async () => {
+        await request(server)
+          .patch('/companies/1/')
+          .send({ ratings: 3 })
+          .expect(403);
+      });
+    });
+
+    describe('POST /', () => {
+      const data = {
+        id: 3,
+        name: 'Test Company',
+        website: 'www.web.co',
+        location: 'here',
+        longitude: '54.5',
+        latitude: '5.4',
+        type: 'tech company',
+        description: 'This is a large tech company.',
+        logo: 'some image',
+      };
+      test('returns a 500 response for a server error', async () => {
+        await request(server)
+          .post('/companies/')
+          .expect(500);
+      });
+      test('returns a 200 response if interview review exists', async () => {
+        await request(server)
+          .post('/companies/')
+          .send(data)
+          .expect(500);
+      });
+    });
+
     afterAll(async () => {
       await db.raw('TRUNCATE companies RESTART IDENTITY CASCADE');
     });
