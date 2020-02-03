@@ -25,7 +25,7 @@ exports.seed = function(knex) {
       full_name: 'Victor Arowo',
       slack_id: 'Victor',
       username: 'Victor',
-      email_address: 'arowove@gmail.com',
+      email_address: 'arowove@g.com',
       location: '',
       longitude: 0,
       latitude: 0,
