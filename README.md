@@ -39,6 +39,8 @@ To get the server running locally:
 
 The [**Express.js**](https://expressjs.com/) backend framework was used to build the server. Fast, unopinionated, minimalist web framework for Node.js
 
+[Sentry](https://sentry.io/) - An exception monitoring tool used to track and resolve errors with the app.
+
 #### Why Express.js
 
 - Express is fast.
