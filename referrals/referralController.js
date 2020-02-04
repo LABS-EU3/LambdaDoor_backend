@@ -1,5 +1,4 @@
-const fs = require('fs');
-const path = require('path');
+const Sentry = require('@sentry/node');
 const transporter = require('../utils/nodemailer');
 
 const sendMail = async (req, res) => {
@@ -17,8 +16,9 @@ const sendMail = async (req, res) => {
         name,
       },
     },
-    (error, data) => {
+    error => {
       if (error) {
+        Sentry.captureException(error);
         return res.status(500).json(error);
       }
 
