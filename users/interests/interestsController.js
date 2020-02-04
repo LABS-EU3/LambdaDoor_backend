@@ -1,3 +1,4 @@
+const Sentry = require('@sentry/node');
 const Interests = require('./interestsModel');
 
 const getInterests = async (req, res) => {
@@ -5,6 +6,7 @@ const getInterests = async (req, res) => {
     const interests = await Interests.findAll();
     return res.status(200).json(interests);
   } catch (error) {
+    Sentry.captureException(error);
     return res.status(500).json({ error: error.message });
   }
 };
@@ -12,6 +14,7 @@ const getInterest = async (req, res) => {
   try {
     return res.status(200).json(req.interest);
   } catch (error) {
+    Sentry.captureException(error);
     return res.status(500).json({ error: error.message });
   }
 };
@@ -21,6 +24,7 @@ const getUserInterests = async (req, res) => {
     const interests = await Interests.findByUserId(req.params.id);
     return res.status(200).json(interests);
   } catch (error) {
+    Sentry.captureException(error);
     return res.status(500).json({ error: error.message });
   }
 };
@@ -38,6 +42,7 @@ const addUserInterest = async (req, res) => {
     const interests = await Interests.findByUserId(req.body.user_id);
     return res.status(201).json(interests);
   } catch (error) {
+    Sentry.captureException(error);
     return res.status(500).json({ error: error.message });
   }
 };
@@ -45,6 +50,7 @@ const getUserInterest = async (req, res) => {
   try {
     return res.status(200).json(req.interest);
   } catch (error) {
+    Sentry.captureException(error);
     return res.status(500).json({ error: error.message });
   }
 };
@@ -58,6 +64,7 @@ const deleteUserInterest = async (req, res) => {
       .status(200)
       .json({ message: 'Successfully Deleted', deleted: req.interest });
   } catch (error) {
+    Sentry.captureException(error);
     return res.status(500).json({ error: error.message });
   }
 };

@@ -1,3 +1,4 @@
+const Sentry = require('@sentry/node');
 const Reviews = require('./companyReviewsModel');
 
 const getCompanyReviews = async (req, res) => {
@@ -6,6 +7,7 @@ const getCompanyReviews = async (req, res) => {
     const companyReviews = await Reviews.findReviewByCompanyId(id);
     return res.status(200).json(companyReviews);
   } catch (error) {
+    Sentry.captureException(error);
     return res.status(500).json({ error: error.message });
   }
 };
@@ -18,6 +20,7 @@ const getUserReviews = async (req, res) => {
     const userReviews = await Reviews.getReviews(id);
     return res.status(200).json(userReviews);
   } catch (error) {
+    Sentry.captureException(error);
     return res.status(500).json({ error: error.message });
   }
 };
@@ -28,6 +31,7 @@ const deleteUserReview = async (req, res) => {
     await Reviews.deleteReview(id);
     return res.sendStatus(204);
   } catch (error) {
+    Sentry.captureException(error);
     return res.status(500).json({ error: error.message });
   }
 };
@@ -38,6 +42,7 @@ const findUserReviewById = async (req, res) => {
     const review = await Reviews.findReviewById(id);
     return res.status(200).json(review);
   } catch (error) {
+    Sentry.captureException(error);
     return res.status(500).json({ error: error.message });
   }
 };
@@ -50,6 +55,7 @@ const updateUserReview = async (req, res) => {
     const updatedReview = await Reviews.findReviewById(id);
     return res.status(200).json(updatedReview);
   } catch (error) {
+    Sentry.captureException(error);
     return res.status(500).json({ error: error.message });
   }
 };
@@ -59,6 +65,7 @@ const addUserReview = async (req, res) => {
     const review = await Reviews.insert(newUserReview);
     return res.status(201).json(review);
   } catch (error) {
+    Sentry.captureException(error);
     return res.status(500).json({ error: error.message });
   }
 };

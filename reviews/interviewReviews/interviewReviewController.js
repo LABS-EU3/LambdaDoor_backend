@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+const Sentry = require('@sentry/node');
 const Reviews = require('./interviewReviewModel');
 
 const getInterviewReviewsByCompany = async (req, res) => {
@@ -7,6 +8,7 @@ const getInterviewReviewsByCompany = async (req, res) => {
     const salaryReviews = await Reviews.interviewReviewByCompanyId(id);
     return res.status(200).json(salaryReviews);
   } catch (error) {
+    Sentry.captureException(error);
     return res.status(500).json({ error: error.message });
   }
 };
@@ -17,6 +19,7 @@ const getUserInterviewReviews = async (req, res) => {
     const userReviews = await Reviews.getUsersInterviewReviews(id);
     return res.status(200).json(userReviews);
   } catch (error) {
+    Sentry.captureException(error);
     return res.status(500).json({ error: error.message });
   }
 };
@@ -27,6 +30,7 @@ const deleteUserInterviewReview = async (req, res) => {
     await Reviews.deleteInterviewReview(id);
     return res.sendStatus(204);
   } catch (error) {
+    Sentry.captureException(error);
     return res.status(500).json({ error: error.message });
   }
 };
@@ -37,6 +41,7 @@ const findUserInterviewReviewById = async (req, res) => {
     const review = await Reviews.findInterviewReviewById(id);
     return res.status(200).json(review);
   } catch (error) {
+    Sentry.captureException(error);
     return res.status(500).json({ error: error.message });
   }
 };
@@ -49,6 +54,7 @@ const updateUserInterviewReview = async (req, res) => {
     const updatedReview = await Reviews.findInterviewReviewById(id);
     return res.status(200).json(updatedReview);
   } catch (error) {
+    Sentry.captureException(error);
     return res.status(500).json({ error: error.message });
   }
 };
@@ -76,6 +82,7 @@ const addInterviewReview = async (req, res) => {
     });
     return res.status(201).json(review);
   } catch (error) {
+    Sentry.captureException(error);
     return res.status(500).json({ error: error.message });
   }
 };

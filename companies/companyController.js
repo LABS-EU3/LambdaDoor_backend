@@ -1,3 +1,4 @@
+const Sentry = require('@sentry/node');
 const Companies = require('./companyModel');
 
 const getCompanies = async (req, res) => {
@@ -5,6 +6,7 @@ const getCompanies = async (req, res) => {
     const response = await Companies.getCompanies();
     return res.status(200).json(response);
   } catch (error) {
+    Sentry.captureException(error);
     return res.status(500).json({ error: error.message });
   }
 };
@@ -15,6 +17,7 @@ const getCompany = async (req, res) => {
     const response = await Companies.findCompanyById(id);
     return res.status(200).json(response);
   } catch (error) {
+    Sentry.captureException(error);
     return res.status(500).json({ error: error.message });
   }
 };
@@ -43,6 +46,7 @@ const addCompany = async (req, res) => {
     });
     return res.status(200).json(response);
   } catch (error) {
+    Sentry.captureException(error);
     return res.status(500).json({ error: error.message });
   }
 };
@@ -52,6 +56,7 @@ const getTopRated = async (req, res) => {
     const response = await Companies.getTopRated();
     return res.status(200).json(response);
   } catch (error) {
+    Sentry.captureException(error);
     return res.status(500).json({ error: error.message });
   }
 };
@@ -62,6 +67,7 @@ const getClosestCompanies = async (req, res) => {
     const response = await Companies.getClosest(id);
     return res.status(200).json(response);
   } catch (error) {
+    Sentry.captureException(error);
     return res.status(500).json({ error: error.message });
   }
 };
@@ -86,6 +92,7 @@ const updateCompany = async (req, res) => {
     const updatedCompany = await Companies.findCompanyById(comp_id);
     return res.status(200).json(updatedCompany);
   } catch (error) {
+    Sentry.captureException(error);
     return res.status(500).json({ error: error.message });
   }
 };
