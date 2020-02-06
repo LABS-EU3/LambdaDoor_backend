@@ -8,9 +8,14 @@ describe('GET dataDisplay', () => {
   });
 
   test('returns a 200 response', async () => {
-    await request(server)
+    const response = await request(server)
       .get('/dataDisplay')
       .expect('Content-Type', /json/)
       .expect(200);
+  });
+  test('returns a 200 response', async () => {
+    await request(server)
+      .get('/dataDisplay')
+      .expect('Content-Type', /charset=utf-8/);
   });
 });

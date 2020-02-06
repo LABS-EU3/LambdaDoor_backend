@@ -32,6 +32,8 @@ const testReview3 = {
   user_id: 1,
   company_id: 1,
   text: 'Good Review',
+  job_title: 'React Developer',
+  interest_id: 1,
 };
 
 describe('Review Models', () => {
@@ -88,6 +90,7 @@ describe('Review Models', () => {
   });
 
   afterAll(async () => {
+    await db.raw('TRUNCATE interview_process_reviews RESTART IDENTITY CASCADE');
     await db.raw('TRUNCATE users RESTART IDENTITY CASCADE');
   });
 });

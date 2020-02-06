@@ -7,11 +7,13 @@ function interviewReviewByCompanyId(id) {
       'i.text',
       'i.user_id',
       'i.company_id',
+      'i.job_title',
       'i.is_accepting_questions',
       'i.is_current_employee',
       'c.id as company_id',
       'c.name',
-      'u.full_name'
+      'u.full_name',
+      'u.email_address'
     )
     .from('interview_process_reviews as i')
     .join('companies as c', 'c.id', 'i.company_id')
@@ -27,6 +29,7 @@ function getUsersInterviewReviews(id) {
       'i.user_id',
       'i.is_accepting_questions',
       'i.is_current_employee',
+      'i.job_title',
       'c.id as company_id',
       'c.name'
     )
@@ -44,9 +47,11 @@ function findInterviewReviewById(id) {
       'i.company_id',
       'i.is_accepting_questions',
       'i.is_current_employee',
+      'i.job_title',
       'c.id as company_id',
       'c.name',
-      'u.full_name'
+      'u.full_name',
+      'u.email_address'
     )
     .from('interview_process_reviews as i')
     .join('companies as c', 'c.id', 'i.company_id')

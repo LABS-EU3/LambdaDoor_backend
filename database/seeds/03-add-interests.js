@@ -1,7 +1,7 @@
 exports.seed = function(knex) {
   // Inserts seed entries
   return knex('interests').insert([
-    { interest: 'Software Engineer' },
+    { interest: 'AI Engineer' },
     { interest: 'Front End' },
     { interest: 'Back End' },
     { interest: 'Full Stack' },
@@ -10,5 +10,7 @@ exports.seed = function(knex) {
     { interest: 'User Experience' },
     { interest: 'Mobile Development' },
     { interest: 'Product Manager' },
+    { interest: 'DevOps Engineer' },
+    { interest: 'Technical Lead' },
   ]);
 };

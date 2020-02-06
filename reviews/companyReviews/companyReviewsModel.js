@@ -11,7 +11,8 @@ function findReviewByCompanyId(id) {
       'c.id as company_id',
       'cr.is_accepting_questions',
       'users.full_name',
-      'users.id as user_id'
+      'users.id as user_id',
+      'users.email_address'
     )
     .from('companies as c')
     .join('company_reviews as cr', 'cr.company_id', 'c.id')
@@ -49,6 +50,7 @@ function findReviewById(id) {
       'c.name',
       'cr.user_id',
       'users.full_name',
+      'users.email_address',
       'c.id as company_id',
       'cr.company_id'
     )

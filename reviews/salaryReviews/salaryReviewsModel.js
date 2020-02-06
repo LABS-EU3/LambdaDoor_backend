@@ -14,10 +14,12 @@ function getReviews() {
       'sr.is_accepting_questions',
       'sr.is_anonymous',
       'sr.job_title',
-      'sr.interest_id'
+      'sr.interest_id',
+      'users.full_name'
     )
     .from('salary_reviews as sr')
-    .leftJoin('companies as c', 'sr.company_id', 'c.id');
+    .leftJoin('companies as c', 'sr.company_id', 'c.id')
+    .leftJoin('users', 'users.id', 'sr.user_id');
 }
 
 function getAvgReviewsByCompany(id) {
@@ -39,11 +41,16 @@ function salaryReviewByCompanyId(id) {
       'sr.currency',
       'sr.interest_id',
       'i.interest',
-      'c.name'
+      'c.name',
+      'sr.is_accepting_questions',
+      'sr.is_anonymous',
+      'users.email_address',
+      'users.full_name'
     )
     .from('companies as c')
     .join('salary_reviews as sr', 'sr.company_id', 'c.id')
     .leftJoin('interests as i', 'sr.interest_id', 'i.id')
+    .leftJoin('users', 'users.id', 'sr.user_id')
     .where('c.id', '=', id);
 }
 
@@ -59,6 +66,7 @@ function getUsersSalaryReviews(id) {
       'interest_id as i.id',
       'sr.is_accepting_questions',
       'sr.is_current_employee',
+      'sr.is_anonymous',
       'c.name'
     )
     .from('salary_reviews as sr')
@@ -79,11 +87,14 @@ function findSalaryReviewById(id) {
       'interest_id as i.id',
       'sr.is_accepting_questions',
       'sr.is_current_employee',
-      'c.name'
+      'sr.is_anonymous',
+      'c.name',
+      'users.full_name'
     )
     .from('salary_reviews as sr')
     .join('companies as c', 'sr.company_id', 'c.id')
     .leftJoin('interests as i', 'sr.interest_id', 'i.id')
+    .leftJoin('users', 'users.id', 'sr.user_id')
     .where('sr.id', '=', id)
     .first();
 }

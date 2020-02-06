@@ -39,6 +39,8 @@ To get the server running locally:
 
 The [**Express.js**](https://expressjs.com/) backend framework was used to build the server. Fast, unopinionated, minimalist web framework for Node.js
 
+[Sentry](https://sentry.io/) - An exception monitoring tool used to track and resolve errors with the app.
+
 #### Why Express.js
 
 - Express is fast.
@@ -57,11 +59,17 @@ Test Tools
 - [Jest](https://jestjs.io/) - Jest is a delightful JavaScript Testing Framework with a focus on simplicity.
 - [Supertest](https://github.com/visionmedia/supertest)
 
-## API Documentation
+# API Documentation
+
+## Database Model
+
+![Lambda Door Database Illustration](database/DBIllustration.png)
 
 The API endpoints for the server is on Heroku and can be found [here.](https://lambdadoor.herokuapp.com/)
 
-#### User Routes
+## USERS
+
+### User Routes
 
 | Method | Endpoint            | Access Control | Description                            |
 | ------ | ------------------- | -------------- | -------------------------------------- |
@@ -69,12 +77,6 @@ The API endpoints for the server is on Heroku and can be found [here.](https://l
 | GET    | `/users/:id`        | all users      | Returns info for a user.               |
 | PATCH  | `/users/:id`        | all users      | Edits information for a user.          |
 | GET    | `/users/:id/logout` | all users      | Logs out a user by deleting cookies.   |
-
-#### Data Model
-
-![Lambda Door Database Illustration](database/DBIllustration.png)
-
-#### USERS
 
 ---
 
@@ -186,21 +188,182 @@ Returns
 }
 ```
 
+## INTEREST
+
+### Interest Routes
+
+| Method | Endpoint               | Access Control | Description                                      |
+| ------ | ---------------------- | -------------- | ------------------------------------------------ |
+| POST   | `/interests/`          | all users      | Adds an interest to a users list of interests.   |
+| DELETE | `/interests/`          | all users      | Returns a message after successful deletion.     |
+| GET    | `/interests/`          | all users      | Returns an array of all interest in the DB.      |
+| GET    | `/interests/:id/`      | all users      | returns an object of a chosen interest           |
+| GET    | `/interests/ui/:id/`   | all users      | returns an object of a user interest with the id |
+| GET    | `/interests/user/:id/` | all users      | returns an array of all interest of the user     |
+
+---
+
+### Get all interests [GET]
+
+**URL**: _https://lambdadoor.herokuapp.com/interests_
+
+**Returns**: An Array with interest listed in the database
+
+Returns
+
+```javascript
+[
+  {
+    id: 1,
+    interest: 'AI Engineer',
+  },
+  {
+    id: 2,
+    interest: 'Front End',
+  },
+  {
+    id: 3,
+    interest: 'Back End',
+  },
+  {
+    id: 4,
+    interest: 'Full Stack',
+  },
+  {
+    id: 5,
+    interest: 'Data Science',
+  },
+  {
+    id: 6,
+    interest: 'Machine Learning',
+  },
+  {
+    id: 7,
+    interest: 'User Experience',
+  },
+];
+```
+
+## Actions
+
+### Get a single interest by ID [GET]
+
+**URL**: _https://lambdadoor.herokuapp.com/interests/:id_
+
+**Returns**: An object of a chosen interest.
+
+```javascript
+{
+    "id": 8,
+    "interest": "Mobile Development"
+}
+```
+
+### Get user's interests [GET]
+
+**URL**: _https://lambdadoor.herokuapp.com/interests/user/:id_
+
+**Returns**: An array of all interest of the user .
+
+```javascript
+[
+  {
+    id: 1,
+    interest: 'AI Engineer',
+    user_id: 2,
+  },
+  {
+    id: 2,
+    interest: 'Front End',
+    user_id: 2,
+  },
+  {
+    id: 3,
+    interest: 'Back End',
+    user_id: 2,
+  },
+];
+```
+
+### Get interests [GET]
+
+**URL**: _https://lambdadoor.herokuapp.com/interests/ui/:id_
+
+**Returns**: An object of interest with the name of the interest and the interest id linked to the user.
+
+```javascript
+{
+    "id": 7,
+    "interest_id": 2,
+    "interest": "Front End",
+    "user_id": 3
+}
+```
+
+### Post User interest [POST]
+
+**URL**: _https://lambdadoor.herokuapp.com/interests/_
+
+**Reaturn**: An array of the users intersts along with the new addition.
+
+Input
+
+```javascript
+{
+  "interest_id": "9",
+  "user_id": 4
+}
+```
+
+Output
+
+```javascript
+[
+  {
+    id: 8,
+    interest: 'AI Engineer',
+    user_id: 4,
+  },
+  {
+    id: 12,
+    interest: 'Product Manager',
+    user_id: 4,
+  },
+];
+```
+
+### delete User interest [DELETE]
+
+**URL**: _https://lambdadoor.herokuapp.com/interests/_
+
+**Reaturn**: A message os successful deletion along with an an object of the deleted interest.
+
+```javascript
+{
+    "message": "Successfully Deleted",
+    "deleted": {
+        "id": 3,
+        "interest_id": 3,
+        "interest": "Back End",
+        "user_id": 2
+    }
+}
+```
+
+---
+
+### COMPANIES
+
 #### Company Routes
 
-| Method | Endpoint                       | Access Control | Description                                              |
-| ------ | ------------------------------ | -------------- | -------------------------------------------------------- |
-| GET    | `/companies/`                  | all users      | Returns all companies in the db.                         |
-| GET    | `/companies/top`               | all users      | Returns 10 top rated companies.                          |
-| GET    | `/companies/:id/closest`       | all users      | Returns the closest companies to the user's location.    |
-| GET    | `/companies/:id/companyReview` | all users      | Returns a single company along with its various reviews. |
-| GET    | `/companies/:id`               | all users      | Returns a company by company ID.                         |
-| POST   | `/companies/`                  | all users      | Adds a single company to the db                          |
-| PATCH  |  `/companies/:id/`             | admin          | Edits Company info                                       |                                
-
-  complete PATCH endpoint (`/companies/:id/process.env.ADMIN_PREVILEGE_TOKEN`)
-
-#### COMPANIES
+| Method | Endpoint                 | Access Control | Description                                           |
+| ------ | ------------------------ | -------------- | ----------------------------------------------------- |
+| GET    | `/companies/`            | all users      | Returns all companies in the db.                      |
+| GET    | `/companies/top`         | all users      | Returns 10 top rated companies.                       |
+| GET    | `/companies/:id/closest` | all users      | Returns the closest companies to the user's location. |
+| GET    | `/companies/:id`         | all users      | Returns a company by company ID.                      |
+| POST   | `/companies/`            | all users      | Adds a single company to the db                       |
+| PATCH  | `/companies/:id/`        | admin          | Edits Company info                                    |
 
 ---
 
@@ -317,7 +480,6 @@ Returns
 }
 ```
 
-
 ### Update a company Info by Id [PATCH]
 
 **URL**: _https://lambdadoor.herokuapp.com/companies/1_
@@ -342,36 +504,11 @@ Returns
 }
 ```
 
-### Get a company with its reviews [GET]
-
-**URL**: \_https://lambdadoor.herokuapp.com/companies/:id/companyReview
-
-**Returns**: An array of a single company along with its various reviews.
-
-Returns
-
-```javascript
-[
-  {
-    ratings: 5,
-    review_headline: 'Flexible Working Hours and Great Benefits.',
-    review: 'They care about you',
-    name: 'Accenture',
-  },
-  {
-    ratings: 4,
-    review_headline: 'Very good',
-    review: 'I work in Accenture',
-    name: 'Accenture',
-  },
-];
-```
-
 ### Adds a new Company [POST]
 
 **URL**: \_https://lambdadoor.herokuapp.com/companies/
 
-**Returns**: An object conatining the company that was posted
+**Returns**: An object containing the company that was posted
 
 Input
 
@@ -404,6 +541,8 @@ Returns
 }
 ```
 
+### COMPANY REVIEWS
+
 #### Company Review Routes
 
 | Method | Endpoint                      | Access Control | Description                                      |
@@ -412,9 +551,8 @@ Returns
 | GET    | `/companyreviews/:id`         | all users      | Returns the selected review.                     |
 | DELETE | `/companyreviews/:id`         | all users      | Deletes the selected review.                     |
 | PATCH  | `/companyreviews/:id`         | all users      | Updates the selected review.                     |
-| GET    | `/companyreviews/reviews/:id` | all users      | Returns a single company along with its reviews. |
-
-#### COMPANY REVIEWS
+| POST   | `/companyreviews/:id`         | all users      | Add a new review.                                |
+| GET    | `/companyreviews/reviews/:id` | all users      | An array of a selected company's various reviews |
 
 ---
 
@@ -518,121 +656,6 @@ Returns
 
 **Returns**: A 204 status
 
-#### Company Review Routes
-
-| Method | Endpoint                      | Access Control | Description                                      |
-| ------ | ----------------------------- | -------------- | ------------------------------------------------ |
-| GET    | `/companyreviews/user/:id`    | all users      | Returns all of the user's reviews.               |
-| GET    | `/companyreviews/:id`         | all users      | Returns the selected review.                     |
-| DELETE | `/companyreviews/:id`         | all users      | Deletes the selected review.                     |
-| PATCH  | `/companyreviews/:id`         | all users      | Updates the selected review.                     |
-| POST   | `/companyreviews/:id`         | all users      | Add a new review.                                |
-| GET    | `/companyreviews/reviews/:id` | all users      | Returns a single company along with its reviews. |
-
-#### COMPANY REVIEWS
-
----
-
-```javascript
-{
-  id int [pk, increment]
-  user_id int
-  company_id int
-  ratings int
-  is_currently_employed boolean
-  review_headline varchar
-  pros varchar
-  cons varchar
-  is_accepting_questions boolean
-  created_at timestamp
-  updated_at timestamp
-}
-```
-
-## Actions
-
-### Get all of the user's reviews [GET]
-
-**URL**: _https://lambdadoor.herokuapp.com/companyreviews/user/:id_
-
-**Returns**: An array of the user's reviews
-
-Returns
-
-```javascript
-[
-  {
-    id: 3,
-    user_id: 3,
-    company_id: 1,
-    ratings: 5,
-    is_currently_employed: true,
-    review_headline: 'Flexible Working Hours and Great Benefits.',
-    pros: 'They care about you',
-    cons: "There aren't many opportunities to progress your career",
-    is_accepting_questions: true,
-    created_at: null,
-    updated_at: null,
-  },
-];
-```
-
-### Get a review by review id [GET]
-
-**URL**: _https://lambdadoor.herokuapp.com/companyreviews/:id_
-
-**Returns**: The selected review.
-
-Returns
-
-```javascript
-[
-  {
-    id: 3,
-    user_id: 3,
-    company_id: 1,
-    ratings: 5,
-    is_currently_employed: true,
-    review_headline: 'Flexible Working Hours and Great Benefits.',
-    pros: 'They care about you.',
-    cons: "There aren't many opportunities to progress your career.",
-    is_accepting_questions: true,
-    created_at: null,
-    updated_at: null,
-  },
-];
-```
-
-### Update an individual review [PUT]
-
-**URL**: _https://lambdadoor.herokuapp.com/companyreviews/:id_
-
-**Returns**: The updated review.
-
-```javascript
-[
-  {
-    id: 3,
-    user_id: 3,
-    company_id: 1,
-    ratings: 5,
-    is_currently_employed: true,
-    review_headline: 'Flexible Working Hours and Great Benefits.',
-    pros: 'They care about you. The pay is good.',
-    cons: "There aren't many opportunities to progress your career.",
-    is_accepting_questions: false,
-    created_at: null,
-    updated_at: null,
-  },
-];
-```
-
-### Delete a user's review [DELETE]
-
-**URL**: _https://lambdadoor.herokuapp.com/companyreviews/:id_
-
-**Returns**: A 204 status
-
 ### Add a user's review [POST]
 
 **URL**: _https://lambdadoor.herokuapp.com/companyreviews/:id_
@@ -651,49 +674,61 @@ Returns
     pros: 'They care about you. The pay is good.',
     cons: "There aren't many opportunities to progress your career.",
     is_accepting_questions: false,
-    created_at: null,
+    created_at: date,
     updated_at: null,
   },
 ];
 ```
 
-### Get a company with its reviews [GET]
+### Get a single company's reviews [GET]
 
 **URL**: \_https://lambdadoor.herokuapp.com/companyreviews/reviews/:id
 
-**Returns**: An array of a single company along with its various reviews.
+**Returns**: An array of a selected company's various reviews.
 
 Returns
 
 ```javascript
 [
   {
+    id: 3,
     ratings: 5,
     review_headline: 'Flexible Working Hours and Great Benefits.',
     review: 'They care about you',
     name: 'Accenture',
+    company_id: 1,
+    is_accepting_questions: true,
+    full_name: 'Victor Aworo',
+    user_id: 3,
+    email_address: 'vic@lambdaschool.com',
   },
   {
+    id: 4,
     ratings: 4,
     review_headline: 'Very good',
     review: 'I work in Accenture',
     name: 'Accenture',
+    company_id: 1,
+    is_accepting_questions: false,
+    full_name: 'Emily Abrahart',
+    user_id: 4,
+    email_address: 'emily@lambdaschool.com',
   },
 ];
 ```
 
 #### Salary Review Routes
 
-| Method | Endpoint                     | Access Control | Description                                             |
-| ------ | ---------------------------- | -------------- | ------------------------------------------------------- |
-| GET    | `/salaryreviews`             | all users      | Returns all of the salary reviews.                      |
-| GET    | `/salaryreviews/user/:id`    | all users      | Returns all of the user's salary reviews.               |
-| GET    | `/salaryreviews/:id`         | all users      | Returns the selected review.                            |
-| GET    | `/salaryreviews/avg/:id`     | all users      | Returns the average salaries by company id              |
-| DELETE | `/salaryreviews/:id`         | all users      | Deletes the selected review.                            |
-| PATCH  | `/salaryreviews/:id`         | all users      | Updates the selected review.                            |
-| POST   | `/salaryreviews/`            | all users      | Add a new review.                                       |
-| GET    | `/salaryreviews/reviews/:id` | all users      | Returns a single company along with its salary reviews. |
+| Method | Endpoint                     | Access Control | Description                                        |
+| ------ | ---------------------------- | -------------- | -------------------------------------------------- |
+| GET    | `/salaryreviews`             | all users      | Returns all of the salary reviews.                 |
+| GET    | `/salaryreviews/user/:id`    | all users      | Returns all of the user's salary reviews.          |
+| GET    | `/salaryreviews/:id`         | all users      | Returns the selected review.                       |
+| GET    | `/salaryreviews/avg/:id`     | all users      | Returns the average salaries by company id         |
+| DELETE | `/salaryreviews/:id`         | all users      | Deletes the selected review.                       |
+| PATCH  | `/salaryreviews/:id`         | all users      | Updates the selected review.                       |
+| POST   | `/salaryreviews/`            | all users      | Add a new review.                                  |
+| GET    | `/salaryreviews/reviews/:id` | all users      | Returns a single company's various salary reviews. |
 
 #### SALARY REVIEWS
 
@@ -739,14 +774,16 @@ Returns
 ```javascript
 [
   {
-    id: 3,
-    company_id: 10,
-    description: 'Junior Developer',
-    salary: '3000000',
-    currency: 'NGN',
-    interest: 'Software Engineer',
-    is_accepting_questions: true,
-    is_current_employee: true,
+    id: 1,
+    company_id: 1,
+    description: 'Software Engineer',
+    salary: 95000,
+    currency: 'USD',
+    interest: 'Front End',
+    'i.id': 2,
+    is_accepting_questions: false,
+    is_current_employee: false,
+    name: 'Accenture',
   },
 ];
 ```
@@ -762,11 +799,16 @@ Returns
 ```javascript
 [
   {
-    id: 2,
+    id: 1,
+    company_id: 1,
     description: 'Software Engineer',
-    salary: '98000',
+    salary: 95000,
     currency: 'USD',
-    interest_id: 1,
+    interest: 'Front End',
+    'i.id': 2,
+    is_accepting_questions: false,
+    is_current_employee: false,
+    name: 'Accenture',
   },
 ];
 ```
@@ -838,11 +880,11 @@ Returns
 ];
 ```
 
-### Get a company with its salary reviews [GET]
+### Get a company's salary reviews [GET]
 
 **URL**: \_https://lambdadoor.herokuapp.com/salaryreviews/reviews/:id
 
-**Returns**: An array of a single company along with its various salary reviews.
+**Returns**: An array of a single company's various salary reviews.
 
 Returns
 
@@ -850,35 +892,43 @@ Returns
 [
   {
     id: 1,
-    description: 'Accenture Programmer',
-    salary: '95000',
+    description: 'Software Engineer',
+    salary: 95000,
     currency: 'USD',
     interest_id: 2,
     interest: 'Front End',
+    name: 'Accenture',
+    is_accepting_questions: false,
+    is_anonymous: false,
+    email_address: 'lisa@lambdaschool.com',
   },
   {
-    id: 4,
-    description: 'Accenture Technical Specialist',
-    salary: '85000',
+    id: 6,
+    description: 'Backend Engineer',
+    salary: 85000,
     currency: 'USD',
     interest_id: 4,
     interest: 'Full Stack',
+    name: 'Accenture',
+    is_accepting_questions: true,
+    is_anonymous: null,
+    email_address: 'emily@lambdaschool.com',
   },
 ];
 ```
 
+### INTERVIEW REVIEWS
+
 #### Interview Review Routes
 
-| Method | Endpoint                       | Access Control | Description                                                |
-| ------ | ------------------------------ | -------------- | ---------------------------------------------------------- |
-| GET    | `/interviewreview/user/:id`    | all users      | Returns all of the user's interview reviews.               |
-| GET    | `/interviewreview/:id`         | all users      | Returns the selected review.                               |
-| DELETE | `/interviewreview/:id`         | all users      | Deletes the selected review.                               |
-| PATCH  | `/interviewreview/:id`         | all users      | Updates the selected review.                               |
-| POST   | `/interviewreview/`            | all users      | Add a new review.                                          |
-| GET    | `/interviewreview/reviews/:id` | all users      | Returns a single company along with its interview reviews. |
-
-#### INTERVIEW REVIEWS
+| Method | Endpoint                       | Access Control | Description                                           |
+| ------ | ------------------------------ | -------------- | ----------------------------------------------------- |
+| GET    | `/interviewreview/user/:id`    | all users      | Returns all of the user's interview reviews.          |
+| GET    | `/interviewreview/:id`         | all users      | Returns the selected review.                          |
+| DELETE | `/interviewreview/:id`         | all users      | Deletes the selected review.                          |
+| PATCH  | `/interviewreview/:id`         | all users      | Updates the selected review.                          |
+| POST   | `/interviewreview/`            | all users      | Add a new review.                                     |
+| GET    | `/interviewreview/reviews/:id` | all users      | Returns a single company's various interview reviews. |
 
 ---
 
@@ -895,11 +945,16 @@ Returns
 ```javascript
 [
   {
-    id: 1,
+    id: 2,
     text:
-      'Six rounds of phone/tech interviews over a long time period. It seemed a bit scattered and could have been way more efficient. I felt like some of the interviews got repetitive.',
-    user_id: 1,
-    name: 'Accenture',
+      'Very pleasant recruiters. First a phone interview that took about 15 minutes. Followed by two Skype interviews; first with a recruiter after that with a manager.Basic trouble shooting questions. They want to really get to know you as a person. Just be yourself and do not be afraid to be geeky/nerdy! Make sure you have a desk and dedicated home phone line.',
+    user_id: 2,
+    is_accepting_questions: false,
+    is_current_employee: false,
+    job_title: null,
+    company_id: 5,
+    name: 'DoNotPay Inc',
+    interest: 'Data Science',
   },
 ];
 ```
@@ -914,10 +969,17 @@ Returns
 
 ```javascript
 {
-  "id": 6,
-  "text": "Six rounds of phone/tech interviews over a long time period. It seemed a bit scattered and could have been way more efficient. I felt like some of the interviews got repetitive.",
-  "user_id": 1,
-  "name": "Accenture"
+    "id": 2,
+    "text": "Very pleasant recruiters. First a phone interview that took about 15 minutes. Followed by two Skype interviews; first with a recruiter after that with a manager.Basic trouble shooting questions. They want to really get to know you as a person. Just be yourself and do not be afraid to be geeky/nerdy! Make sure you have a desk and dedicated home phone line.",
+    "user_id": 2,
+    "company_id": 5,
+    "is_accepting_questions": false,
+    "is_current_employee": false,
+    "job_title": null,
+    "name": "DoNotPay Inc",
+    "full_name": "Chioma Nkem-Eze",
+    "email_address": "chioma@lambdaschool.com",
+    "interest": "Data Science"
 }
 
 ```
@@ -929,12 +991,17 @@ Returns
 **Returns**: The updated interview review.
 
 ```javascript
-{
-  "id": 6,
-  "text": "Six rounds of phone/tech interviews over a long time period. It seemed a bit scattered and could have been way more efficient. I felt like some of the interviews got repetitive.",
-  "user_id": 1,
-  "name": "Accenture"
-}
+    "id": 2,
+    "text": "Very pleasant recruiters. First a phone interview that took about 15 minutes. Followed by two Skype interviews; first with a recruiter after that with a manager.Basic trouble shooting questions. They want to really get to know you as a person. Just be yourself and do not be afraid to be geeky/nerdy! Make sure you have a desk and dedicated home phone line.",
+    "user_id": 2,
+    "company_id": 5,
+    "is_accepting_questions": true,
+    "is_current_employee": true,
+    "job_title": "Software Engineer",
+    "name": "DoNotPay Inc",
+    "full_name": "Chioma Nkem-Eze",
+    "email_address": "chioma@lambdaschool.com",
+    "interest": "Frontend"
 ```
 
 ### Delete a user's interview review [DELETE]
@@ -972,22 +1039,29 @@ Returns
     id: 1,
     text:
       'Six rounds of phone/tech interviews over a long time period. It seemed a bit scattered and could have been way more efficient. I felt like some of the interviews got repetitive.',
-    user_id: 1,
+    user_id: 4,
+    company_id: 1,
+    job_title: null,
+    is_accepting_questions: true,
+    is_current_employee: false,
     name: 'Accenture',
+    full_name: 'Emily Abrahart',
+    email_address: 'emily@lambdaschool.com',
+    interest: 'Front End',
   },
   {
-    id: 5,
+    id: 1,
     text:
       'Six rounds of phone/tech interviews over a long time period. It seemed a bit scattered and could have been way more efficient. I felt like some of the interviews got repetitive.',
-    user_id: 1,
+    user_id: 4,
+    company_id: 1,
+    job_title: null,
+    is_accepting_questions: true,
+    is_current_employee: false,
     name: 'Accenture',
-  },
-  {
-    id: 6,
-    text:
-      'Six rounds of phone/tech interviews over a long time period. It seemed a bit scattered and could have been way more efficient. I felt like some of the interviews got repetitive.',
-    user_id: 1,
-    name: 'Accenture',
+    full_name: 'Emily Abrahart',
+    email_address: 'mato@lambdaschool.com',
+    interest: 'BackEnd',
   },
 ];
 ```
@@ -1026,6 +1100,146 @@ Returns
     interest: 'Front End',
     id: 2,
     count: '1',
+  },
+];
+```
+
+## REQUEST REFERRAL
+
+### Request Referral Routes
+
+| Method | Endpoint    | Access Control | Description                             |
+| ------ | ----------- | -------------- | --------------------------------------- |
+| POST   | `/referral` | all users      | Returns text that request is successful |
+
+### Actions
+
+### Request Refferal [POST]
+
+**URL**: _https://lambdadoor.herokuapp.com/referral_
+
+**Returns**: Returns text that request is successful.
+
+Returns
+
+```text
+  Referral sent successfully!
+```
+
+## SEARCH
+
+### Search Routes
+
+| Method | Endpoint                              | Access Control | Description                                                 |
+| ------ | ------------------------------------- | -------------- | ----------------------------------------------------------- |
+| GET    | `/search/companies?search_query=foo`  | all users      | Returns company search results by company name or location  |
+|        |                                       |                |                                                             |
+| GET    | `/search/interviews?search_query=foo` | all users      | Returns interview review search results by interest, job    |
+|        |                                       |                | title or location.                                          |
+| GET    | `/search/salaries?search_query=foo`   | all users      | Returns salary review search results by interest, job title |
+|        |                                       |                | or location.                                                |
+
+---
+
+## Actions
+
+### Search companies [GET]
+
+**URL**: _https://lambdadoor.herokuapp.com/search/companies?search_query=acc_
+
+**Returns**: Returns an Array of all matching companies.
+
+Returns
+
+```javascript
+[
+  {
+    id: 1,
+    name: 'Accenture',
+    website: 'www.accenture.com.',
+    location: 'Atlanta, GA',
+    longitude: -85,
+    latitude: 33.7537,
+    type: 'Business',
+    logo: '',
+    description:
+      'We partner with our clients to drive real innovation—the kind that turns an idea into an industry.',
+    created_at: null,
+    updated_at: null,
+  },
+];
+```
+
+### Search salary reviews [GET]
+
+**URL**: _https://lambdadoor.herokuapp.com/search/salaries?search_query=dev_
+
+**Returns**: Returns an Array of all matching salary reviews.
+
+Returns
+
+```javascript
+[
+  {
+    id: 10,
+    user_id: 3,
+    company_id: 10,
+    text: null,
+    description:
+      'Paystack helps businesses in Africa get paid by anyone, anywhere in the world',
+    interest_id: 1,
+    salary: 3000000,
+    currency: 'Nigerian Naira',
+    is_accepting_questions: true,
+    is_current_employee: true,
+    created_at: null,
+    updated_at: null,
+    job_title: 'Junior Developer',
+    is_anonymous: false,
+    interest: 'Software Engineer',
+    name: 'Paystack',
+    website: 'https://paystack.com/',
+    location: 'Lagos, NG',
+    longitude: -80,
+    latitude: 31,
+    type: 'FinTech',
+    logo: '',
+  },
+];
+```
+
+### Search interview reviews [GET]
+
+**URL**: _https://lambdadoor.herokuapp.com/search/interviews?search_query=san_
+
+**Returns**: Returns an Array of all matching salary reviews.
+
+Returns
+
+```javascript
+[
+  {
+    id: 6,
+    user_id: 3,
+    company_id: 6,
+    text:
+      'There is one phone interview for an hour. If you clear this interview, you will be invited for an onsite interview. There are five interviews onsite, all in one day. Interviews are in a casual environment. After the first two interviews, you take a break and are escorted for lunch.',
+    created_at: null,
+    updated_at: null,
+    is_accepting_questions: false,
+    is_current_employee: false,
+    job_title: null,
+    interest_id: 2,
+    interest: 'Front End',
+    name: 'Newfront Insurance',
+    website: 'https://www.newfrontinsurance.com',
+    location: 'San Francisco, CA',
+    longitude: -80,
+    latitude: 31,
+    type: 'insurance',
+    logo: '',
+    description:
+      "We're are a modern brokerage innovating on behalf of our client",
   },
 ];
 ```

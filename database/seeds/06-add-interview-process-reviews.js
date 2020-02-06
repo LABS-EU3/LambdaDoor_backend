@@ -2,11 +2,11 @@ exports.seed = function(knex) {
   // Inserts seed entries
   return knex('interview_process_reviews').insert([
     {
-      user_id: 1,
+      user_id: 4,
       company_id: 1,
       text:
         'Six rounds of phone/tech interviews over a long time period. It seemed a bit scattered and could have been way more efficient. I felt like some of the interviews got repetitive.',
-      is_accepting_questions: 0,
+      is_accepting_questions: 1,
       is_current_employee: 0,
       interest_id: 2,
     },

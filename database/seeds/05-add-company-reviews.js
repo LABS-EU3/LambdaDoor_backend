@@ -2,14 +2,14 @@ exports.seed = function(knex) {
   // Inserts seed entries
   return knex('company_reviews').insert([
     {
-      user_id: 1,
+      user_id: 4,
       company_id: 10,
       ratings: 4,
       is_currently_employed: 1,
       review_headline: 'Great Company to work for',
       review:
         'Extremely good benefits from healthcare, PTO, and discounts. Very relaxed environment with clearly laid out expectations.',
-      is_accepting_questions: 0,
+      is_accepting_questions: 1,
     },
     {
       user_id: 1,
